@@ -66,10 +66,13 @@
 \crefrangemultiformat{section}{\S\S#3#1#4--#5#2#6}{ and~#3#1#4--#5#2#6}{, #3#1#4--#5#2#6}{ and~#3#1#4--#5#2#6}
 \Crefrangemultiformat{section}{Sections~#3#1#4--#5#2#6}{ and~#3#1#4--#5#2#6}{, #3#1#4--#5#2#6}{ and~#3#1#4--#5#2#6}
 
-% Use the theorem counter for equations as well
+%% Use the theorem counter for equations as well
 \let\c@equation\c@thm
 \numberwithin{equation}{section}
 
 \newenvironment{adv}{\SMALL\begin{advrmk}}{\end{advrmk}}
+
+%% Pictures
+\usepackage{tikz}
 
 \makeatother
