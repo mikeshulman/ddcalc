@@ -23,14 +23,14 @@ If you encountered differentials in one-variable calculus, you may have been tol
 These are not wrong, but with vectors we can give a better definition.
 
 \begin{defn}
-  A \textbf{differential 1-form} is a function whose input is a point $\pt{x}$ \emph{and} a vector $\vc{v}$ based at $\pt{x}$.
+  A \textbf{differential 1-form} is a function whose input is a point $\pt{x}$ \emph{and} a vector based at $\pt{x}$.
+  We denote the vector by $\dpx$.
 \end{defn}
 
-In $n$ dimensions, the point $\pt{x}$ has $n$ coordinates, as does the vector $\vc{v}$; thus a differential form $\omega$ takes $2n$ inputs.
+In $n$ dimensions, the point $\pt{x}$ has $n$ coordinates, as does the vector $\dpx$.
 As usual, in 2 or 3 dimensions we denote the coordinates of $\pt{x}$ by $\ptc{x,y}$ or $\ptc{x,y,z}$.
-
-We also denote the coordinates of $\vc{v}$ by $\vcc{\dx,\dy}$ or $\vcc{\dx,\dy,\dz}$, and we may write the vector $\vc{v}$ itself as $\dd\pt{x}$.
-We can then describe a differential form by a formula involving $x,y,z,\dx,\dy,\dz$.
+Similarly, we denote the coordinates of $\dpx$ by $\vcc{\dx,\dy}$ or $\vcc{\dx,\dy,\dz}$.
+We can then describe a differential form by a formula involving these coordinates $x,y,z,\dx,\dy,\dz$.
 
 \begin{egs}
   The following are all differential 1-forms:
@@ -43,13 +43,16 @@ We can then describe a differential form by a formula involving $x,y,z,\dx,\dy,\
   \end{gather*}
 \end{egs}
 
+Note that although $\dx$ is two letters, we regard it as one symbol standing for one variable.
+In particular, an expression such as $\dx^2$ means $(\dx)^2$, not $\dd(x^2)$.
+(We will give a different meaning to $\dd(x^2)$ in \cref{sec:differentials}.)
+
 Of these examples, the first two are special.
 
 \begin{defn}
   A \textbf{linear} differential 1-form is one defined by an expression of the form
-  \[ f(\pt{x}) \, \dx \]
-  or a sum of several such expressions.
-  Here $f$ is a function of the point $\pt{x}$ only, while $\dx$ is one of the coordinates of $\vc{v}$.
+  \[ f(\pt{x}) \, \dx + g(\pt{x}) \, \dy + h(\pt{x}) \, \dz. \]
+  Here $f$, $g$, and $h$ are functions of the point $\pt{x}$ only, and each of them is multiplied by one of the coordinates of $\dpx$.
 \end{defn}
 
 Most mathematicians only use the term ``differential 1-form'' for linear ones.
@@ -62,40 +65,45 @@ It is useful to classify the \emph{order} of a differential form as follows.
 
 \begin{defn}
   Let $k$ be an integer $\ge 0$.
-  A differential 1-form $\omega$ is \textbf{$k\th$ order} if
+  A differential 1-form $\omega$ is \textbf{$k\th$ order} at a point $\pt{x}$ if
   \[ \lim_{h\to 0} \frac{\omega(\pt{x},h\,\dd\pt{x})}{h^{k-1}} = 0 \]
-  for all $\pt{x}$ and $\dd\pt{x}$.
+  for all $\dd\pt{x}$.
 \end{defn}
 
 \begin{eg}
-  Any linear differential 1-form is first order.
+  Any linear differential 1-form is first order at every point.
   For instance, if $\omega(\pt{x},\dd\pt{x}) = f(\pt{x}) \, \dx$, then
   \[ \frac{\omega(\pt{x},h\,\dd\pt{x})}{h^0} = f(\pt{x}) \, h\, \dx,\]
   which goes to zero as $h\to 0$ (for fixed $\pt{x}$ and $\dd\pt{x}$).
 \end{eg}
 
 \begin{eg}
-  A differential 1-form not depending on $\dd\pt{x}$ (that is, essentially an ordinary function of $\pt{x}$) is zeroth order.
+  A differential 1-form not depending on $\dd\pt{x}$ (that is, essentially an ordinary function of $\pt{x}$) is zeroth order at every point.
   Since $\frac{1}{h^{-1}} = h$, we have
   \[\frac{\omega(\pt{x},h\,\dd\pt{x})}{h^{k-1}} = h \,\omega(\pt{x}),\]
   which goes to zero as $h\to 0$.
 \end{eg}
 
 \begin{eg}
-  The differential form $\dx^2$ is second order.
+  The differential form $\dx^2$ is second order at any point.
   We have
   \[ \frac{\omega(\pt{x},h\,\dd\pt{x})}{h^1} = \frac{(h\,\dx)^2}{h} = \frac{h^2 \, \dx^2}{h} = h \,\dx^2 \]
   which goes to zero as $h\to 0$.
 \end{eg}
 
 In general, a polynomial has the order of the lowest exponent of $\dx$ appearing in any of its terms.
-Thus, $x^3\, \dx^2 + \dx^3 - 2x \,\dx^4$ is second order.
+Thus, $x^3\, \dx^2 + \dx^3 - 2x \,\dx^4$ is second order at every point.
 
 \begin{rmk}
   If a form is $k\th$ order, then it is also $(k-1)\st$ order; thus any second order form is also first order and zeroth order, and so on.
   However, a $k\th$ order form is not generally also $(k+1)\st$ order.
   We usually emphasize the greatest order that a form has; e.g.\ we almost always care most that $\dx^2$ is second order, even though it is also first and zeroth order.
 \end{rmk}
+
+\begin{eg}
+  A differential form can have a higher order at some points than others.
+  For instance, the form $x \,\dx + \dx^2$ is first-order everywhere, but at the point $x=0$ it becomes $0\, dx + \dx^2 = \dx^2$, which is second order.
+\end{eg}
 
 
 \section{Differentials}
@@ -104,7 +112,7 @@ Thus, $x^3\, \dx^2 + \dx^3 - 2x \,\dx^4$ is second order.
 In one-variable calculus, you may have encountered the differential of a function.
 Namely, if $f$ is a function of one variable $x$, then its differential is
 \begin{equation}
-  \dd(f(x)) = f'(x) \, \dx\label{eq:onevariable-differential}
+  \df = f'(x) \, \dx\label{eq:onevariable-differential}
 \end{equation}
 where $f'$ is the \emph{derivative} of $f$.
 This can be interpreted in terms of the graph of the function $f$\dots
@@ -114,10 +122,10 @@ However, in multivariable calculus, it is more appropriate to do things in the o
 Linear approximation\dots
 
 \begin{defn}
-  If $f$ is a function of a point $\pt{x}$, then its \textbf{differential} is a linear differential 1-form $\dd f$ such that
-  \[ f(\pt{x} + \dd\pt{x}) - f(\pt{x}) - \dd f \]
-  is second order.
-  If such a form $\dd f$ exists, we say that $f$ is \textbf{differentiable}.
+  If $f$ is a function of a point $\pt{x}$, then its \textbf{differential} is a linear differential 1-form $\df$ such that
+  \[ f(\pt{x} + \dd\pt{x}) - f(\pt{x}) - \df \]
+  is second order at $\pt{x}$.
+  If such a form $\df$ exists, we say that $f$ is \textbf{differentiable} at $\pt{x}$.
 \end{defn}
 
 \begin{eg}
@@ -135,7 +143,54 @@ Linear approximation\dots
   Of course, this is the same result that we would have gotten from \cref{eq:onevariable-differential}.
 \end{eg}
 
+\begin{eg}
+  Let $f(x,y) = x^2 + 2y^2 - xy$.
+  Then
+  \begin{align*}
+    f(x+\dx,y+\dy) - f(x,y)
+    &= (x+\dx)^2 + 2(y+\dy)^2 - (x+\dx)(y+\dy) - x^2 - 2y^2 + xy\\
+    &= x^2 + 2 x \, dx + \dx^2 + 2y^2 + 4y\,dy + 2\dy^2\\
+    & \hspace{2cm} - x^2 - x \, \dy - y \, dx - \dx \dy - x^2 - 2y^2 + xy\\
+    &= 2x\,dx + 4y\,\dy - x\,\dy - y\,\dx + \dx^2 + 2\dy^2 - \dx\,\dy\\
+    &= (2x-y)\,dx + (4y-x)\,\dy + (\dx^2 + 2\dy^2 - \dx\,\dy)
+  \end{align*}
+  In the last line we have separated this into a linear form plus one of second order.
+  Thus, we have
+  \[ \dd(x^2 + 2y^2 - xy) = (2x-y)\,dx + (4y-x)\,\dy .\]
+\end{eg}
+
+\begin{eg}
+  Consider $f(x) = \sin x$.
+  Using the sum identity for sine, we have
+  \begin{align*}
+    \sin(x+\dx) - \sin (x)
+    &= \sin x \cos \dx + \sin \dx \cos x - \sin x\\
+    &= \cos x \sin \dx + \sin x (\cos \dx - 1).
+  \end{align*}
+  The usual way to proceed from here is to recall the limits
+  \[ \lim_{h\to 0} \frac{\sin h}{h} = 1 \qquad\text{and}\qquad
+  \lim_{h\to 0} \frac{\cos h - 1}{h} = 0 \]
+  The second one implies that
+  \[ \lim_{h\to 0} \frac{\cos (h\,\dx) - 1}{h} = 0 \]
+  and therefore the form $\cos \dx - 1$ is second-order.
+  Similarly, the first one implies that
+  \[ \lim_{h\to 0} \frac{\sin (h\, \dx) - h \, \dx}{h} = 0 \]
+  and therefore the form $\sin \dx - \dx$ is second-order.
+  These properties are unchanged when multiplying by ordinary functions such as $\cos x$ and $\sin x$, so we have
+  \begin{align*}
+    \sin(x+\dx) - \sin (x)
+    &= \cos x \sin \dx + \sin x (\cos \dx - 1)\\
+    &= \cos x (\dx  + \sin \dx - \dx) + \sin x (\cos \dx - 1)\\
+    &= \cos x \,\dx + \cos x (\sin \dx - \dx) + \sin x (\cos \dx - 1)
+  \end{align*}
+  which is written as the linear form $\cos x \,\dx$ plus a second-order one.
+  Thus, $\dd(\sin x) = \cos x \,\dx$.
+\end{eg}
+
 All the usual derivative rules of one-variable calculus can be derived from this definition as well.\dots
+
+\section{Derivatives}
+\label{sec:derivatives}
 
 We can now define the \emph{derivative} in terms of the \emph{differential}.
 Note that in one dimension, a linear differential 1-form must be of the form
