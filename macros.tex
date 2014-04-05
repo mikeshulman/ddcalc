@@ -1,0 +1,65 @@
+\makeatletter
+
+%% Differentials
+\newcommand{\dd}{\ensuremath{\mathrm{d}}}
+\newcommand{\dx}{\ensuremath{\dd x}}
+\newcommand{\dy}{\ensuremath{\dd y}}
+\newcommand{\dz}{\ensuremath{\dd z}}
+\newcommand{\dt}{\ensuremath{\dd t}}
+\newcommand{\du}{\ensuremath{\dd u}}
+\newcommand{\dv}{\ensuremath{\dd v}}
+
+%% Transposing vectors into forms
+\newcommand{\tr}[1]{{#1}^\top}
+\newcommand{\ptr}[1]{{(#1)}^\top}
+
+%% Hodge star on forms
+\newcommand{\st}[1]{{#1}^*}
+\newcommand{\pst}[1]{{(#1)}^*}
+
+%% Points and vectors
+\newcommand{\pt}[1]{\mathbf{#1}}
+\newcommand{\ptc}[1]{(#1)}
+\newcommand{\vc}[1]{\vec{#1}}
+\newcommand{\vcc}[1]{(#1)}
+
+%% Fractions
+\newcommand{\half}{\ensuremath{\textstyle\frac{1}{2}}}
+\newcommand{\third}{\ensuremath{\textstyle\frac{1}{3}}}
+
+%% Orders
+\renewcommand{\th}{^{\mathrm{th}}}
+
+%% Theorems
+\usepackage{cleveref,aliascnt}
+\def\defthm#1#2#3{%
+  %% Ensure all theorem types are numbered with the same counter
+  \newaliascnt{#1}{thm}
+  \newtheorem{#1}[#1]{#2}
+  \aliascntresetthe{#1}
+  %% Tell cleveref's \cref what to call things
+  \crefname{#1}{#2}{#3}}
+\newtheorem{thm}{Theorem}[section]
+\crefname{thm}{Theorem}{Theorems}
+\theoremstyle{definition}
+\defthm{defn}{Definition}{Definitions}
+\theoremstyle{remark}
+\defthm{rmk}{Remark}{Remarks}
+\defthm{eg}{Example}{Examples}
+\defthm{egs}{Examples}{Examples}
+
+%% Reference format for sections
+\crefformat{section}{\S#2#1#3}
+\Crefformat{section}{Section~#2#1#3}
+\crefrangeformat{section}{\S\S#3#1#4--#5#2#6}
+\Crefrangeformat{section}{Sections~#3#1#4--#5#2#6}
+\crefmultiformat{section}{\S\S#2#1#3}{ and~#2#1#3}{, #2#1#3}{ and~#2#1#3}
+\Crefmultiformat{section}{Sections~#2#1#3}{ and~#2#1#3}{, #2#1#3}{ and~#2#1#3}
+\crefrangemultiformat{section}{\S\S#3#1#4--#5#2#6}{ and~#3#1#4--#5#2#6}{, #3#1#4--#5#2#6}{ and~#3#1#4--#5#2#6}
+\Crefrangemultiformat{section}{Sections~#3#1#4--#5#2#6}{ and~#3#1#4--#5#2#6}{, #3#1#4--#5#2#6}{ and~#3#1#4--#5#2#6}
+
+% Use the theorem counter for equations as well
+\let\c@equation\c@thm
+\numberwithin{equation}{section}
+
+\makeatother
