@@ -47,8 +47,9 @@
 \crefname{thm}{Theorem}{Theorems}
 \theoremstyle{definition}
 \defthm{defn}{Definition}{Definitions}
-\theoremstyle{remark}
+%\theoremstyle{remark}
 \defthm{rmk}{Remark}{Remarks}
+\defthm{advrmk}{Advanced Remark}{Advanced Remarks}
 \defthm{eg}{Example}{Examples}
 \defthm{egs}{Examples}{Examples}
 
@@ -65,5 +66,7 @@
 % Use the theorem counter for equations as well
 \let\c@equation\c@thm
 \numberwithin{equation}{section}
+
+\newenvironment{adv}{\SMALL\begin{advrmk}}{\end{advrmk}}
 
 \makeatother

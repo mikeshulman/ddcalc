@@ -47,7 +47,7 @@ Note that although $\dx$ is two letters, we regard it as one symbol standing for
 In particular, an expression such as $\dx^2$ means $(\dx)^2$, not $\dd(x^2)$.
 (We will give a different meaning to $\dd(x^2)$ in \cref{sec:differentials}.)
 
-Of these examples, the first two are special.
+Of these examples, the first two are special in the following way.
 
 \begin{defn}
   A \textbf{linear} differential 1-form is one defined by an expression of the form
@@ -59,28 +59,36 @@ Most mathematicians only use the term ``differential 1-form'' for linear ones.
 However, the more general ones are quite useful.
 
 It is helpful to think of the coordinates $\dx$, $\dy$, and $\dz$ as small changes in the value of $x$.
-For instance, if $x=3$, then a possible small change would be $\dx = 0.001$.
-In this case, a differential form such as $\dx^2$ is an \emph{even smaller} change, since $\dx^2 = 0.000001$.
-It is useful to classify the \emph{order} of a differential form as follows.
+For instance, if $x=3$, then a possible small change would be $\dx = 0.01$.
+In this case, a differential form such as $\dx^2$ is an \emph{even smaller} change, since $\dx^2 = 0.0001$.
+We say that $\dx$ is a \emph{first-order} form while $\dx^2$ is \emph{second-order}.
+
+The concept of order can be applied even to forms that are not polynomials in $\dx$.
+For instance, if $\dx=0.01$, then $\sin \dx \approx 0.0099998$, which is about the same size as $\dx$.
+Thus, it is reasonable to say that $\sin\dx$ is also first-order.
+On the other hand, still with $\dx=0.01$, we have $\cos \dx - 1 \approx -0.00005$, which is much smaller than $\dx$ and about the same size as $\dx^2$.
+Thus, it is reasonable to say that $\cos \dx - 1$ is second-order.
+
+We make this idea precise with the following definition.
 
 \begin{defn}
-  Let $k$ be an integer $\ge 0$.
-  A differential 1-form $\omega$ is \textbf{$k\th$ order} at a point $\pt{x}$ if
-  \[ \lim_{h\to 0} \frac{\omega(\pt{x},h\,\dd\pt{x})}{h^{k-1}} = 0 \]
-  for all $\dd\pt{x}$.
+  Let $n$ be an integer $\ge 0$.
+  A 1-form $\omega$ is \textbf{$n\th$ order} at a point $\pt{x}$ if
+  \[ \lim_{h\to 0} \frac{\omega(\pt{x},h\,\dd\pt{x})}{h^{n-1}} = 0 \]
+  for all vectors $\dpx$ based at $\pt{x}$.
 \end{defn}
 
 \begin{eg}
-  Any linear differential 1-form is first order at every point.
+  A continuous \emph{linear} differential 1-form is first order at every point.
   For instance, if $\omega(\pt{x},\dd\pt{x}) = f(\pt{x}) \, \dx$, then
   \[ \frac{\omega(\pt{x},h\,\dd\pt{x})}{h^0} = f(\pt{x}) \, h\, \dx,\]
   which goes to zero as $h\to 0$ (for fixed $\pt{x}$ and $\dd\pt{x}$).
 \end{eg}
 
 \begin{eg}
-  A differential 1-form not depending on $\dd\pt{x}$ (that is, essentially an ordinary function of $\pt{x}$) is zeroth order at every point.
-  Since $\frac{1}{h^{-1}} = h$, we have
-  \[\frac{\omega(\pt{x},h\,\dd\pt{x})}{h^{k-1}} = h \,\omega(\pt{x}),\]
+  If $\omega(\pt{x},\dpx) = f(\pt{x})$ for an ordinary function $f$ of $\pt{x}$, then $\omega$ is zeroth order at every point.
+  For since $\frac{1}{h^{-1}} = h$, we have
+  \[\frac{\omega(\pt{x},h\,\dd\pt{x})}{h^{-1}} = h \,\omega(\pt{x}),\]
   which goes to zero as $h\to 0$.
 \end{eg}
 
@@ -91,12 +99,34 @@ It is useful to classify the \emph{order} of a differential form as follows.
   which goes to zero as $h\to 0$.
 \end{eg}
 
-In general, a polynomial has the order of the lowest exponent of $\dx$ appearing in any of its terms.
-Thus, $x^3\, \dx^2 + \dx^3 - 2x \,\dx^4$ is second order at every point.
+\begin{eg}
+  The differential form $\sqrt{\dx^2+\dy^2}$ is first order at any point.
+  We have
+  \[ \frac{\sqrt{(h\,\dx)^2+(h\,\dy)^2}}{h^0} =
+  \sqrt{h^2\,\dx^2+h^2\,\dy^2} = |h| \, \sqrt{\dx^2+\dy^2}
+  \]
+  which goes to zero as $h\to 0$.
+\end{eg}
+
+We also have the following rules for orders of forms.
+These can be proven from the limit laws from one-variable calculus.
+
+\begin{thm}
+  Let $\omega$ and $\eta$ be differential 1-forms, and assume that $\omega$ is $n\th$ order and $\eta$ is $m\th$ order at $\pt{x}$.
+  \begin{enumerate}
+  \item $\omega+\eta$ is $\min(n,m)\th$ order at $\pt{x}$.
+  \item $\omega\eta$ is $(n+m)\th$ order at $\pt{x}$.
+  \end{enumerate}
+\end{thm}
+
+It follows that a polynomial in the differential variables $\dx,\dy,\dz$ has the order of the lowest total degree of these variables in all of its terms.
+Thus, $x^3\, \dx^2 + \dx^3 - 2x \,\dx^4$ is second order at every point, since the lowest exponent of $\dx$ appearing in all its terms is 2 (the exponents of $x$ don't matter).
+Similarly, $xy\,\dx\,\dy^2 + y \dx^4$ is third order, since $\dx\,\dy^2$ has total degree 3 and $\dx^4$ has total degree 4.
+The ``coefficients'' can be arbitrary functions of $\pt{x}$ as well; for instance, $e^x \dx^2$ is second order.
 
 \begin{rmk}
-  If a form is $k\th$ order, then it is also $(k-1)\st$ order; thus any second order form is also first order and zeroth order, and so on.
-  However, a $k\th$ order form is not generally also $(k+1)\st$ order.
+  If a form is $n\th$ order, then it is also $m\th$ order for any $m<n$.
+  Thus, any second order form is also first order and zeroth order, and so on.
   We usually emphasize the greatest order that a form has; e.g.\ we almost always care most that $\dx^2$ is second order, even though it is also first and zeroth order.
 \end{rmk}
 
@@ -104,6 +134,12 @@ Thus, $x^3\, \dx^2 + \dx^3 - 2x \,\dx^4$ is second order at every point.
   A differential form can have a higher order at some points than others.
   For instance, the form $x \,\dx + \dx^2$ is first-order everywhere, but at the point $x=0$ it becomes $0\, dx + \dx^2 = \dx^2$, which is second order.
 \end{eg}
+
+\begin{adv}
+  The notion we've called ``$n\th$ order'' actually ought to be called ``smaller than $(n-1)\st$ order''.
+  For forms ``whose order is an integer'', such as polynomials, there is no real difference between the two.
+  However, a form such as $\dx^{3/2}$ is ``second-order'' by our definition, but really ought to be called ``$(3/2)\th$ order''.
+\end{adv}
 
 
 \section{Differentials}
@@ -165,7 +201,7 @@ Linear approximation\dots
   \begin{align*}
     \sin(x+\dx) - \sin (x)
     &= \sin x \cos \dx + \sin \dx \cos x - \sin x\\
-    &= \cos x \sin \dx + \sin x (\cos \dx - 1).
+    &= \cos x \sin \dx + (\sin x) (\cos \dx - 1).
   \end{align*}
   The usual way to proceed from here is to recall the limits
   \[ \lim_{h\to 0} \frac{\sin h}{h} = 1 \qquad\text{and}\qquad
@@ -176,15 +212,30 @@ Linear approximation\dots
   Similarly, the first one implies that
   \[ \lim_{h\to 0} \frac{\sin (h\, \dx) - h \, \dx}{h} = 0 \]
   and therefore the form $\sin \dx - \dx$ is second-order.
-  These properties are unchanged when multiplying by ordinary functions such as $\cos x$ and $\sin x$, so we have
+  The ordinary functions $\cos x$ and $\sin x$ are zeroth order, so by the rules for orders, multiplying by them doesn't change the order.
+  Thus, we can write
   \begin{align*}
     \sin(x+\dx) - \sin (x)
-    &= \cos x \sin \dx + \sin x (\cos \dx - 1)\\
-    &= \cos x (\dx  + \sin \dx - \dx) + \sin x (\cos \dx - 1)\\
-    &= \cos x \,\dx + \cos x (\sin \dx - \dx) + \sin x (\cos \dx - 1)
+    &= \cos x \sin \dx + (\sin x) (\cos \dx - 1)\\
+    &= (\cos x )(\dx  + \sin \dx - \dx) + (\sin x) (\cos \dx - 1)\\
+    &= \cos x \,\dx + (\cos x) (\sin \dx - \dx) + (\sin x) (\cos \dx - 1)
   \end{align*}
   which is written as the linear form $\cos x \,\dx$ plus a second-order one.
   Thus, $\dd(\sin x) = \cos x \,\dx$.
+
+  Another, perhaps more intuitive, way to proceed is to recall the power series expansions
+  \begin{align*}
+    \sin x &= x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots\\[2pt]
+    \cos x &= 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots
+  \end{align*}
+  Therefore, we have
+  \begin{align*}
+    \sin \dx - \dx &= - \frac{\dx^3}{3!} + \frac{\dx^5}{5!} - \cdots\\[2pt]
+    \cos \dx - 1 &= - \frac{\dx^2}{2!} + \frac{\dx^4}{4!} - \cdots
+  \end{align*}
+  so the rules for orders of polynomials say that the first is third-order (hence also second-order) and the second is second-order.
+  This does require knowing that the rules for orders of polynomials also apply to power series, but this is true.
+  (A deeper problem is that when calculating the power series expansions of sine and cosine in one-variable calculus, you probably used the fact that you already knew their derivatives.)
 \end{eg}
 
 All the usual derivative rules of one-variable calculus can be derived from this definition as well.\dots
