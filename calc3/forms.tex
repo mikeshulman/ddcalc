@@ -86,10 +86,11 @@ We make this idea precise with the following definition.
 \end{eg}
 
 \begin{eg}
-  If $\omega(\pt{x},\dpx) = f(\pt{x})$ for an ordinary function $f$ of $\pt{x}$, then $\omega$ is zeroth order at every point.
+  Any continuous differential 1-form is zeroth order at every point.
   For since $\frac{1}{h^{-1}} = h$, we have
-  \[\frac{\omega(\pt{x},h\,\dd\pt{x})}{h^{-1}} = h \,\omega(\pt{x}),\]
-  which goes to zero as $h\to 0$.
+  \[\frac{\omega(\pt{x},h\,\dpx)}{h^{-1}} = h \,\omega(\pt{x},h\,\dpx).\]
+  Since $\omega$ is continuous, $\lim_{h\to 0} \omega(\pt{x},h\,\dpx)$ exists; while of course $\lim_{h\to 0} h = 0$.
+  Thus, by the product law for limits, the limit of the product is also zero.
 \end{eg}
 
 \begin{eg}
@@ -172,7 +173,7 @@ Linear approximation\dots
     &= x^2 + 2 x \, \dx + \dx^2 - x^2\\
     &= 2x \, \dx + \dx ^2.
   \end{align*}
-  What differential form $\dd f$ can we subtract from this to make it second order?
+  What linear form $\dd f$ can we subtract from this to make it second order?
   Recalling the rule for orders of polynomials, we may think of subtracting $2x \, \dx$, leaving the second-order term $\dx^2$:
   \[ f(x + \dx) - f(x) - 2x \, \dx \;=\; \dx^2. \]
   Thus, we have $\dd(x^2) = 2 x \, \dx$.
@@ -185,14 +186,14 @@ Linear approximation\dots
   \begin{align*}
     f(x+\dx,y+\dy) - f(x,y)
     &= (x+\dx)^2 + 2(y+\dy)^2 - (x+\dx)(y+\dy) - x^2 - 2y^2 + xy\\
-    &= x^2 + 2 x \, dx + \dx^2 + 2y^2 + 4y\,dy + 2\dy^2\\
+    &= x^2 + 2 x \, \dx + \dx^2 + 2y^2 + 4y\,\dy + 2\dy^2\\
     & \hspace{2cm} - x^2 - x \, \dy - y \, dx - \dx \dy - x^2 - 2y^2 + xy\\
-    &= 2x\,dx + 4y\,\dy - x\,\dy - y\,\dx + \dx^2 + 2\dy^2 - \dx\,\dy\\
-    &= (2x-y)\,dx + (4y-x)\,\dy + (\dx^2 + 2\dy^2 - \dx\,\dy)
+    &= 2x\,\dx + 4y\,\dy - x\,\dy - y\,\dx + \dx^2 + 2\dy^2 - \dx\,\dy\\
+    &= (2x-y)\,\,dx + (4y-x)\,\dy + (\dx^2 + 2\dy^2 - \dx\,\dy)
   \end{align*}
   In the last line we have separated this into a linear form plus one of second order.
   Thus, we have
-  \[ \dd(x^2 + 2y^2 - xy) = (2x-y)\,dx + (4y-x)\,\dy .\]
+  \[ \dd(x^2 + 2y^2 - xy) = (2x-y)\,\dx + (4y-x)\,\dy .\]
 \end{eg}
 
 \begin{eg}
@@ -238,7 +239,67 @@ Linear approximation\dots
   (A deeper problem is that when calculating the power series expansions of sine and cosine in one-variable calculus, you probably used the fact that you already knew their derivatives.)
 \end{eg}
 
-All the usual derivative rules of one-variable calculus can be derived from this definition as well.\dots
+A convenient way to work with differentials is to introduce the notion of ``approximation to first order''.
+
+\begin{defn}
+  We say that two differential forms $\omega$ and $\eta$ are \textbf{equal to $n\th$ order} if their difference $\omega-\eta$ is $(n+1)\st$ order.
+  In this case we write
+  \[\omega\apx{n} \eta.\]
+\end{defn}
+
+For example, we have $x\,\dx + \dx^2 \apx1 x\,\dx - e^x \dx^2$, since their difference is
+\[ (x\,\dx + \dx^2) - (x\,\dx - e^x \dx^2) = (1+e^x)\dx^2 \]
+which is second order.
+
+The relation $\apx{n}$ behaves roughly like equality.
+For instance, we can add or subtract the same differential form from both sides.
+We can also multiply both sides by any continuous differential form, since multiplying by a zeroth order form doesn't change the order.
+Finally, we can of course discard any terms of greater than $n\th$ order from an $n\th$-order approximate equality.
+
+Now we can equivalently state the definition of a differential: $\df$ is a linear differential 1-form such that
+\[ f(x+\dx) \apx1 f(x) + \df, \]
+if such exists.
+Our previous calculations of differentials can all be written in this way.
+For instance,
+\begin{align*}
+  (x+\dx)^2 &= x^2 + 2 x\,\dx + \dx^2\\
+  &\apx1 x^2 + 2 x\,\dx
+\end{align*}
+since $\dx^2$ is second order.
+Therefore, $\dd(x^2) = 2x\,\dx$.
+
+We can also deduce all the usual derivative rules, written in terms of differentials.
+For instance, given functions $f$ and $g$, consider their sum $f+g$.
+\begin{align*}
+  f(x+\dx) + g(x+\dx)
+  &\apx1 f(x) + \df + g(x) + \dg\\
+  &= \big[f(x) + g(x)\big] + \big[ \df + \df \big]
+\end{align*}
+Thus, we have
+\[ \dd(f+g) = \df + \dg. \]
+Similarly, for the product rule, we compute
+\begin{align*}
+  f(x+\dx) \, g(x+\dx)
+  &\apx1 \big(f(x)+\df\big)\big(g(x) + \dg \big)\\
+  &= f(x) g(x) + f(x) \,\dg + g(x) \,\df + \df\,\dg\\
+  &\apx1 f(x) g(x) + f(x) \,\dg + g(x) \,\df
+\end{align*}
+since $\df\,\dg$ is a product of two first-order forms, hence second-order.
+Thus,
+\[ \dd(f\,g) = f\,\dg + g\,\df.\]
+% TODO: Chain rule
+
+Importantly, these same rules apply to functions of more than one variable.
+
+\begin{eg}
+  If $f(x,y) = x^2y + xy^2$, then we can use the sum and product rules to obtain
+  \begin{align*}
+    \dd(x^2y + xy^2) &= \dd(x^2y) + \dd(xy^2)\\
+    &= x^2\,\dy + y \,\dd(x^2) + x \,\dd(y^2) + y^2\,\dx\\
+    &= x^2\,\dy + y \,(2x\,\dx) + x\, (2y\,\dy) + y^2\,\dx\\
+    &= (2xy + y^2)\,\dx + (x^2+2xy)\,\dy
+  \end{align*}
+\end{eg}
 
 \section{Derivatives}
 \label{sec:derivatives}
