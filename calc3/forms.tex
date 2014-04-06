@@ -32,7 +32,10 @@ As usual, in 2 or 3 dimensions we denote the coordinates of $\pt{x}$ by $\ptc{x,
 Similarly, we denote the coordinates of $\dpx$ by $\vcc{\dx,\dy}$ or $\vcc{\dx,\dy,\dz}$.
 We can then describe a differential form by a formula involving these coordinates $x,y,z,\dx,\dy,\dz$.
 
-\begin{egs}
+We usually denote differential forms by lowercase Greek letters such as $\omega$ (omega, not to be confused with the English letter $w$) or $\eta$ (eta, not to be confused with the English letter $n$).
+Thus we would write $\omega(\pt{x},\dpx)$ for the value of a form $\omega$ at a point $\pt{x}$ and a vector $\dpx$, or $\omega(x,y,\dx,\dy)$ if we want to emphasize all the coordinates.
+
+\begin{egs}\label{egs:differential-forms}
   The following are all differential 1-forms:
   \begin{gather*}
     x^2 \,\dx + 2xy \, \dy\\
@@ -47,10 +50,10 @@ Note that although $\dx$ is two letters, we regard it as one symbol standing for
 In particular, an expression such as $\dx^2$ means $(\dx)^2$, not $\dd(x^2)$.
 (We will give a different meaning to $\dd(x^2)$ in \cref{sec:differentials}.)
 
-Of these examples, the first two are special in the following way.
+The first two of \cref{egs:differential-forms} are special in the following way.
 
 \begin{defn}
-  A \textbf{linear} differential 1-form is one defined by an expression of the form
+  A \textbf{linear} differential 1-form is one defined by an expression such as
   \[ f(\pt{x}) \, \dx + g(\pt{x}) \, \dy + h(\pt{x}) \, \dz. \]
   Here $f$, $g$, and $h$ are functions of the point $\pt{x}$ only, and each of them is multiplied by one of the coordinates of $\dpx$.
 \end{defn}
@@ -61,7 +64,11 @@ However, the more general ones are quite useful.
 It is helpful to think of the coordinates $\dx$, $\dy$, and $\dz$ as small changes in the value of $x$.
 For instance, if $x=3$, then a possible small change would be $\dx = 0.01$.
 In this case, a differential form such as $\dx^2$ is an \emph{even smaller} change, since $\dx^2 = 0.0001$.
-We say that $\dx$ is a \emph{first-order} form while $\dx^2$ is \emph{second-order}.
+We say that $\dx$ is a \emph{first order} form while $\dx^2$ is \emph{second order}.
+Similarly, we say that $x$ itself is \emph{zeroth order}, as is any function value $f(\pt{x})$ not involving $\dpx$.
+
+Every linear form is first-order: when we multiply a zeroth order number like $f(\pt{x})$ by a first order one like $\dx$, the result is first order.
+For instance, if $f(x) = 4$ and $\dx = 0.001$, then $f(x)\,\dx = 0.004$.
 
 The concept of order can be applied even to forms that are not polynomials in $\dx$.
 For instance, if $\dx=0.01$, then $\sin \dx \approx 0.0099998$, which is about the same size as $\dx$.
@@ -69,7 +76,7 @@ Thus, it is reasonable to say that $\sin\dx$ is also first-order.
 On the other hand, still with $\dx=0.01$, we have $\cos \dx - 1 \approx -0.00005$, which is much smaller than $\dx$ and about the same size as $\dx^2$.
 Thus, it is reasonable to say that $\cos \dx - 1$ is second-order.
 
-We make this idea precise with the following definition.
+We make the notion of ``orders'' precise with the following definition.
 
 \begin{defn}
   Let $n$ be an integer $\ge 0$.
@@ -78,15 +85,22 @@ We make this idea precise with the following definition.
   for all vectors $\dpx$ based at $\pt{x}$.
 \end{defn}
 
+Recall that definitions in mathematics introduce a \emph{new} meaning for a word.
+Thus, \emph{from now on} (in this class) the word ``order'' \emph{will mean} what this definition says it does.
+Our previous discussion was only motivational; the definition is the ``gold standard'' for the meaning of the word.
+
+The first thing to do in understanding a definition is to look at some examples.
+If we chose the definition well, the examples will justify our motivation.
+
 \begin{eg}
-  A continuous \emph{linear} differential 1-form is first order at every point.
+  As suggested above, any continuous \emph{linear} differential 1-form is first order at every point.
   For instance, if $\omega(\pt{x},\dd\pt{x}) = f(\pt{x}) \, \dx$, then
   \[ \frac{\omega(\pt{x},h\,\dd\pt{x})}{h^0} = f(\pt{x}) \, h\, \dx,\]
   which goes to zero as $h\to 0$ (for fixed $\pt{x}$ and $\dd\pt{x}$).
 \end{eg}
 
 \begin{eg}
-  Any continuous differential 1-form is zeroth order at every point.
+  \emph{Any} continuous differential 1-form is zeroth order at every point.
   For since $\frac{1}{h^{-1}} = h$, we have
   \[\frac{\omega(\pt{x},h\,\dpx)}{h^{-1}} = h \,\omega(\pt{x},h\,\dpx).\]
   Since $\omega$ is continuous, $\lim_{h\to 0} \omega(\pt{x},h\,\dpx)$ exists; while of course $\lim_{h\to 0} h = 0$.
@@ -122,8 +136,8 @@ These can be proven from the limit laws from one-variable calculus.
 
 It follows that a polynomial in the differential variables $\dx,\dy,\dz$ has the order of the lowest total degree of these variables in all of its terms.
 Thus, $x^3\, \dx^2 + \dx^3 - 2x \,\dx^4$ is second order at every point, since the lowest exponent of $\dx$ appearing in all its terms is 2 (the exponents of $x$ don't matter).
-Similarly, $xy\,\dx\,\dy^2 + y \dx^4$ is third order, since $\dx\,\dy^2$ has total degree 3 and $\dx^4$ has total degree 4.
-The ``coefficients'' can be arbitrary functions of $\pt{x}$ as well; for instance, $e^x \dx^2$ is second order.
+Similarly, $xy\,\dx\,\dy^2 + y\, \dx^4$ is third order, since $\dx\,\dy^2$ has total degree 3 and $\dx^4$ has total degree 4.
+The ``coefficients'' can be arbitrary functions of $\pt{x}$ as well; for instance, $e^x \,\dx^2$ is second order.
 
 \begin{rmk}
   If a form is $n\th$ order, then it is also $m\th$ order for any $m<n$.
@@ -149,6 +163,7 @@ A differential form should be thought of as giving for each point $\pt{x}$, a fu
 In addition, we generally only care about this function for small values of $\dpx$.
 
 We can give an idea of what such a thing looks like by drawing at each point $\pt{x}$ a small fragment of the graph of the corresponding function of $\dpx$, with its origin placed at $\pt{x}$.
+This is easiest to do in one dimension.
 For instance, we would graph the form $x\,\dx$ as follows.
 \begin{center}
   \begin{tikzpicture}
@@ -196,40 +211,98 @@ Analogously, we would graph $x\,\dx^2$ as follows, drawing $f(\dx) = \dx^2$ with
     \end{scope}
   \end{tikzpicture}
 \end{center}
-
-Of particular interest is the differential form $f(x+\dx)-f(x)$, for some function $f$ of $x$.
-The graph of this form at some value of $x$ looks just like a piece of the graph of $f$ near $x$, but shifted down so that it crosses the $x$-axis at the point $(x,0)$ (this is what subtracting $f(x)$ accomplishes).
-Here we show the ordinary graph of some arbitrary function $f$, along with a graph of $f(x+\dx)-f(x)$ done as above.
+In the previous two examples, all the small graphs lay along the $x$-axis, because the differential forms being graphed had no zeroth order term.
+If there is a zeroth order term, then the small graphs will lie along the graph of that term.
+For instance, here is a graph of $-x^2 + \sin(x)\,\dx$, with the curve $y=-x^2$ shown as well for comparison:
 \begin{center}
   \begin{tikzpicture}
     \draw[<->] (-5,0) -- (5,0);
+    \draw[<->] (0,-5) -- (0,1);
+    \draw (2,-.2) -- (2,.2) node[above] {$\frac\pi2$};
+    \draw (4,-.2) -- (4,.2) node[above] {$\pi$};
+    \draw (-2,-.2) -- (-2,.2) node[above] {$-\frac\pi2$};
+    \draw (-4,-.2) -- (-4,.2) node[above] {$-\pi$};
+    \draw (.2,-1) -- (-.2,-1) node[left] {$-\frac{\pi^2}{4}$};
+    \draw (.2,-4) -- (-.2,-4) node[left] {$-\pi^2$};
+    \begin{scope}[blue,very thick]
+      \draw (-.3,0) -- (.3,0);
+      \draw (.7,-.4) -- (1.3,-.1);
+      \draw (1.7,-1.3) -- (2.3,-.7);
+      \draw (2.7,-2.65) -- (3.3,-2.35);
+      \draw (3.7,-4) -- (4.3,-4);
+      \draw (-.7,-.4) -- (-1.3,-.1);
+      \draw (-1.7,-1.3) -- (-2.3,-.7);
+      \draw (-2.7,-2.65) -- (-3.3,-2.35);
+      \draw (-3.7,-4) -- (-4.3,-4);
+    \end{scope}
+    \draw[purple,dashed] (-4,-4) to[out=60,in=120,looseness=1.97] (4,-4);
+  \end{tikzpicture}
+\end{center}
+
+We can also draw differential forms in multiple variables, although it is rather trickier.\dots
+
+We now consider some differential forms of particular interest associated to a function $f$ of $x$.
+As a running example we will consider the following function:
+\def\axes{
+    \draw[<->] (-5,0) -- (5,0);
     \draw[<->] (0,-2) -- (0,2);
-    \draw (1,.2) -- (1,-.2);
-    \draw (2,.2) -- (2,-.2);
-    \draw (3,.2) -- (3,-.2);
-    \draw (4,.2) -- (4,-.2);
-    \draw (-1,.2) -- (-1,-.2);
-    \draw (-2,-.2) -- (-2,.2);
-    \draw (-3,.2) -- (-3,-.2);
-    \draw (-4,-.2) -- (-4,.2);
-    \draw[purple,very thick] (-5,.3) to[out=30,in=170] (-4,1) to[out=-10,in=110] (-2,-1.2) to[out=-70,in=-130] (1,.2) to[out=50,in=120] (5,-.5) node[below right] {$f(x)$};
-    \def\drawit#1{\draw[blue,very thick,yshift=#1] (-5,.3) to[out=30,in=170] (-4,1) to[out=-10,in=110] (-2,-1.2) to[out=-70,in=-130] (1,.2) to[out=50,in=120] (5,-.5);}
-    \begin{scope} \clip (-.3,-.3) rectangle (0.3,.3); \drawit{.85cm} \end{scope}
-    \begin{scope} \clip (0.7,-.3) rectangle (1.3,.3); \drawit{-.2cm} \end{scope}
-    \begin{scope} \clip (1.7,-.3) rectangle (2.3,.3); \drawit{-.81cm} \end{scope}
-    \begin{scope} \clip (2.7,-.3) rectangle (3.3,.3); \drawit{-.85cm} \end{scope}
-    \begin{scope} \clip (3.7,-.3) rectangle (4.3,.3); \drawit{-.47cm} \end{scope}
-    \begin{scope} \clip (-.7,-.3) rectangle (-1.3,.3); \drawit{1.5cm} \end{scope}
-    \begin{scope} \clip (-1.7,-.3) rectangle (-2.3,.3); \drawit{1.2cm} \end{scope}
-    \begin{scope} \clip (-2.7,-.3) rectangle (-3.3,.3); \drawit{-.55cm}; \end{scope}
-    \begin{scope} \clip (-3.7,-.3) rectangle (-4.3,.3); \drawit{-1cm} \end{scope}
-    \node[blue] at (3,-1.5) {$f(x+\dx)-f(x)$};
+    \foreach \x in {1,2,3,4} \draw (\x,.2) -- (\x,-.2);
+    \foreach \x in {1,2,3,4} \draw (-\x,.2) -- (-\x,-.2);
+}
+\def\fctn#1{\draw[#1] (-5,.3) to[out=30,in=170] (-4,1) to[out=-10,in=110] (-2,-1.2) to[out=-70,in=-130] (1,.2) to[out=50,in=120] (5,-.5);}
+\def\heights{-4/1cm/-.05,-3/.55cm/-.3,-2/-1.2cm/-.6,-1/-1.5cm/.15,0/-.85cm/.28,1/.2cm/.32,2/.81cm/.08,3/.85cm/-.05,4/.47cm/-.18}
+\begin{center}
+  \begin{tikzpicture}
+    \axes
+    \fctn{purple,very thick}
+    \node[purple,below right] at (5,-.5) {$y=f(x)$};
+  \end{tikzpicture}
+\end{center}
+First of all, we can regard $f(x)$ itself as a differential form: one which simply does not use the variable $\dx$ (and thus takes the same value regardless of what $\dx$ is).
+Thus, each little piece of the graph of this differential form will be a horizontal line, as shown below (we have included the graph of $f$ for comparison).
+\begin{center}
+  \begin{tikzpicture}
+    \axes
+    \fctn{dashed,purple}
+    \node[purple,right] at (5,-.5) {the function $f$};
+    \foreach \x/\y in \heights \draw[blue,very thick] (\x-.3,\y) -- (\x+.3,\y);
+    \node[blue] at (2.5,-1.5) {the differential form $f(x)$};
+  \end{tikzpicture}
+\end{center}
+This seems a little odd as a representation of $f$, so we may ask whether there is some differential form for which each piece of its graph looks like a corresponding part of the graph of $f$ itself.
+Such a differential form is $f(x+\dx)$ --- since as $\dx$ varies around zero, $x+\dx$ varies around $x$.
+\begin{center}
+  \begin{tikzpicture}
+    \axes
+    \fctn{dashed,purple}
+    \node[purple,below right] at (5,-.5) {the function $f$};
+    \foreach \x/\y in \heights {
+      \begin{scope}
+        \clip (\x-0.3,\y-0.3cm) rectangle (\x+0.3,\y+0.3cm);
+        \fctn{blue,very thick}
+      \end{scope}
+    }
+    \node[blue] at (3,-1.5) {\parbox{4cm}{\centering the differential form\\$f(x+\dx)$}};
+  \end{tikzpicture}
+\end{center}
+Finally, consider the differential form $f(x+\dx)-f(x)$.
+Its graph at $x$ looks just like a piece of the graph of $f$ near $x$, just as for the form $f(x+\dx)$, but now this graph is shifted down so that it crosses the $x$-axis at the point $(x,0)$ (this is what subtracting $f(x)$ accomplishes).
+\begin{center}
+  \begin{tikzpicture}
+    \axes
+    \fctn{dashed,purple}
+    \node[purple,below right] at (5,-.5) {the function $f$};
+    \foreach \x/\y in \heights {
+      \begin{scope}
+        \clip (\x-.3,-.3) rectangle (\x+0.3,.3);
+        \fctn{blue,very thick,yshift=-\y}
+      \end{scope}
+    }
+    \node[blue] at (3,-1.5) {\parbox{4cm}{\centering the differential form\\$f(x+\dx)-f(x)$}};
   \end{tikzpicture}
 \end{center}
 Note that the pieces of the graph of $f(x+\dx)-f(x)$ all look quite close to straight lines.
-This is what happens whenever we ``zoom in'' sufficiently on a smooth function, leading to the definition of differentiation (see \cref{sec:differentials}).
-
-We can also draw differential forms in multiple variables, although it is rather trickier.\dots
+This happens whenever we ``zoom in'' sufficiently on a smooth function, and it is this observation that leads to the idea of differentiation.
 
 
 \section{Differentials}
@@ -241,18 +314,55 @@ Namely, if $f$ is a function of one variable $x$, then its differential is
   \df = f'(x) \, \dx\label{eq:onevariable-differential}
 \end{equation}
 where $f'$ is the \emph{derivative} of $f$.
-This can be interpreted in terms of the graph of the function $f$\dots
+Note that $\df$ is a differential form.
+Its graph looks like this (the function $f$ is the same one we were using as an example at the end of the last section).
+\begin{center}
+  \begin{tikzpicture}
+    \axes
+    \fctn{dashed,purple}
+    \node[purple,below right] at (5,-.5) {the function $f$};
+    \foreach \x/\y/\slope in \heights {
+      \begin{scope}
+        \clip (\x-.3,-.3) rectangle (\x+0.3,.3);
+        % \fctn{red,very thick,yshift=-\y}
+        \draw[blue,very thick] (\x-.3,-\slope) -- (\x+.3,\slope);
+      \end{scope}
+    }
+    \node[blue] at (3,-1.5) {\parbox{4cm}{\centering the differential form\\$\df = f'(x) \,\dx$}};
+  \end{tikzpicture}
+\end{center}
+Note that this is barely distinguishable from the graph of $f(x+\dx)-f(x)$.
+This is the whole point of the derivative: $f'(x)$ is the slope of the tangent line to the graph of $f$ at $x$, and that line is the best possible \emph{linear approximation} to the graph.
+Indeed, recall that by definition, the derivative is
+\[ f'(x) = \lim_{\dx\to 0} \frac{f(x+\dx)-f(x)}{\dx} \]
+Thus, when $\dx$ is small, we can say that
+\begin{equation}\label{eq:difference-quotient-close-derivative}
+  \frac{f(x+\dx)-f(x)}{\dx}\quad\text{is very close to}\quad f'(x).
+\end{equation}
+Multiplying each of these by $\dx$, we find that
+\begin{equation}
+  f(x+\dx)-f(x) \quad\text{is very close to}\quad f'(x)\,\dx.\label{eq:difference-close-differential}
+\end{equation}
+This is what we saw in the above-remarked similarity of graphs.
 
-\Cref{eq:onevariable-differential} defines the \emph{differential} of $f$ in terms of the \emph{derivative} of $f$.
-However, in multivariable calculus, it is more appropriate to do things in the other order, defining the differential first.
-Linear approximation\dots
+\begin{adv}
+  However, the quantities in~\cref{eq:difference-close-differential} are of a different order than those in~\cref{eq:difference-quotient-close-derivative}:
+  $\frac{f(x+\dx)-f(x)}{\dx}$ and $f'(x)$ are zeroth order, while $f(x+\dx)-f(x)$ and $f'(x)\,\dx$ are first order.
+  Thus, the precise meaning of ``close'' is different: in~\cref{eq:difference-close-differential} we mean that their difference is first-order, while in~\cref{eq:difference-quotient-close-derivative} we mean that their difference is second-order.
+  This is why \cref{def:differential} below is phrased as it is.
+\end{adv}
 
-\begin{defn}
+\Cref{eq:onevariable-differential} from one-variable calculus defines the \emph{differential} of $f$ in terms of the \emph{derivative} of $f$.
+However, in multivariable calculus, it is more appropriate to do things in the other order, using the idea of~\cref{eq:difference-quotient-close-derivative} to define the differential \emph{first}, and then deducing a notion of ``derivative'' from this.
+
+\begin{defn}\label{def:differential}
   If $f$ is a function of a point $\pt{x}$, then its \textbf{differential} is a linear differential 1-form $\df$ such that
   \[ f(\pt{x} + \dd\pt{x}) - f(\pt{x}) - \df \]
   is second order at $\pt{x}$.
   If such a form $\df$ exists, we say that $f$ is \textbf{differentiable} at $\pt{x}$.
 \end{defn}
+
+As always, we should explore a new definition with examples.
 
 \begin{eg}
   Let $f(x) = x^2$, an ordinary one-variable function.
@@ -288,11 +398,11 @@ Linear approximation\dots
 \begin{eg}
   Consider $f(x) = \sin x$.
   Using the sum identity for sine, we have
-  \begin{align*}
+  \begin{align}
     \sin(x+\dx) - \sin (x)
-    &= \sin x \cos \dx + \sin \dx \cos x - \sin x\\
-    &= \cos x \sin \dx + (\sin x) (\cos \dx - 1).
-  \end{align*}
+    &= \sin x \cos \dx + \sin \dx \cos x - \sin x \notag\\
+    &= \cos x \sin \dx + (\sin x) (\cos \dx - 1).\label{eq:sine-difference}
+  \end{align}
   The usual way to proceed from here is to recall the limits
   \[ \lim_{h\to 0} \frac{\sin h}{h} = 1 \qquad\text{and}\qquad
   \lim_{h\to 0} \frac{\cos h - 1}{h} = 0 \]
@@ -302,8 +412,8 @@ Linear approximation\dots
   Similarly, the first one implies that
   \[ \lim_{h\to 0} \frac{\sin (h\, \dx) - h \, \dx}{h} = 0 \]
   and therefore the form $\sin \dx - \dx$ is second-order.
-  The ordinary functions $\cos x$ and $\sin x$ are zeroth order, so by the rules for orders, multiplying by them doesn't change the order.
-  Thus, we can write
+  The ordinary functions $\cos x$ and $\sin x$, regarded as differential forms, are zeroth order; thus by the rules for orders, multiplying by them doesn't change the order.
+  So we can write
   \begin{align*}
     \sin(x+\dx) - \sin (x)
     &= \cos x \sin \dx + (\sin x) (\cos \dx - 1)\\
@@ -313,7 +423,7 @@ Linear approximation\dots
   which is written as the linear form $\cos x \,\dx$ plus a second-order one.
   Thus, $\dd(\sin x) = \cos x \,\dx$.
 
-  Another, perhaps more intuitive, way to proceed is to recall the power series expansions
+  Another, perhaps more intuitive, way to proceed from \cref{eq:sine-difference} is to recall the power series expansions
   \begin{align*}
     \sin x &= x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots\\[2pt]
     \cos x &= 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots
@@ -336,8 +446,8 @@ A convenient way to work with differentials is to introduce the notion of ``appr
   \[\omega\apx{n} \eta.\]
 \end{defn}
 
-For example, we have $x\,\dx + \dx^2 \apx1 x\,\dx - e^x \dx^2$, since their difference is
-\[ (x\,\dx + \dx^2) - (x\,\dx - e^x \dx^2) = (1+e^x)\dx^2 \]
+For example, we have $x\,\dx + \dx^2 \apx1 x\,\dx - e^x \,\dx^2$, since their difference is
+\[ (x\,\dx + \dx^2) - (x\,\dx - e^x\, \dx^2) = (1+e^x)\dx^2 \]
 which is second order.
 
 The relation $\apx{n}$ behaves roughly like equality.
@@ -397,11 +507,12 @@ We can now define the \emph{derivative} in terms of the \emph{differential}.
 Note that in one dimension, a linear differential 1-form must be of the form
 \[ g(x) \,\dx \]
 for some function $g$.
-In particular, if $f$ is a differentiable function, then $\dd f = g(x) \, \dx$ for some function $g$, which we call the \emph{derivative} of $f$ and denote by $f'$.
-In other words,
-\[ f'(x) = \frac{\dd f}{\dx}, \]
-which is a notation that you have probably seen before.
-The point is that now, we have given separate meanings to $\dx$ and $\dd f$, and \emph{defined} $f'(x)$ to be their quotient.
+In particular, if $f$ is a differentiable function of one variable $x$, then $\df = g(x) \, \dx$ for some function $g$, which we call the \emph{derivative} of $f$ and denote by $f'$.
+In other words, $\df = f'(x)\,\dx$ (this is \cref{eq:onevariable-differential}), or
+\[ f'(x) = \frac{\df}{\dx}. \]
+This is a notation that you have probably seen before.
+The point is that now, we have given separate meanings to $\dx$ and $\df$, and \emph{defined} $f'(x)$ to be their quotient.
+
 
 
 \end{document}
