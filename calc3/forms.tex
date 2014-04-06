@@ -490,7 +490,7 @@ Thus,
 
 Importantly, these same rules apply to functions of more than one variable.
 
-\begin{eg}
+\begin{eg}\label{eg:twovar-differential}
   If $f(x,y) = x^2y + xy^2$, then we can use the sum and product rules to obtain
   \begin{align*}
     \dd(x^2y + xy^2) &= \dd(x^2y) + \dd(xy^2)\\
@@ -513,6 +513,43 @@ In other words, $\df = f'(x)\,\dx$ (this is \cref{eq:onevariable-differential}),
 This is a notation that you have probably seen before.
 The point is that now, we have given separate meanings to $\dx$ and $\df$, and \emph{defined} $f'(x)$ to be their quotient.
 
+However, when there is more than one variable, this doesn't work any more!
+For instance, consider the function $f(x,y) = x^2y + xy^2$, whose differential we found in \cref{eg:twovar-differential} to be
+\[ \df = (2xy + y^2)\,\dx + (x^2+2xy)\,\dy.\]
+Since there are two variables $x$ and $y$, there are two differentials $\dx$ and $\dy$ appearing in this expression for $\df$.
+Thus, we can no longer simply divide $\df$ by $\dx$ to get a simple function.
+We could of course write
+\begin{align*}
+  \frac{\df}{\dx} &= (2xy + y^2) + (x^2+2xy)\frac{\dy}{\dx} \qquad\text{or}\\[2pt]
+  \frac{\df}{\dy} &= (2xy + y^2)\frac{\dx}{\dy} + (x^2+2xy)
+\end{align*}
+but in neither case is the right-hand side an ordinary function of $x$ and $y$.
+We conclude that
+\begin{center}
+  \fbox{\emph{It makes no sense to talk of ``the'' derivative of a function of more than one variable!}}
+\end{center}
+However, we do have two ordinary functions that have about an equal claim to be called a ``derivative'' of our function $f$ above, namely $2xy + y^2$ and $x^2+2xy$.
+Neither one ``tells the whole story'' about the differential $\df$ on its own, but together they do.
+Thus, we refer to each of them as a \emph{partial derivative} of $f$.
 
+\begin{defn}
+  If $f$ is a differentiable function of two variables $x,y$, then its \textbf{partial derivatives} are the functions $\pder{f}{x}$ and $\pder{f}{y}$ such that
+  \[ \df = \pder{f}{x}\,\dx + \pder{f}{y}\,\dy\]
+  Similarly, if $f$ is a differentiable function of three variables $x,y,z$, then its partial derivatives $\pder{f}{x}$, $\pder{f}{y}$, and $\pder{f}{z}$ are the functions such that
+  \[ \df = \pder{f}{x}\,\dx + \pder{f}{y}\,\dy + \pder{f}{z}\,\dz.\]
+\end{defn}
+The symbol $\partial$ is a stylized ``$d$'' and is pronounced either ``del'' or ``partial''.
+Note that unlike for ordinary one-variable derivatives, the symbols $\partial f$ and $\partial x$ have \emph{no meaning} on their own.
+
+\begin{eg}
+  For the function $f(x,y) = x^2y + xy^2$ with $\df = (2xy + y^2)\,\dx + (x^2+2xy)\,\dy$, we have
+  \begin{align*}
+    \pder{f}{x} = 2xy + y^2 \qquad\text{and}\qquad
+    \pder{f}{y} = x^2+2xy.
+  \end{align*}
+\end{eg}
+
+% TODO: Directional derivatives
+% TODO: Geometrical interpretation
 
 \end{document}
