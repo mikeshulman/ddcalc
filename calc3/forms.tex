@@ -474,6 +474,7 @@ For instance, given functions $f$ and $g$, consider their sum $f+g$.
 \end{align*}
 Thus, we have
 \[ \dd(f+g) = \df + \dg. \]
+
 Similarly, for the product rule, we compute
 \begin{align*}
   f(x+\dx) \, g(x+\dx)
@@ -484,10 +485,8 @@ Similarly, for the product rule, we compute
 since $\df\,\dg$ is a product of two first-order forms, hence second-order.
 Thus,
 \[ \dd(f\,g) = f\,\dg + g\,\df.\]
-% TODO: Chain rule
 
-Importantly, these same rules apply to functions of more than one variable.
-
+Importantly, these rules, stated in exactly the same way, apply to functions of more than one variable.
 \begin{eg}\label{eg:twovar-differential}
   If $f(x,y) = x^2y + xy^2$, then we can use the sum and product rules to obtain
   \begin{align*}
@@ -497,6 +496,66 @@ Importantly, these same rules apply to functions of more than one variable.
     &= (2xy + y^2)\,\dx + (x^2+2xy)\,\dy
   \end{align*}
 \end{eg}
+
+Finally, the chain rule for differentials is easy to \emph{use}, but tricky to \emph{state}, because the notation makes it look like a triviality.
+Suppose that we have a function $f$ of two variables $u$ and $v$, and that $u$ and $v$ are each themselves functions of two other variables $x$ and $y$.
+Then the statement of the chain rule is that if we calculate $\df$ treating $u$ and $v$ as its input variables (obtaining a linear differential form involving $\du$ and $\dv$), and likewise we calculate the differentials $\du$ and $\dv$ treating $x$ and $y$ as their input variables (obtaining linear differential forms involving $\dx$ and $\dy$), then substitute the latter into the former, as well as the values of $u$ and $v$ in terms of $x$ and $y$, we obtain the same expression for $\df$ in terms of $\dx$ and $\dy$ that we would have if we first substituted the functions $u$ and $v$ and then took the differential treating $x$ and $y$ as the input variables.
+If this was incomprehensible, you're in good company; it is much better explained by an example.
+
+\begin{eg}
+  Let $f(u,v) = u v + 3u$, while $u(x,y) = x-5y$ and $v(x,y) = 4y-x$.
+  Then we have
+  \begin{align*}
+    \df &= \dd(u v) + \dd(3u)\\
+    &= v \,\du + u\,\dv + 3 \,\du\\
+    &= (v+3)\,\du + u\,\dv
+  \end{align*}
+  and
+  \begin{align*}
+    \du &= \dx - 5\, \dy\\
+    \dv &= 4\,\dy - \dx
+  \end{align*}
+  Therefore,
+  \begin{align*}
+    \df &= (v+3)\,\du + u\,\dv\\
+    &= (4y-x+3)\,(\dx - 5 \dy) + (x-5y) (4\,\dy - \dx) \\
+    &= (9y-2x+3)\,\dx + (9x - 40y - 15)\,\dy.
+  \end{align*}
+  On the other hand, if we substituted first, we would have
+  \begin{align*}
+    f(u(x,y),v(x,y)) &= (x-5y)(4y-x) + 3(x-5y)\\
+    &= 4xy - x^2 - 20y^2 + 5xy + 3x - 15 y\\
+    &= 9xy - x^2 - 20y^2 + 3x - 15 y
+  \end{align*}
+  and therefore
+  \begin{align*}
+    \df &= 9x\, \dy + 9y\, \dx - 2 x\,\dx - 40 y\,\dy + 3\,\dx - 15\,\dy\\
+    &= (9y - 2x +3)\,\dx + (9x - 40y - 15)\,\dy
+  \end{align*}
+  which is the same result.
+\end{eg}
+
+Of course, the chain rule is mainly useful in cases where we are given the result of substitution, but it is not obvious how to find the differential until we decompose it.
+
+\begin{eg}
+  Consider the function $f(x,y) = \sin (xy)$.
+  We can find the differential by letting $u=xy$; then we have $f = \sin(u)$, and hence
+  \begin{align*}
+    \df &= \cos(u)\,\du\\
+    \du &= x\,\dy + y\,\dx
+  \end{align*}
+  and therefore
+  \begin{align*}
+    \df &= \cos(u)\,\du \\
+    &= \cos(xy) (x\,\dy + y\,\dx)\\
+    &= y\cos(xy)\,\dx + x\cos(xy)\,\dy
+  \end{align*}
+\end{eg}
+
+The proof of the chain rule is also somewhat tricky.
+It relies on the fact that if $\omega$ is an $n\th$ order differential form and $\eta$ is a first-order one, then the composite $\omega(\pt{x},\eta(\pt{x},\dpx))$ is still $n\th$ order.
+We omit the details.
+
 
 \section{Differential forms versus vectors}
 \label{sec:forms-vs-vectors}
@@ -528,10 +587,11 @@ We could of course write
   \frac{\df}{\dy} &= (2xy + y^2)\frac{\dx}{\dy} + (x^2+2xy)
 \end{align*}
 but in neither case is the right-hand side an ordinary function of $x$ and $y$.
-We conclude that
+We conclude that\\
 \begin{center}
   \fbox{\emph{It makes no sense to talk of ``the'' derivative of a function of more than one variable!}}
 \end{center}
+\vspace{5mm}
 However, we do have two ordinary functions that have about an equal claim to be called a ``derivative'' of our function $f$ above, namely $2xy + y^2$ and $x^2+2xy$.
 Neither one ``tells the whole story'' about the differential $\df$ on its own, but together they do.
 Thus, we refer to each of them as a \emph{partial derivative} of $f$.
@@ -542,6 +602,7 @@ Thus, we refer to each of them as a \emph{partial derivative} of $f$.
   Similarly, if $f$ is a differentiable function of three variables $x,y,z$, then its partial derivatives $\pder{f}{x}$, $\pder{f}{y}$, and $\pder{f}{z}$ are the functions such that
   \[ \df = \pder{f}{x}\,\dx + \pder{f}{y}\,\dy + \pder{f}{z}\,\dz.\]
 \end{defn}
+
 The symbol $\partial$ is a stylized ``$d$'' and is pronounced either ``del'' or ``partial''.
 Note that unlike for ordinary one-variable derivatives, the symbols $\partial f$ and $\partial x$ have \emph{no meaning} on their own.
 
@@ -552,6 +613,8 @@ Note that unlike for ordinary one-variable derivatives, the symbols $\partial f$
     \pder{f}{y} = x^2+2xy.
   \end{align*}
 \end{eg}
+
+There are many other notations for partial derivatives: $\pder{f}{x}$ may also be written as $f_x$, $\partial_x f$, $D_x f$, or $D_1 f$.
 
 % TODO: Directional derivatives
 % TODO: Geometrical interpretation
