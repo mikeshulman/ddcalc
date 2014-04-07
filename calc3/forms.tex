@@ -81,7 +81,7 @@ We make the notion of ``orders'' precise with the following definition.
 \begin{defn}
   Let $n$ be an integer $\ge 0$.
   A 1-form $\omega$ is \textbf{$n\th$ order} at a point $\pt{x}$ if
-  \[ \lim_{h\to 0} \frac{\omega(\pt{x},h\,\dd\pt{x})}{h^{n-1}} = 0 \]
+  \[ \lim_{\dpx\to 0} \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^{n-1}} = 0 \]
   for all vectors $\dpx$ based at $\pt{x}$.
 \end{defn}
 
@@ -95,32 +95,32 @@ If we chose the definition well, the examples will justify our motivation.
 \begin{eg}
   As suggested above, any continuous \emph{linear} differential 1-form is first order at every point.
   For instance, if $\omega(\pt{x},\dd\pt{x}) = f(\pt{x}) \, \dx$, then
-  \[ \frac{\omega(\pt{x},h\,\dd\pt{x})}{h^0} = f(\pt{x}) \, h\, \dx,\]
-  which goes to zero as $h\to 0$ (for fixed $\pt{x}$ and $\dd\pt{x}$).
+  \[ \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^0} = f(\pt{x}) \, \dx\]
+  which goes to zero as $\dx\to 0$ (for fixed $\pt{x}$).
 \end{eg}
 
 \begin{eg}
   \emph{Any} continuous differential 1-form is zeroth order at every point.
   For since $\frac{1}{h^{-1}} = h$, we have
-  \[\frac{\omega(\pt{x},h\,\dpx)}{h^{-1}} = h \,\omega(\pt{x},h\,\dpx).\]
-  Since $\omega$ is continuous, $\lim_{h\to 0} \omega(\pt{x},h\,\dpx)$ exists; while of course $\lim_{h\to 0} h = 0$.
+  \[\frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^{-1}} = \mgn{\dpx} \, \omega(\pt{x},\dpx).\]
+  Since $\omega$ is continuous, $\lim_{\dpx\to 0} \omega(\pt{x},\dpx)$ exists; while of course $\lim_{\dpx\to 0} \mgn{\dpx} = 0$.
   Thus, by the product law for limits, the limit of the product is also zero.
 \end{eg}
 
 \begin{eg}
   The differential form $\dx^2$ is second order at any point.
   We have
-  \[ \frac{\omega(\pt{x},h\,\dd\pt{x})}{h^1} = \frac{(h\,\dx)^2}{h} = \frac{h^2 \, \dx^2}{h} = h \,\dx^2 \]
-  which goes to zero as $h\to 0$.
+  \[ \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^1} = \frac{(\dx)^2}{\dx} = \dx \]
+  which of course goes to zero as $\dx\to 0$.
 \end{eg}
 
 \begin{eg}
   The differential form $\sqrt{\dx^2+\dy^2}$ is first order at any point.
   We have
-  \[ \frac{\sqrt{(h\,\dx)^2+(h\,\dy)^2}}{h^0} =
-  \sqrt{h^2\,\dx^2+h^2\,\dy^2} = |h| \, \sqrt{\dx^2+\dy^2}
+  \[ \frac{\sqrt{\dx^2+\dy^2}}{\mgn{\dpx}^0} =
+  \sqrt{\dx^2+\dy^2} = \mgn{\dpx}
   \]
-  which goes to zero as $h\to 0$.
+  which goes to zero as $\dpx\to 0$.
 \end{eg}
 
 We also have the following rules for orders of forms.
@@ -406,11 +406,9 @@ As always, we should explore a new definition with examples.
   The usual way to proceed from here is to recall the limits
   \[ \lim_{h\to 0} \frac{\sin h}{h} = 1 \qquad\text{and}\qquad
   \lim_{h\to 0} \frac{\cos h - 1}{h} = 0 \]
-  The second one implies that
-  \[ \lim_{h\to 0} \frac{\cos (h\,\dx) - 1}{h} = 0 \]
-  and therefore the form $\cos \dx - 1$ is second-order.
-  Similarly, the first one implies that
-  \[ \lim_{h\to 0} \frac{\sin (h\, \dx) - h \, \dx}{h} = 0 \]
+  The second says exactly that the form $\cos \dx - 1$ is second-order.
+  The first one implies that
+  \[ \lim_{\dx\to 0} \frac{\sin \dx - \dx}{\dx} = 0 \]
   and therefore the form $\sin \dx - \dx$ is second-order.
   The ordinary functions $\cos x$ and $\sin x$, regarded as differential forms, are zeroth order; thus by the rules for orders, multiplying by them doesn't change the order.
   So we can write
