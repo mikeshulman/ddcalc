@@ -23,7 +23,7 @@ If you encountered differentials in one-variable calculus, you may have been tol
 These are not wrong, but with vectors we can give a better definition.
 
 \begin{defn}
-  A \textbf{differential 1-form} is a function whose input is a point $\pt{x}$ \emph{and} a vector based at $\pt{x}$.
+  A \textbf{differential form} is a function whose input is a point $\pt{x}$ \emph{and} a vector based at $\pt{x}$.
   We denote the vector by $\dpx$.
 \end{defn}
 
@@ -36,7 +36,7 @@ We usually denote differential forms by lowercase Greek letters such as $\omega$
 Thus we would write $\omega(\pt{x},\dpx)$ for the value of a form $\omega$ at a point $\pt{x}$ and a vector $\dpx$, or $\omega(x,y,\dx,\dy)$ if we want to emphasize all the coordinates.
 
 \begin{egs}\label{egs:differential-forms}
-  The following are all differential 1-forms:
+  The following are all differential forms:
   \begin{gather*}
     x^2 \,\dx + 2xy \, \dy\\
     \half({x-z}) \,\dx - 4\, \dy + e^y \,\dz\\
@@ -53,13 +53,19 @@ In particular, an expression such as $\dx^2$ means $(\dx)^2$, not $\dd(x^2)$.
 The first two of \cref{egs:differential-forms} are special in the following way.
 
 \begin{defn}
-  A \textbf{linear} differential 1-form is one defined by an expression such as
+  A \textbf{linear} differential form is one defined by an expression such as
   \[ f(\pt{x}) \, \dx + g(\pt{x}) \, \dy + h(\pt{x}) \, \dz. \]
   Here $f$, $g$, and $h$ are functions of the point $\pt{x}$ only, and each of them is multiplied by one of the coordinates of $\dpx$.
 \end{defn}
 
-Most mathematicians only use the term ``differential 1-form'' for linear ones.
+Most mathematicians only use the term ``differential form'' for linear ones.
 However, the more general ones are quite useful.
+
+\begin{adv}
+  To be more precise, the differential forms we are considering so far are \emph{1-cojet differential 1-forms}.
+  Later on, we will encounter both $k$-cojet differential forms and differential $n$-forms for larger values of $k$ and $n$.
+  However, until then, we will just use ``differential form'' for the notion defined above.
+\end{adv}
 
 It is helpful to think of the coordinates $\dx$, $\dy$, and $\dz$ as small changes in the value of $x$.
 For instance, if $x=3$, then a possible small change would be $\dx = 0.01$.
@@ -80,7 +86,7 @@ We make the notion of ``orders'' precise with the following definition.
 
 \begin{defn}
   Let $n$ be an integer $\ge 0$.
-  A 1-form $\omega$ is \textbf{$n\th$ order} at a point $\pt{x}$ if
+  A differential form $\omega$ is \textbf{$n\th$ order} at a point $\pt{x}$ if
   \[ \lim_{\dpx\to 0} \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^{n-1}} = 0 \]
   for all vectors $\dpx$ based at $\pt{x}$.
 \end{defn}
@@ -93,14 +99,14 @@ The first thing to do in understanding a definition is to look at some examples.
 If we chose the definition well, the examples will justify our motivation.
 
 \begin{eg}
-  As suggested above, any continuous \emph{linear} differential 1-form is first order at every point.
+  As suggested above, any continuous \emph{linear} differential form is first order at every point.
   For instance, if $\omega(\pt{x},\dd\pt{x}) = f(\pt{x}) \, \dx$, then
   \[ \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^0} = f(\pt{x}) \, \dx\]
   which goes to zero as $\dx\to 0$ (for fixed $\pt{x}$).
 \end{eg}
 
 \begin{eg}
-  \emph{Any} continuous differential 1-form is zeroth order at every point.
+  \emph{Any} continuous differential form is zeroth order at every point.
   For since $\frac{1}{h^{-1}} = h$, we have
   \[\frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^{-1}} = \mgn{\dpx} \, \omega(\pt{x},\dpx).\]
   Since $\omega$ is continuous, $\lim_{\dpx\to 0} \omega(\pt{x},\dpx)$ exists; while of course $\lim_{\dpx\to 0} \mgn{\dpx} = 0$.
@@ -127,7 +133,7 @@ We also have the following rules for orders of forms.
 These can be proven from the limit laws from one-variable calculus.
 
 \begin{thm}
-  Let $\omega$ and $\eta$ be differential 1-forms, and assume that $\omega$ is $n\th$ order and $\eta$ is $m\th$ order at $\pt{x}$.
+  Let $\omega$ and $\eta$ be differential forms, and assume that $\omega$ is $n\th$ order and $\eta$ is $m\th$ order at $\pt{x}$.
   \begin{enumerate}
   \item $\omega+\eta$ is $\min(n,m)\th$ order at $\pt{x}$.
   \item $\omega\eta$ is $(n+m)\th$ order at $\pt{x}$.
@@ -356,7 +362,7 @@ This is what we saw in the above-remarked similarity of graphs.
 However, in multivariable calculus, it is more appropriate to do things in the other order, using the idea of~\cref{eq:difference-quotient-close-derivative} to define the differential \emph{first}, and then deducing a notion of ``derivative'' from this.
 
 \begin{defn}\label{def:differential}
-  If $f$ is a function of a point $\pt{x}$, then its \textbf{differential} is a linear differential 1-form $\df$ such that
+  If $f$ is a function of a point $\pt{x}$, then its \textbf{differential} is a linear differential form $\df$ such that
   \[ f(\pt{x} + \dd\pt{x}) - f(\pt{x}) - \df \]
   is second order at $\pt{x}$.
   If such a form $\df$ exists, we say that $f$ is \textbf{differentiable} at $\pt{x}$.
@@ -453,7 +459,7 @@ For instance, we can add or subtract the same differential form from both sides.
 We can also multiply both sides by any continuous differential form, since multiplying by a zeroth order form doesn't change the order.
 Finally, we can of course discard any terms of greater than $n\th$ order from an $n\th$-order approximate equality.
 
-Now we can equivalently state the definition of a differential: $\df$ is a linear differential 1-form such that
+Now we can equivalently state the definition of a differential: $\df$ is a linear differential form such that
 \[ f(x+\dx) \apx1 f(x) + \df, \]
 if such exists.
 Our previous calculations of differentials can all be written in this way.
@@ -567,7 +573,7 @@ We omit the details.
 \label{sec:derivatives}
 
 We can now define the \emph{derivative} in terms of the \emph{differential}.
-Note that in one dimension, a linear differential 1-form must be of the form
+Note that in one dimension, a linear differential form must be of the form
 \[ g(x) \,\dx \]
 for some function $g$.
 In particular, if $f$ is a differentiable function of one variable $x$, then $\df = g(x) \, \dx$ for some function $g$, which we call the \emph{derivative} of $f$ and denote by $f'$.
