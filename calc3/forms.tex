@@ -577,17 +577,17 @@ Recall that in addition to the usual ``rectangular'' or ``Cartesian'' coordinate
 \end{alignat*}
 (It would not be correct to write ``$\theta = \arctan(y/x)$'', since $\arctan$ only takes values between $-\pi/2$ and $\pi/2$, whereas $\theta$ usually ranges from $0$ to $2\pi$.)
 Differentiating these equations, we obtain corresponding equations relating the differentials of these variables.
-\begin{align*}
-  \dx &= \cos \theta \,\dr - r \sin\theta \,\dtheta\\
-  \dy &= \sin\theta \,\dr + r \cos\theta\,\dtheta\\
-  \dr &= \frac{1}{2\sqrt{x^2+y^2}}(2x\,\dx + 2y\,\dy)\\
+\begin{align}
+  \dx &= \cos \theta \,\dr - r \sin\theta \,\dtheta \label{eq:polar-dx} \\
+  \dy &= \sin\theta \,\dr + r \cos\theta\,\dtheta \label{eq:polar-dy}\\
+  \dr &= \frac{1}{2\sqrt{x^2+y^2}}(2x\,\dx + 2y\,\dy) \notag\\
   &= \frac{x}{\sqrt{x^2+y^2}}\,\dx + \frac{y}{\sqrt{x^2+y^2}}\,\dy
-  \qquad\left(= \frac{x}{r} \,\dx + \frac{y}{r}\,\dy\right)\\
-  \frac{1}{(\cos \theta)^2} \,\dtheta &= \frac{1}{x}\,\dy - \frac{y}{x^2}\,\dx\\
-  \dtheta &= (\cos \theta)^2 \left( \frac{r}{r^2\cos\theta}\,\dy - \frac{y}{r^2 (\cos\theta)^2}\,\dx\right)\\
-  &= \frac{x}{r^2} \,\dy - \frac{y}{r^2} \,\dx\\
-  &= \frac{x}{x^2+y^2} \,\dy - \frac{y}{x^2+y^2} \,\dx
-\end{align*}
+  \qquad\left(= \frac{x}{r} \,\dx + \frac{y}{r}\,\dy\right) \notag\\
+  \frac{1}{(\cos \theta)^2} \,\dtheta &= \frac{1}{x}\,\dy - \frac{y}{x^2}\,\dx \notag\\
+  \dtheta &= (\cos \theta)^2 \left( \frac{r}{r^2\cos\theta}\,\dy - \frac{y}{r^2 (\cos\theta)^2}\,\dx\right) \notag\\
+  &= \frac{x}{r^2} \,\dy - \frac{y}{r^2} \,\dx \notag\\
+  &= \frac{x}{x^2+y^2} \,\dy - \frac{y}{x^2+y^2} \,\dx \notag
+\end{align}
 (We could also obtain the same equations for $\dr$ and $\dtheta$ by solving for them in the first two equations.)
 It follows that if $f$ is written as a function of $x$ and $y$, we can find its differential with respect to $r$ and $\theta$ by substituting these relations into its differential with respect to $x$ and $y$, and vice versa.
 
@@ -695,6 +695,43 @@ This means that $\pder{f}{x}$ can also be interpreted as \emph{the derivative of
 
 We may also speak of directional derivatives and partial derivatives of a function that is not known to be differentiable.
 In this case we \emph{define} them by the above formulas.
+If we expand out the definition of the derivative, this becomes:
+\begin{align}
+  \pder{f}{x} &= \lim_{t\to 0} \frac{f(x+t,y) - f(x,y)}{t}\\[2pt]
+  \pder{f}{x} &= \lim_{t\to 0} \frac{f(x,y+t) - f(x,y)}{t}.
+\end{align}
+
 Your textbook should contain further discussion of partial derivatives and directional derivatives.
+One thing in particular that is worth noting is how the chain rule manifests itself in terms of partial derivatives.
+If $f$ is a function of $u$ and $v$, with $u$ and $v$ each functions of $x$ and $y$, then we have
+\begin{align*}
+  \df &= \pder{f}{u}\,\du + \pder{f}{v}\,\dv\\
+  &= \pder{f}{u}\,\left(\pder{u}{x}\,\dx + \pder{u}{y}\,\dy\right) + \pder{f}{v}\,\left(\pder{v}{x}\,\dx + \pder{v}{y}\,\dy\right)\\
+  &= \left(\pder{f}{u}\pder{u}{x}+ \pder{f}{v}\pder{v}{x}\right)\dx + \left(\pder{f}{u}\pder{u}{y}+ \pder{f}{v}\pder{v}{y}\right)\dy.
+\end{align*}
+Since we also have
+\[ \df = \pder{f}{x}\,\dx + \pder{f}{y}\,\dy \]
+it must be the case that
+\begin{equation}\label{eq:partial-chain-rule}
+  \pder{f}{x} = \pder{f}{u}\pder{u}{x}+ \pder{f}{v}\pder{v}{x}
+  \qquad\text{and}\qquad
+  \pder{f}{y} = \pder{f}{u}\pder{u}{y}+ \pder{f}{v}\pder{v}{y}.
+\end{equation}
+In other words, the chain rule for a partial derivative $\pder{f}{x}$ has one term for each intermediate function $u$ and $v$, each of which looks like the usual chain rule but with partial derivatives instead of ordinary ones.
+For instance, note that \cref{eq:polar-dx,eq:polar-dy} yield the partial derivatives
+\begin{alignat*}{2}
+  \pder{x}{r} &= \cos\theta &\qquad
+  \pder{x}{\theta} &= -r\sin\theta\\[3pt]
+  \pder{y}{r} &= \sin\theta &\quad
+  \pder{y}{\theta} &= r\cos\theta.
+\end{alignat*}
+Thus, for any function $f$, we have
+\begin{align*}
+  \pder{f}{r} % &= \pder{f}{x}\pder{x}{r}+ \pder{f}{y}\pder{y}{r}\\
+  &= \pder{f}{x} \cos\theta + \pder{f}{y} \sin\theta\\[3pt]
+  \pder{f}{\theta} % &= \pder{f}{x}\pder{x}{\theta}+ \pder{f}{y}\pder{y}{\theta}\\
+  &= -\pder{f}{x} r\sin\theta + \pder{f}{y} r \cos \theta.
+\end{align*}
+In practice, is often easier to apply the chain rule by calculating the differentials and substituting, rather than remembering \cref{eq:partial-chain-rule}.
 
 \end{document}
