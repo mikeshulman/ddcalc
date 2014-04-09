@@ -73,7 +73,7 @@ And we can also write the first derivative $f'(x)$ as $\frac{\partial^2 f}{\part
   The correct ``chain rule for second derivatives'' can be derived from \cref{eq:second-differential}:
   \begin{align*}
     \dd^2y &= f''(u) \,\du^2 + f'(u) \,\dd^2u\\
-    &= f''(g(x)) \, [g'(x) \, \dx]^2 + f'(g(x)) \, \Big(g''(x) \, \dx^2 + g'(x) \, \dd^2 x\Big)\\
+    &= f''(g(x)) \, (g'(x) \, \dx)^2 + f'(g(x)) \, \Big(g''(x) \, \dx^2 + g'(x) \, \dd^2 x\Big)\\
     &= \Big( f''(g(x)) \,[g'(x)]^2 + f'(g(x))\, g''(x)\Big) \, \dx^2 + f'(g(x))\, g'(x)\,\dd^2x.
   \end{align*}
   Thus, the second derivative is
