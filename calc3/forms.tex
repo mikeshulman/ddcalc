@@ -569,6 +569,46 @@ The proof of the chain rule is also somewhat tricky.
 It relies on the fact that if $\omega$ is an $n\th$ order differential form and $\eta$ is a first-order one, then the composite $\omega(\pt{x},\eta(\pt{x},\dpx))$ is still $n\th$ order.
 We omit the details; they might be given in your textbook.
 
+A particularly important example of the chain rule is translating between different coordinate systems.
+Recall that in addition to the usual ``rectangular'' or ``Cartesian'' coordinates $x$ and $y$ on the plane, we can use \emph{polar coordinates} $r$ and $\theta$, which are related by the equations
+\begin{alignat*}{2}
+  x &= r \cos \theta &\qquad r &= \sqrt{x^2+y^2}\\
+  y &= r \sin\theta &\qquad \tan \theta &= y/x
+\end{alignat*}
+(It would not be correct to write ``$\theta = \arctan(y/x)$'', since $\arctan$ only takes values between $-\pi/2$ and $\pi/2$, whereas $\theta$ usually ranges from $0$ to $2\pi$.)
+Differentiating these equations, we obtain corresponding equations relating the differentials of these variables.
+\begin{align*}
+  \dx &= \cos \theta \,\dr - r \sin\theta \,\dtheta\\
+  \dy &= \sin\theta \,\dr + r \cos\theta\,\dtheta\\
+  \dr &= \frac{1}{2\sqrt{x^2+y^2}}(2x\,\dx + 2y\,\dy)\\
+  &= \frac{x}{\sqrt{x^2+y^2}}\,\dx + \frac{y}{\sqrt{x^2+y^2}}\,\dy
+  \qquad\left(= \frac{x}{r} \,\dx + \frac{y}{r}\,\dy\right)\\
+  \frac{1}{(\cos \theta)^2} \,\dtheta &= \frac{1}{x}\,\dy - \frac{y}{x^2}\,\dx\\
+  \dtheta &= (\cos \theta)^2 \left( \frac{r}{r^2\cos\theta}\,\dy - \frac{y}{r^2 (\cos\theta)^2}\,\dx\right)\\
+  &= \frac{x}{r^2} \,\dy - \frac{y}{r^2} \,\dx\\
+  &= \frac{x}{x^2+y^2} \,\dy - \frac{y}{x^2+y^2} \,\dx
+\end{align*}
+(We could also obtain the same equations for $\dr$ and $\dtheta$ by solving for them in the first two equations.)
+It follows that if $f$ is written as a function of $x$ and $y$, we can find its differential with respect to $r$ and $\theta$ by substituting these relations into its differential with respect to $x$ and $y$, and vice versa.
+
+% TODO: An example.
+
+Similarly, in three-dimensional space, in addition to the rectangular coordinates $x$, $y$, and $z$, we have both \emph{cylindrical} coordinates $r$, $\theta$, and $z$, and \emph{spherical} coordinates $\rho$, $\theta$, and $\phi$.
+Cylindrical coordinates are related to rectangular ones in three dimensions in the same way that polar coordinates are related to rectangular ones in two dimensions, with $z$ coming along untouched for the ride.
+For spherical coordinates we have
+\begin{align*}
+  x &= \rho \cos\theta \sin\phi\\
+  y &= \rho \sin\theta \sin\phi\\
+  z &= \rho\cos\phi
+\end{align*}
+and hence
+\begin{align*}
+  \dx &= \cos\theta \sin\phi \,\drho - \rho\sin\theta\sin\phi \,\dtheta + \rho\cos\theta\cos\phi \,\dphi\\
+  \dy &= \sin\theta \sin\phi\,\drho + \rho\cos\theta\sin\phi \,\dtheta + \rho\sin\theta\cos\phi \,\dphi\\
+  \dz &= \cos\phi\,\drho - \rho\sin\phi\,\dphi
+\end{align*}
+We leave it to the reader to write out the reverse expressions for spherical coordinates in terms of rectangular ones.
+
 
 \section{Differential forms versus vectors}
 \label{sec:forms-vs-vectors}
