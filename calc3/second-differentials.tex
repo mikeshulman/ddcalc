@@ -1,0 +1,91 @@
+\documentclass[12pt]{amsart}
+\usepackage{fullpage}
+\input{../macros}
+\title{Second differentials}
+\begin{document}
+\maketitle
+
+In one-variable calculus, you probably had occasion to consider not only the derivative $f'$ of a function $f$, but occasionally its \emph{second} and higher derivatives $f''$, $f'''$, and so on, which are obtained by differentiating the first derivative further.
+Let's consider how these can be expressed using differentials, and how they generalize to the multivariable case.
+
+\section{Second differentials}
+\label{sec:second-differentials}
+
+Let's consider first the case when we start with a one-variable function $f$.
+Then its differential $\df$ is a function of \emph{two} variables, $x$ and $\dx$.
+Thus, if we want to take the differential of $\df$ again, we end up already in the multivariable situation.
+
+\begin{eg}
+  Suppose $f(x) = x^4$.  Then $\df = 4x^3 \,\dx$, and therefore
+  \begin{align*}
+    \dd(\df) &= \dd(4x^3 \,\dx)\\
+    &= \dx \;\dd(4x^3) + 4x^3 \, \dd(\dx) \qquad\text{(by the product rule)}\\
+    &= \dx \,(12x^2\,\dx) + 4x^3 \, \dd(\dx)\\
+    &= 12x^2\,\dx^2 + 4x^3 \, \dd(\dx).
+  \end{align*}
+\end{eg}
+
+We write $\dd(\dx)$ as $\dd^2x$, and similarly for other variables and functions.
+Thus, in this example we have $\dd^2f = 12x^2\,\dx^2 + 4x^3 \, \dd^2x$.
+Note that $12x^2$ is the second derivative of the original function $f$, while $4x^3$ is its first derivative.
+An analogous formula is true in general: since $\df = f'(x) \,\dx$, we have
+\begin{align}
+  \dd^2f &= \dd(f'(x)\,\dx) \notag\\
+  &= \dx \;\dd(f'(x)) + f'(x) \, \dd(\dx) \notag\\
+  &= \dx \,(f''(x)\, \dx) + f'(x) \, \dd^2x \notag\\
+  &= f''(x) \,\dx^2 + f'(x) \,\dd^2x.\label{eq:second-differential}
+\end{align}
+In particular, note that the common notation ``$\frac{\dd^2f}{\dx^2}$'' for the second derivative $f''(x)$ is \emph{not} justifiable in the same way that the notation $\frac{\df}{\dx}$ for the first derivative is.
+That is, if we divide both sides of this equation by $\dx^2$, on the right we do \emph{not} obtain just $f''(x)$:
+\[ \frac{\dd^2f}{\dx^2} = f''(x) + f'(x) \, \frac{\dd^2x}{\dx^2} \]
+This is of course very similar to the problem we had with defining ``first derivatives'' of multivariable functions.
+In that case we introduced the ``partial derivative'' notation, stylizing the $\dd$ into $\partial$, which indicates not an actual \emph{quotient}, but only the coefficient of a differential.
+We can do the same here:
+\[ \dd^2 f = \pdertwo{f}{x} \,\dx^2 + \frac{\partial^2 f}{\partial^2 x} \,\dd^2x \]
+That is, we \emph{can} write the second derivative $f''(x)$ as $\pdertwo{f}{x}$.
+And we can also write the first derivative $f'(x)$ as $\frac{\partial^2 f}{\partial^2 x}$ (but why would we want to?).
+
+\begin{adv}
+  A little something is being slid under the rug here.
+  When we treat $\df$ as a function of two variables $x$ and ``$\dx$'' and take its differential, we ought to obtain a function of four variables: the orginal $x$ and $\dx$ and their differentials, where the new appearances of ``the differential of $x$'' are distinct from the original variable $\dx$.
+  That is, there ought to be two ``$\dx$'' variables, say $\dx_1$ and $\dx_2$, and we would have
+  \[ \dd^2 f = f''(x) \,\dx_1\,\dx_2 + f'(x) \,\dd(\dx_1). \]
+  We are silently treating these two copies of ``$\dx$'' as the \emph{same} variable.
+  This can be justified, but since second differentials are not of huge importance, we will not take the time to do so.
+\end{adv}
+
+\begin{rmk}
+  We emphasize again that it is \emph{not} correct in general to write ``$\dd^2f = f''(x) \,\dx^2$''.
+  This is not just for formal reasons; such an incorrect formula would lead to an incorrect ``chain rule'' for second derivatives.
+  To see this, consider a composite function $y = f(g(x))$, with $u = g(x)$ the intermediate variable so that $y = f(u)$.
+  Then the incorrect formula would claim that $\dd^2y = f''(u)\,\du^2 $, so that since $\du = g'(x) \,\dx$ we would have
+  \[ \dd^2y = f''(u)\,(g'(x)\,\dx)^2 = f''(g(x))\, [g'(x)]^2 \,\dx^2 \qquad\text{(WRONG!)} \]
+  so that the second derivative of $y$ with respect to $x$ would be $f''(g(x))\, [g'(x)]^2$.
+
+  However, this is \emph{not} the case, as can easily be seen with an example.
+  Let $f(u) = \sin u$ and $g(x) = x^2$, so that $y = (f\circ g)(x) = \sin(x^2)$.
+  Then $(f\circ g)'(x) = 2x\cos (x^2)$, and thus
+  \[ (f\circ g)''(x) = 2 \cos (x^2) - 4x^2 \sin(x^2) \]
+  whereas
+  \[ f''(g(x))\, [g'(x)]^2 = -\sin(x^2) \cdot (2x)^2 = -4x^2\sin(x^2) \]
+  is only the \emph{second} term of $(f\circ g)''(x)$.
+
+  The correct ``chain rule for second derivatives'' can be derived from \cref{eq:second-differential}:
+  \begin{align*}
+    \dd^2y &= f''(u) \,\du^2 + f'(u) \,\dd^2u\\
+    &= f''(g(x)) \, [g'(x) \, \dx]^2 + f'(g(x)) \, \Big(g''(x) \, \dx^2 + g'(x) \, \dd^2 x\Big)\\
+    &= \Big( f''(g(x)) \,[g'(x)]^2 + f'(g(x))\, g''(x)\Big) \, \dx^2 + f'(g(x))\, g'(x)\,\dd^2x.
+  \end{align*}
+  Thus, the second derivative is
+  \[ \pdertwo{y}{x} = (f\circ g)''(x) = f''(g(x)) \,[g'(x)]^2 + f'(g(x))\, g''(x). \]
+\end{rmk}
+
+What kind of a thing is $\dd^2x$? \dots %TODO
+
+\section{The multivariable case}
+\label{sec:multivariable-second-differentials}
+
+% TODO: an example or two.  Second partials, equality of mixed partials.  Hessian matrix and the failure of "Cauchy's invariant rule".
+
+
+\end{document}
