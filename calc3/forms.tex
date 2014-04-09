@@ -548,7 +548,8 @@ If this was incomprehensible, you're in good company; it is much better explaine
   which is the same result.
 \end{eg}
 
-Of course, the chain rule is mainly useful in cases where we are given the result of substitution, but it is not obvious how to find the differential until we decompose it.
+When expressed in terms of differentials in this way, the chain rule is also known as \emph{Cauchy's invariant rule}.
+Of course, it is mainly useful in cases where we are given the result of substitution, but where it is not obvious how to find the differential until we decompose it.
 
 \begin{eg}
   Consider the function $f(x,y) = \sin (xy)$.
@@ -563,9 +564,17 @@ Of course, the chain rule is mainly useful in cases where we are given the resul
     &= \cos(xy) (x\,\dy + y\,\dx)\\
     &= y\cos(xy)\,\dx + x\cos(xy)\,\dy
   \end{align*}
+  Once we are more familiar with the operation of the chain rule, this calculation can be done without naming the variable $u$.
+  We simply remember that in the rule for the derivative of the sine function, $\dd(\sin(x)) = \cos(x) \, \dx$, the variable $x$ can be replaced by \emph{any expression}, as long as we also remember to replace $\dx$ by the differential of \emph{that expression}.
+  \begin{align*}
+    \df &= \dd(\sin(xy))\\
+    &= \cos(xy) \, \dd(xy)\\
+    &= \cos(xy) (x\,\dy + y\,\dx)\\
+    &= y\cos(xy)\,\dx + x\cos(xy)\,\dy.
+  \end{align*}
 \end{eg}
 
-The proof of the chain rule is also somewhat tricky.
+The proof of the chain rule is somewhat tricky.
 It relies on the fact that if $\omega$ is an $n\th$ order differential form and $\eta$ is a first-order one, then the composite $\omega(\pt{x},\eta(\pt{x},\dpx))$ is still $n\th$ order.
 We omit the details; they might be given in your textbook.
 
@@ -591,7 +600,21 @@ Differentiating these equations, we obtain corresponding equations relating the 
 (We could also obtain the same equations for $\dr$ and $\dtheta$ by solving for them in the first two equations.)
 It follows that if $f$ is written as a function of $x$ and $y$, we can find its differential with respect to $r$ and $\theta$ by substituting these relations into its differential with respect to $x$ and $y$, and vice versa.
 
-% TODO: An example.
+\begin{eg}
+  Suppose $f(x,y) = e^{x^2+y^2}$.
+  Then we have
+  \begin{align*}
+    \df &= e^{x^2+y^2} (2x \,\dx + 2y\,\dy)\\
+    &= 2x e^{x^2+y^2} \,\dx + 2y e^{x^2+y^2} \,\dy\\
+    &= 2 r\cos\theta e^{r^2} \, (\cos \theta \,\dr - r \sin\theta \,\dtheta) + 2r\sin\theta e^{r^2} (\sin\theta \,\dr + r \cos\theta\,\dtheta)\\
+    &= 2r e^{r^2} ((\cos\theta)^2 + (\sin\theta)^2)\,\dr + 2r^2 e^{r^2}(\sin\theta\cos\theta - \cos\theta\sin\theta) \dtheta\\
+    &= 2r e^{r^2}\,\dr.
+  \end{align*}
+  which is the same result that we could calculate directly by writing $f = e^{r^2}$ and thus
+  \begin{align*}
+    \df &= e^{r^2} \, (2r\,\dr).
+  \end{align*}
+\end{eg}
 
 Similarly, in three-dimensional space, in addition to the rectangular coordinates $x$, $y$, and $z$, we have both \emph{cylindrical} coordinates $r$, $\theta$, and $z$, and \emph{spherical} coordinates $\rho$, $\theta$, and $\phi$.
 Cylindrical coordinates are related to rectangular ones in three dimensions in the same way that polar coordinates are related to rectangular ones in two dimensions, with $z$ coming along untouched for the ride.

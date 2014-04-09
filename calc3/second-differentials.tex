@@ -70,14 +70,18 @@ And we can also write the first derivative $f'(x)$ as $\frac{\partial^2 f}{\part
   \[ f''(g(x))\, [g'(x)]^2 = -\sin(x^2) \cdot (2x)^2 = -4x^2\sin(x^2) \]
   is only the \emph{second} term of $(f\circ g)''(x)$.
 
-  The correct ``chain rule for second derivatives'' can be derived from \cref{eq:second-differential}:
-  \begin{align*}
-    \dd^2y &= f''(u) \,\du^2 + f'(u) \,\dd^2u\\
-    &= f''(g(x)) \, (g'(x) \, \dx)^2 + f'(g(x)) \, \Big(g''(x) \, \dx^2 + g'(x) \, \dd^2 x\Big)\\
-    &= \Big( f''(g(x)) \,[g'(x)]^2 + f'(g(x))\, g''(x)\Big) \, \dx^2 + f'(g(x))\, g'(x)\,\dd^2x.
-  \end{align*}
+  In other words, ``Cauchy's invariant rule'' would fail for second differentials if we wrote $\dd^2f = f''(x) \,\dx^2$.
+  But it still holds if we use the correct formula, \cref{eq:second-differential}.
+  In particular, from this we can derive the correct ``chain rule for second derivatives'':
+  \begin{align}
+    \dd^2y &= f''(u) \,\du^2 + f'(u) \,\dd^2u \notag\\
+    &= f''(g(x)) \, (g'(x) \, \dx)^2 + f'(g(x)) \, \Big(g''(x) \, \dx^2 + g'(x) \, \dd^2 x\Big) \notag\\
+    &= \Big( f''(g(x)) \,[g'(x)]^2 + f'(g(x))\, g''(x)\Big) \, \dx^2 + f'(g(x))\, g'(x)\,\dd^2x. \label{eq:second-deriv-chain-rule}
+  \end{align}
   Thus, the second derivative is
   \[ \pdertwo{y}{x} = (f\circ g)''(x) = f''(g(x)) \,[g'(x)]^2 + f'(g(x))\, g''(x). \]
+  Note that \cref{eq:second-deriv-chain-rule} also includes the ordinary chain rule for first derivatives as well, which is not surprising since \cref{eq:second-differential} also includes the first derivative.
+  Intuitively, the second derivative can't be ``considered in isolation'' from the first derivative; we need the latter to know ``how the former transforms'' under a change of variables.
 \end{rmk}
 
 What kind of a thing is $\dd^2x$? \dots %TODO
@@ -85,7 +89,7 @@ What kind of a thing is $\dd^2x$? \dots %TODO
 \section{The multivariable case}
 \label{sec:multivariable-second-differentials}
 
-% TODO: an example or two.  Second partials, equality of mixed partials.  Hessian matrix and the failure of "Cauchy's invariant rule".
+% TODO: an example or two.  Second partials, equality of mixed partials.  Hessian matrix.
 
 
 \end{document}
