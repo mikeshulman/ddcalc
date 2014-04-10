@@ -73,8 +73,8 @@ In this case, a differential form such as $\dx^2$ is an \emph{even smaller} chan
 We say that $\dx$ is a \emph{first order} form while $\dx^2$ is \emph{second order}.
 Similarly, we say that $x$ itself is \emph{zeroth order}, as is any function value $f(\pt{x})$ not involving $\dpx$.
 
-Every linear form is first-order: when we multiply a zeroth order number like $f(\pt{x})$ by a first order one like $\dx$, the result is first order.
-For instance, if $f(x) = 4$ and $\dx = 0.001$, then $f(x)\,\dx = 0.004$.
+Every linear form is first-order: when we multiply a zeroth order form like $f(\pt{x})$ by a first order one like $\dx$, the result is first order.
+For instance, if $f(x) = 4$ and $\dx = 0.001$, then $f(x)\,\dx = 0.004$, which is about the same size as $\dx$.
 
 The concept of order can be applied even to forms that are not polynomials in $\dx$.
 For instance, if $\dx=0.01$, then $\sin \dx \approx 0.0099998$, which is about the same size as $\dx$.
@@ -109,7 +109,7 @@ If we chose the definition well, the examples will justify our motivation.
   \emph{Any} continuous differential form is zeroth order at every point.
   For since $\frac{1}{h^{-1}} = h$, we have
   \[\frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^{-1}} = \mgn{\dpx} \, \omega(\pt{x},\dpx).\]
-  Since $\omega$ is continuous, $\lim_{\dpx\to 0} \omega(\pt{x},\dpx)$ exists; while of course $\lim_{\dpx\to 0} \mgn{\dpx} = 0$.
+  Since $\omega$ is continuous, $\lim_{\dpx\to 0} \omega(\pt{x},\dpx) = \omega(\pt{x},\vc{0})$, and in particular is finite; while of course $\lim_{\dpx\to 0} \mgn{\dpx} = 0$.
   Thus, by the product law for limits, the limit of the product is also zero.
 \end{eg}
 
@@ -161,6 +161,20 @@ The ``coefficients'' can be arbitrary functions of $\pt{x}$ as well; for instanc
   For forms ``whose order is an integer'', such as polynomials, there is no real difference between the two.
   However, a form such as $\dx^{3/2}$ is ``second-order'' by our definition, but really ought to be called ``$(3/2)\th$ order''.
 \end{adv}
+
+\begin{rmk}
+  Note that the notion of ``order'' only applies to differential forms, which are \emph{functions}.
+  Although we motivated it by talking about numbers like $0.00001$ being much smaller than $0.001$, strictly speaking it does not make sense to say that a \emph{number} is first-order or second-order.
+  This is because ``smallness'' is always relative to the numbers that come up in a particular problem.
+
+  For instance, in some problem it might happen that $x=0.001$, or even $0.00001$, but the function $f(x) = x$ would still be zeroth order.
+  In that problem, we would expect $\dx$ to be even smaller than $x$, such as $0.000000001$.
+  On the other hand, it some other problem it might happen that $x = 10000$, in which case we might have $\dx = 10$, but the differential form $\dx$ would still be first order.
+
+  It is possible to give a meaning to ``first order number'' by introducing infinitesimals.
+  However, we will not do that.
+\end{rmk}
+
 
 \section{Graphing differential forms}
 \label{sec:graphing-differential-forms}
@@ -443,12 +457,6 @@ As always, we should explore a new definition with examples.
   (A deeper problem is that when calculating the power series expansions of sine and cosine in one-variable calculus, you probably used the fact that you already knew their derivatives.)
 \end{eg}
 
-% TODO: Tangent planes and linear approximations
-
-
-\section{Finding differentials}
-\label{sec:differential-rules}
-
 A convenient way to work with differentials is to introduce the notion of ``approximation to first order''.
 
 \begin{defn}
@@ -457,14 +465,31 @@ A convenient way to work with differentials is to introduce the notion of ``appr
   \[\omega\apx{n} \eta.\]
 \end{defn}
 
-For example, we have $x\,\dx + \dx^2 \apx1 x\,\dx - e^x \,\dx^2$, since their difference is
-\[ (x\,\dx + \dx^2) - (x\,\dx - e^x\, \dx^2) = (1+e^x)\dx^2 \]
-which is second order.
+\begin{eg}
+  We have $x\,\dx + \dx^2 \apx1 x\,\dx - e^x \,\dx^2$, since their difference is
+  \[ (x\,\dx + \dx^2) - (x\,\dx - e^x\, \dx^2) = (1+e^x)\dx^2 \]
+  which is second order.
+\end{eg}
 
 The relation $\apx{n}$ behaves roughly like equality.
 For instance, we can add or subtract the same differential form from both sides.
+In particular, if $\omega$ is $(n+1)\st$ order, then $\omega\apx{n}0$, so we have $\eta + \omega \apx{n} \eta$ for any $\eta$.
+
+\begin{eg}
+  Since $4\dx^2$ is second-order, we have $\sin(x) \,\dx + 4\, \dx^2 \apx{1} \sin(X)\,\dx$.
+\end{eg}
+
 We can also multiply both sides by any continuous differential form, since multiplying by a zeroth order form doesn't change the order.
-Finally, we can of course discard any terms of greater than $n\th$ order from an $n\th$-order approximate equality.
+
+\begin{eg}
+  Since $\sqrt{x}\, \dx^2$ is second-order, we have
+  \[x\,\dx \apx{1} x\,\dx + \sqrt{x}\, \dx^2\]
+  Thus, we can multiply by $e^x$ to get
+  \[x e^x \,\dx \apx{1} x e^x\,\dx + \sqrt{x}\, e^x\, \dx^2,\]
+  or multiply by $\dx$ to get
+  \[x\,\dx^2 \apx{1} x\,\dx^2 + \sqrt{x} \,\dx^3. \]
+  The latter is fairly trivial, though since both sides are $\apx{1} 0$.
+\end{eg}
 
 Now we can equivalently state the definition of a differential: $\df$ is a linear differential form such that
 \[ f(x+\dx) \apx1 f(x) + \df, \]
@@ -478,7 +503,12 @@ For instance,
 since $\dx^2$ is second order.
 Therefore, $\dd(x^2) = 2x\,\dx$.
 
-We can also deduce all the usual derivative rules, written in terms of differentials.
+% TODO: Tangent planes and linear approximations
+
+\section{Differential rules}
+\label{sec:differential-rules}
+
+We easily deduce all the usual derivative rules, written in terms of differentials.
 For instance, given functions $f$ and $g$, consider their sum $f+g$.
 \begin{align*}
   f(x+\dx) + g(x+\dx)
