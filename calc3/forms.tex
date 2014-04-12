@@ -84,11 +84,16 @@ Thus, it is reasonable to say that $\cos \dx - 1$ is second-order.
 
 We make the notion of ``orders'' precise with the following definition.
 
-\begin{defn}
+\begin{defn}\label{def:order}
   Let $n$ be an integer $\ge 0$.
   A differential form $\omega$ is \textbf{$n\th$ order} at a point $\pt{x}$ if
-  \[ \lim_{\dpx\to 0} \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^{n-1}} = 0 \]
-  for all vectors $\dpx$ based at $\pt{x}$.
+  \[ \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^n} \]
+  remains bounded as $\dpx\to\vc{0}$.  In other words, there is a number $M>0$ such that
+  \( \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^n} \le M \)
+  for all $\dpx$ sufficiently close to $\vc{0}$.
+  The property of $\omega$ being $n\th$ order is also written as
+  \[ \omega \in O(\dpx^n) \quad\text{as}\;\dpx\to\vc{0} \]
+  which is pronounced as ``$\omega$ is big-oh of $\dpx^n$ as $\dpx\to\vc{0}$''.
 \end{defn}
 
 Recall that definitions in mathematics introduce a \emph{new} meaning for a word.
@@ -99,38 +104,37 @@ The first thing to do in understanding a definition is to look at some examples.
 If we chose the definition well, the examples will justify our motivation.
 
 \begin{eg}
-  As suggested above, any continuous \emph{linear} differential form is first order at every point.
+  As suggested above, any \emph{linear} differential form is first order at every point.
   For instance, if $\omega(\pt{x},\dd\pt{x}) = f(\pt{x}) \, \dx$, then
-  \[ \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^0} = f(\pt{x}) \, \dx\]
-  which goes to zero as $\dx\to 0$ (for fixed $\pt{x}$).
+  \[ \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^1} = f(\pt{x}) \frac{\dx}{\mgn{\dpx}}.\]
+  Since $f(\pt{x})$ does not depend on $\dpx$, and $\frac{\dx}{\mgn{\dpx}} \le 1$, this is bounded by $M=f(\dpx)$ as $\dpx\to\vc0$.
 \end{eg}
 
 \begin{eg}
   \emph{Any} continuous differential form is zeroth order at every point.
-  For since $\frac{1}{h^{-1}} = h$, we have
-  \[\frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^{-1}} = \mgn{\dpx} \, \omega(\pt{x},\dpx).\]
-  Since $\omega$ is continuous, $\lim_{\dpx\to 0} \omega(\pt{x},\dpx) = \omega(\pt{x},\vc{0})$, and in particular is finite; while of course $\lim_{\dpx\to 0} \mgn{\dpx} = 0$.
-  Thus, by the product law for limits, the limit of the product is also zero.
+  For we have
+  \[\frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^0} = \omega(\pt{x},\dpx).\]
+  Since $\omega$ is continuous, $\lim_{\dpx\to 0} \omega(\pt{x},\dpx) = \omega(\pt{x},\vc{0})$, and in particular is finite.
+  Thus, in particular $\omega(\pt{x},\dpx)$ is bounded.
 \end{eg}
 
 \begin{eg}
   The differential form $\dx^2$ is second order at any point.
   We have
-  \[ \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^1} = \frac{(\dx)^2}{\dx} = \dx \]
-  which of course goes to zero as $\dx\to 0$.
+  \[ \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^2} = \frac{\dx^2}{\dx^2} = 1 \]
+  which is constant, hence bounded as $\dpx\to\vc0$.
 \end{eg}
 
 \begin{eg}
   The differential form $\sqrt{\dx^2+\dy^2}$ is first order at any point.
   We have
-  \[ \frac{\sqrt{\dx^2+\dy^2}}{\mgn{\dpx}^0} =
-  \sqrt{\dx^2+\dy^2} = \mgn{\dpx}
+  \[ \frac{\sqrt{\dx^2+\dy^2}}{\mgn{\dpx}^1} =
+  \frac{\sqrt{\dx^2+\dy^2}}{\sqrt{\dx^2+\dy^2}} = 1
   \]
-  which goes to zero as $\dpx\to 0$.
+  which is clearly bounded.
 \end{eg}
 
 We also have the following rules for orders of forms.
-These can be proven from the limit laws from one-variable calculus.
 
 \begin{thm}
   Let $\omega$ and $\eta$ be differential forms, and assume that $\omega$ is $n\th$ order and $\eta$ is $m\th$ order at $\pt{x}$.
@@ -156,12 +160,6 @@ The ``coefficients'' can be arbitrary functions of $\pt{x}$ as well; for instanc
   For instance, the form $x \,\dx + \dx^2$ is first-order everywhere, but at the point $x=0$ it becomes $0\, dx + \dx^2 = \dx^2$, which is second order.
 \end{eg}
 
-\begin{adv}
-  The notion we've called ``$n\th$ order'' actually ought to be called ``smaller than $(n-1)\st$ order''.
-  For forms ``whose order is an integer'', such as polynomials, there is no real difference between the two.
-  However, a form such as $\dx^{3/2}$ is ``second-order'' by our definition, but really ought to be called ``$(3/2)\th$ order''.
-\end{adv}
-
 \begin{rmk}
   Note that the notion of ``order'' only applies to differential forms, which are \emph{functions}.
   Although we motivated it by talking about numbers like $0.00001$ being much smaller than $0.001$, strictly speaking it does not make sense to say that a \emph{number} is first-order or second-order.
@@ -174,6 +172,26 @@ The ``coefficients'' can be arbitrary functions of $\pt{x}$ as well; for instanc
   It is possible to give a meaning to ``first order number'' by introducing infinitesimals.
   However, we will not do that.
 \end{rmk}
+
+When we define differentials, we will also need the following closely related notion.
+
+\begin{defn}
+  A differential form $\omega$ is \textbf{greater than $k\th$ order} at a point $\pt{x}$ if
+  \[ \lim_{\dpx\to\vc{0}} \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^k} = 0. \]
+  This property is also written as
+  \[ \omega \in o(\dpx^k) \quad\text{as}\;\dpx\to\vc{0} \]
+  which is pronounced as ``$\omega$ is little-oh of $\dpx^k$ as $\dpx\to\vc{0}$''.
+\end{defn}
+
+Unsurprisingly, if $\omega$ is $n\th$ order, then it is greater than $k\th$ order whenever $n>k$.
+For in this case we have
+\[\frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^k} = \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^n} \cdot \mgn{\dpx}^{n-k}, \]
+and the first term remains bounded while the second goes to zero if $n>k$.
+
+For the cases that arise in practice, $n$ and $k$ are usually integers, and most forms that are greater than $k\th$ order are in fact $(k+1)\st$ order.
+However, technically the two are distinct.
+For instance, the form $\dx^{3/2}$ is greater than first order, but is not second order (it is $(3/2)\th$ order).
+Even more interestingly, the form $\frac{1}{\ln\dx}$ is greater than zeroth order, but is not $n\th$ order for any $n>0$.
 
 
 \section{Graphing differential forms}
@@ -369,7 +387,7 @@ This is what we saw in the above-remarked similarity of graphs.
 \begin{adv}
   However, the quantities in~\cref{eq:difference-close-differential} are of a different order than those in~\cref{eq:difference-quotient-close-derivative}:
   $\frac{f(x+\dx)-f(x)}{\dx}$ and $f'(x)$ are zeroth order, while $f(x+\dx)-f(x)$ and $f'(x)\,\dx$ are first order.
-  Thus, the precise meaning of ``close'' is different: in~\cref{eq:difference-close-differential} we mean that their difference is first-order, while in~\cref{eq:difference-quotient-close-derivative} we mean that their difference is second-order.
+  Thus, the precise meaning of ``close'' is different: in~\cref{eq:difference-close-differential} we mean that their difference is first order, while in~\cref{eq:difference-quotient-close-derivative} we mean that their difference is second order.
   This is why \cref{def:differential} below is phrased as it is.
 \end{adv}
 
@@ -379,7 +397,7 @@ However, in multivariable calculus, it is more appropriate to do things in the o
 \begin{defn}\label{def:differential}
   If $f$ is a function of a point $\pt{x}$, then its \textbf{differential} is a linear differential form $\df$ such that
   \[ f(\pt{x} + \dd\pt{x}) - f(\pt{x}) - \df \]
-  is second order at $\pt{x}$.
+  is greater than first order at $\pt{x}$.
   If such a form $\df$ exists, we say that $f$ is \textbf{differentiable} at $\pt{x}$.
 \end{defn}
 
@@ -427,10 +445,10 @@ As always, we should explore a new definition with examples.
   The usual way to proceed from here is to recall the limits
   \[ \lim_{h\to 0} \frac{\sin h}{h} = 1 \qquad\text{and}\qquad
   \lim_{h\to 0} \frac{\cos h - 1}{h} = 0 \]
-  The second says exactly that the form $\cos \dx - 1$ is second-order.
+  The second says exactly that the form $\cos \dx - 1$ is second order.
   The first one implies that
   \[ \lim_{\dx\to 0} \frac{\sin \dx - \dx}{\dx} = 0 \]
-  and therefore the form $\sin \dx - \dx$ is second-order.
+  and therefore the form $\sin \dx - \dx$ is second order.
   The ordinary functions $\cos x$ and $\sin x$, regarded as differential forms, are zeroth order; thus by the rules for orders, multiplying by them doesn't change the order.
   So we can write
   \begin{align*}
@@ -452,7 +470,7 @@ As always, we should explore a new definition with examples.
     \sin \dx - \dx &= - \frac{\dx^3}{3!} + \frac{\dx^5}{5!} - \cdots\\[2pt]
     \cos \dx - 1 &= - \frac{\dx^2}{2!} + \frac{\dx^4}{4!} - \cdots
   \end{align*}
-  so the rules for orders of polynomials say that the first is third-order (hence also second-order) and the second is second-order.
+  so the rules for orders of polynomials say that the first is third order (hence also second order) and the second is second order.
   This does require knowing that the rules for orders of polynomials also apply to power series, but this is true.
   (A deeper problem is that when calculating the power series expansions of sine and cosine in one-variable calculus, you probably used the fact that you already knew their derivatives.)
 \end{eg}
@@ -460,7 +478,7 @@ As always, we should explore a new definition with examples.
 A convenient way to work with differentials is to introduce the notion of ``approximation to first order''.
 
 \begin{defn}
-  We say that two differential forms $\omega$ and $\eta$ are \textbf{equal to $n\th$ order} if their difference $\omega-\eta$ is $(n+1)\st$ order.
+  We say that two differential forms $\omega$ and $\eta$ are \textbf{equal to $n\th$ order} if their difference $\omega-\eta$ is greater than $n\th$ order.
   In this case we write
   \[\omega\apx{n} \eta.\]
 \end{defn}
@@ -473,16 +491,16 @@ A convenient way to work with differentials is to introduce the notion of ``appr
 
 The relation $\apx{n}$ behaves roughly like equality.
 For instance, we can add or subtract the same differential form from both sides.
-In particular, if $\omega$ is $(n+1)\st$ order, then $\omega\apx{n}0$, so we have $\eta + \omega \apx{n} \eta$ for any $\eta$.
+In particular, if $\omega$ is greater than $n\th$ order, then $\omega\apx{n}0$, so we have $\eta + \omega \apx{n} \eta$ for any $\eta$.
 
 \begin{eg}
-  Since $4\,\dx^2$ is second-order, we have $\sin(x) \,\dx + 4\, \dx^2 \apx{1} \sin(X)\,\dx$.
+  Since $4\,\dx^2$ is second order, we have $\sin(x) \,\dx + 4\, \dx^2 \apx{1} \sin(X)\,\dx$.
 \end{eg}
 
 We can also multiply both sides by any continuous differential form, since multiplying by a zeroth order form doesn't change the order.
 
 \begin{eg}
-  Since $\sqrt{x}\, \dx^2$ is second-order, we have
+  Since $\sqrt{x}\, \dx^2$ is second order, we have
   \[x\,\dx \apx{1} x\,\dx + \sqrt{x}\, \dx^2\]
   Thus, we can multiply by $e^x$ to get
   \[x e^x \,\dx \apx{1} x e^x\,\dx + \sqrt{x}\, e^x\, \dx^2,\]
@@ -525,7 +543,7 @@ Similarly, for the product rule, we compute
   &= f(x) g(x) + f(x) \,\dg + g(x) \,\df + \df\,\dg\\
   &\apx1 f(x) g(x) + f(x) \,\dg + g(x) \,\df
 \end{align*}
-since $\df\,\dg$ is a product of two first-order forms, hence second-order.
+since $\df\,\dg$ is a product of two first-order forms, hence second order.
 Thus,
 \[ \dd(f\,g) = f\,\dg + g\,\df.\]
 
