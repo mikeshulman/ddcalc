@@ -624,7 +624,8 @@ Of course, it is mainly useful in cases where we are given the result of substit
 
 The proof of the chain rule is somewhat tricky.
 It relies on the fact that if $\omega$ is an $n\th$ order differential form and $\eta$ is a first-order one, then the composite $\omega(\pt{x},\eta(\pt{x},\dpx))$ is still $n\th$ order.
-We omit the details; they might be given in your textbook.
+We omit the details.
+\begin{notextbook}(They might be given in your textbook.)\end{notextbook}
 
 A particularly important example of the chain rule is translating between different coordinate systems.
 Recall that in addition to the usual ``rectangular'' or ``Cartesian'' coordinates $x$ and $y$ on the plane, we can use \emph{polar coordinates} $r$ and $\theta$, which are related by the equations
@@ -771,8 +772,9 @@ If we expand out the definition of the derivative, this becomes:
   \pder{f}{x} &= \lim_{t\to 0} \frac{f(x+t,y) - f(x,y)}{t}\\[2pt]
   \pder{f}{x} &= \lim_{t\to 0} \frac{f(x,y+t) - f(x,y)}{t}.
 \end{align}
+\begin{notextbook}Your textbook should contain further discussion of partial derivatives and directional derivatives.\end{notextbook}
+\begin{stewart}The textbook takes this approach in Chapter 11, defining partial derivatives first in section 11.3, and then the differential (or ``total differential'') in section 11.4.\end{stewart}
 
-Your textbook should contain further discussion of partial derivatives and directional derivatives.
 One thing in particular that is worth noting is how the chain rule manifests itself in terms of partial derivatives.
 If $f$ is a function of $u$ and $v$, with $u$ and $v$ each functions of $x$ and $y$, then we have
 \begin{align*}
@@ -789,6 +791,8 @@ it must be the case that
   \pder{f}{y} = \pder{f}{u}\pder{u}{y}+ \pder{f}{v}\pder{v}{y}.
 \end{equation}
 In other words, the chain rule for a partial derivative $\pder{f}{x}$ has one term for each intermediate function $u$ and $v$, each of which looks like the usual chain rule but with partial derivatives instead of ordinary ones.
+\begin{stewart}This is the only form of the multivariable chain rule that is discussed in the textbook (section 11.5).\end{stewart}
+
 For instance, note that \cref{eq:polar-dx,eq:polar-dy} yield the partial derivatives
 \begin{alignat*}{2}
   \pder{x}{r} &= \cos\theta &\qquad
