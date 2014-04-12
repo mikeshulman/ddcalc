@@ -30,7 +30,7 @@ if this limit exists.
 Note that when integrating a differential form, we do not write a ``$\dx$'' at the end of the integral: we simply write $\int_a^b \omega$.
 The $\dx$ at the end of an ordinary integral is \emph{part} of the differential form being integrated.
 
-\begin{eg}
+\begin{eg}\label{eg:onevar-absint}
   As a first new example, consider the form $f(x) \, |\dx|$, where $f$ is some continuous function.
   If $a<b$, so that each $\Delta x_i$ is positive, then the Riemann sums for $\int_a^b f(x) \, |\dx|$ are the same as those for $\int_a^b f(x) \, \dx$, and thus the integral is the same.
   The difference is only visible if we consider also the case when $b<a$, so that each $\Delta x_i$ is negative.
@@ -131,7 +131,9 @@ Then if we consider the part of $\curve$ between $t_{i-1}$ and $t_i$ to be appro
 Adding these up, we obtain the Riemann sum
 \[ \sum_{i=1}^N \omega(\curvept(\rstag t i),\Delta \curvept_i) \]
 and we define the \textbf{line integral} of $\omega$ over $\curve$ to be the limit of these sums, as the widths $\Delta t_i = t_i - t_{i-1}$ go to zero:
-\[ \lint{\curve} \omega = \lim_{\Delta t_i \to 0} \sum_{i=1}^N \omega(\curvept(\rstag t i),\Delta \curvept_i). \]
+\begin{equation}
+  \lint{\curve} \omega = \lim_{\Delta t_i \to 0} \sum_{i=1}^N \omega(\curvept(\rstag t i),\Delta \curvept_i).\label{eq:line-integral}
+\end{equation}
 (It would be more appropriate to call this a \textit{curve integral}, since $\curve$ is a curve and not usually a straight line, but the term ``line integral'' is standard.)
 
 If the curve $\curve$ is differentiable, then we can write
@@ -156,7 +158,7 @@ Thus, another way to state the Change of Variables Theorem for line integrals is
   \lint{\curve} \omega = \int_a^b \omega\big(\curvept(t),\, \curvept'(t) \,\dt\big)\label{eq:lineint-chvar-2}
 \end{equation}
 where $\curvept'(t)$ denotes the vector $(\curvex'(t),\curvey'(t))$ or $(\curvex'(t),\curvey'(t),\curvez'(t))$.
-If $\omega$ is a \emph{linear} differential form (recall that that means it has a form such as $f(\pt{x})\,\dx + g(\pt{y})\,\dy + h(\pt{z})\,\dz$), then
+If $\omega$ is a \emph{linear} differential form (recall that means it looks like $f(\pt{x})\,\dx + g(\pt{y})\,\dy + h(\pt{z})\,\dz$), then
 \[ \omega\big(\curvept(t),\, \curvept'(t) \,\dt\big) = \omega\big(\curvept(t),\, \curvept'(t)\big)\,\dt \]
 and thus the right-hand side of \cref{eq:lineint-chvar-2} becomes
 \[ \int_a^b \omega\big(\curvept(t),\, \curvept'(t)\big)\,\dt. \]
@@ -165,6 +167,14 @@ Therefore, the line integral of any linear differential form over any differenti
 More generally, if $\curve$ is only \emph{piecewise} differentiable, then we can break a line integral up into several integrals and apply this method on each piece.
 \begin{notextbook}Your textbook probably contains more details.\end{notextbook}
 \begin{stewart}More details are in the textbook.\end{stewart}
+
+\begin{rmk}\label{rmk:lineint-orientation}
+  Although we used a particular parametrization of the curve $\curve$ to define the line integral $\lint{\curve} \omega$ in \cref{eq:line-integral}, and to evaluate it as in \cref{eq:lineint-chvar-2}, in fact the value of the integral is independent of the parametrization.
+  This makes sense if we look at the definition of the Riemann sums in \cref{eq:line-integral}, which depend only on the values of $\omega$ at the points $\curvept(\rstag t i)$ and the vectors $\Delta \curvept_i$; any other parametrization would induce a corresponding division into subintervals with the same points and vectors.
+  The integral does, however, depend on the \emph{orientation} of the curve $\curve$, i.e.\ the direction in which the parametrization traverses it.
+  Reversing the orientation would negate the vectors $\Delta \curvept_i$, and for a \emph{linear} differential form, this would negate the value of the integral.
+  (In the next section, we will consider line integrals that are independent of orientation.)
+\end{rmk}
 
 %% TODO: Vector fields and dot products
 
@@ -202,9 +212,22 @@ Essentially, this is because if $\dx = x'(t) \,\dt$ and $\dy = y'(t)\,\dt$, we c
   &= \sqrt{x'(t)^2 + y'(t)^2} \;|\dt|.
 \end{align*}
 and we know how to evaluate integrals of forms such as $f(t)\,|\dt|$: we use \cref{eq:onevar-absint}.
+In fact, since we nearly always parametrize curves over intervals $[a,b]$ with $a<b$, the arc length integral of a function $f$ generally becomes simply
+\[ \int_a^b f(x(t),y(t)) \sqrt{x'(t)^2 + y'(t)^2} \,\dt \]
+in two dimensions, or
+\[ \int_a^b f(x(t),y(t),z(t)) \sqrt{x'(t)^2 + y'(t)^2+z'(t)^2} \,\dt \]
+in three.
 
-%% Orientation.  The one-variable version of \dl is |\dx|.
+\begin{rmk}
+  The presence of $|\dt|$ rather than $\dt$ does imply that arc length integrals are independent not only of parametrization, but of the orientation of the curve $\curve$ (see \cref{rmk:lineint-orientation}).
+  This makes sense: the length of a curve should not depend on the direction in which we traverse it.
+\end{rmk}
 
-
+\begin{rmk}
+  We have defined $\dl$ only in two and three dimensions, but there is an analogous definition in any number of dimensions.
+  In \emph{one} dimension, the definition would be
+  \[ \dl = \sqrt{\dx^2} = |\dx|. \]
+  Thus, the integrals considered in \cref{eg:onevar-absint} are a one-variable version of ``line integrals with respect to arc length''.
+\end{rmk}
 
 \end{document}
