@@ -39,6 +39,14 @@ The $\dx$ at the end of an ordinary integral is \emph{part} of the differential 
   This is true because the Riemann sums for the first integral are the negatives of those for the second.
   However, because of the absolute value, the Riemann sums for $\int_a^b f(x) \, |\dx|$ are the \emph{same} as those for $\int_b^a f(x) \, |\dx|$; thus we have
   \[ \int_b^a f(x)\,|\dx| = \int_a^b f(x) \,|\dx|. \]
+  In conclusion, therefore, we can say that
+  \begin{equation}
+    \int_a^b f(x) \,|\dx| =
+    \begin{cases}
+      \displaystyle\int_a^b f(x) \,\dx \qquad\text{if } a<b\\[10pt]
+      \displaystyle\int_b^a f(x) \,\dx \qquad\text{if } b<a.
+    \end{cases}\label{eq:onevar-absint}
+  \end{equation}
 \end{eg}
 
 \begin{eg}
@@ -62,17 +70,23 @@ More generally, we have the following:
   for any closed interval $[a,b]$.
 \end{thm}
 
+\begin{adv}
+  The full generality of \cref{thm:int-gtfirstorder-onevar} actually requires a slightly more powerful definition of integration than is usually taught in one-variable calculus, called ``Henstock integration''.
+  Roughly, we need to be more flexible with the exact meaning of what it means for the $\Delta x_i$ to all approach zero at once.
+  Since we will not be making this very precise anyway, we henceforth ignore this issue.
+\end{adv}
+
 In particular, it follows that
-\begin{center}
-  If $\omega\apx1 \eta$, then $\displaystyle\int_a^b \omega = \int_a^b \eta$.
-\end{center}
+\begin{equation}\label{eq:int-apx1-equal}
+  \text{If }\omega\apx1 \eta, \text{then} \displaystyle\int_a^b \omega = \int_a^b \eta.
+\end{equation}
 For example, recall that if $f$ is differentiable, then
 \begin{align*}
-  f(x+\dx)-f(x) &\apx1 \df\\
-  &= f'(x) \,\dx
+  f(x+\dx)-f(x) &\apx1 \df. %\\
+  % &= f'(x) \,\dx
 \end{align*}
 Therefore, we have
-\[ \int_a^b f'(x)\,\dx = \int_a^b (f(x+\dx) - f(x)). \]
+\[ \int_a^b \df = \int_a^b (f(x+\dx) - f(x)). \]
 Now note that for any partition of $[a,b]$ into subintervals, we have $x_{i-1} + \dx = x_i$, by definition.
 Thus, if we choose the left-hand endpoints (that is, $\rstag x i = x_{i-1}$), then the Riemann sum for $\int_a^b (f(x+\dx) - f(x))$ will be
 \begin{align*}
@@ -80,14 +94,24 @@ Thus, if we choose the left-hand endpoints (that is, $\rstag x i = x_{i-1}$), th
   &= f(x_N) - f(x_0)\\
   &= f(b) - f(a).
 \end{align*}
-Therefore, $\int_a^b f'(x)\,\dx = f(b) - f(a)$.
-This is the fundamental theorem of calculus.
+Therefore,
+\begin{equation}
+  \int_a^b \df = f(b) - f(a).\label{eq:differential-ftc-eval}
+\end{equation}
+Recalling that $\df = f'(x)\,\dx$, we see that this is half of the Fundamental Theorem of Calculus.
+\begin{stewart}(The textbook calls this half the ``Evaluation Theorem''.)\end{stewart}
 
-\begin{adv}
-  The full generality of \cref{thm:int-gtfirstorder-onevar} actually requires a slightly more powerful definition of integration than is usually taught in one-variable calculus, called ``Henstock integration''.
-  Roughly, we need to be more flexible with the exact meaning of what it means for the $\Delta x_i$ to all approach zero at once.
-  Since we will not be making this very precise anyway, we henceforth ignore this issue.
-\end{adv}
+The other half of the Fundamental Theorem of Calculus says that every continuous function has an antiderivative: i.e.\ if $f$ is continuous, then there is a function $F$ such that $F'(x) = f(x)$.
+This is equivalent to saying that any \emph{linear} differential form $f(x)\,\dx$ is the differential $\dd F = F'(x)\,\dx$ of some function.
+(It follows from this and \cref{eq:differential-ftc-eval} that one such function $F$ is $F(x)= \int_a^x f(x)\,\dx$, and this is often included as part of the Fundamental Theorem.)
+Therefore, at least in principle, we can evaluate the integral of \emph{any} linear differential form using \cref{eq:differential-ftc-eval}.
+(Although, as you probably learned in your previous calculus classes, in practice there are many functions whose antiderivatives have no simple formula.)
+
+This is not the case for nonlinear differential forms.
+Forms such as $|\dx|$ and $\dx^2$ and $e^\dx$ are not the differential of any function, so we cannot evaluate their integrals using \cref{eq:differential-ftc-eval}.
+Of the nonlinear forms, the ones which arise most in practice are those of the form $f(x)\,|\dx|$, and those we can integrate using \cref{eq:onevar-absint}.
+In many other cases, we can apply \cref{thm:int-gtfirstorder-onevar} or \cref{eq:int-apx1-equal}.
+
 
 \section{Line integrals}
 \label{sec:line-integrals}
@@ -106,20 +130,56 @@ We can approximate this total change by dividing $[a,b]$ into a large number $N$
 Then if we consider the part of $\curve$ between $t_{i-1}$ and $t_i$ to be approximately a straight line, we can approximate the first-order change in Q along that part by $\omega(\curvept(\rstag t i),\Delta \curvept_i)$, where $\Delta\curvept_i = \curvept(t_i)-\curvept(t_{i-1})$.
 Adding these up, we obtain the Riemann sum
 \[ \sum_{i=1}^N \omega(\curvept(\rstag t i),\Delta \curvept_i) \]
-and we define the integral of $\omega$ over $\curve$ to be the limit of these sums, as the widths $\Delta t_i = t_i - t_{i-1}$ go to zero:
+and we define the \textbf{line integral} of $\omega$ over $\curve$ to be the limit of these sums, as the widths $\Delta t_i = t_i - t_{i-1}$ go to zero:
 \[ \lint{\curve} \omega = \lim_{\Delta t_i \to 0} \sum_{i=1}^N \omega(\curvept(\rstag t i),\Delta \curvept_i). \]
+(It would be more appropriate to call this a \textit{curve integral}, since $\curve$ is a curve and not usually a straight line, but the term ``line integral'' is standard.)
 
-\subsection{Arc length}
+If the curve $\curve$ is differentiable, then we can write
+\[\dx = x'(t)\,\dt \qquad \dy = y'(t) \,\dt \qquad \dz = z'(t)\,\dt \]
+and we might expect to be able to evaluate a line integral by substituting these values to get an ordinary integral in terms of $t$.
+This is in fact possible, although it is not trivial to prove; it is a special case of the \emph{Change of Variables Theorem}.
+Here we have another situation like the chain rule, where the notation of differentials makes a deep fact appear obvious and easy-to-use.
+
+\begin{eg}
+  Suppose $x(t) = t^2$ and $y(t) = t^3$ define a curve in two dimensions with domain $[0,2]$, so that $\dx = 2t\,\dt$ and $\dy = 3t^2\,\dt$.
+  Then we can evaluate a line integral such as
+  \[ \lint{\curve} (x^2 y \,\dx - x \,\dy) \]
+  by substituting these values for $x$, $y$, $\dx$, and $\dy$, obtaining the ordinary integral
+  \[ \int_{t=0}^2 \Big( (t^2)^2(t^3)(2t\,\dt) - (t^2)(3t^2\,\dt)\Big)
+  = \int_{t=0}^2 (2t^8 - 3t^4)\,\dt\]
+  which we can evaluate using the ordinary fundamental theorem of calculus.
+\end{eg}
+
+Recall that differential forms are functions whose input is a point and a vector.
+Thus, another way to state the Change of Variables Theorem for line integrals is that
+\begin{equation}
+  \lint{\curve} \omega = \int_a^b \omega\big(\curvept(t),\, \curvept'(t) \,\dt\big)\label{eq:lineint-chvar-2}
+\end{equation}
+where $\curvept'(t)$ denotes the vector $(\curvex'(t),\curvey'(t))$ or $(\curvex'(t),\curvey'(t),\curvez'(t))$.
+If $\omega$ is a \emph{linear} differential form (recall that that means it has a form such as $f(\pt{x})\,\dx + g(\pt{y})\,\dy + h(\pt{z})\,\dz$), then
+\[ \omega\big(\curvept(t),\, \curvept'(t) \,\dt\big) = \omega\big(\curvept(t),\, \curvept'(t)\big)\,\dt \]
+and thus the right-hand side of \cref{eq:lineint-chvar-2} becomes
+\[ \int_a^b \omega\big(\curvept(t),\, \curvept'(t)\big)\,\dt. \]
+This is an ordinary one-variable integral of the sort we already understand.
+Therefore, the line integral of any linear differential form over any differentiable curve can be reduced to a one-variable integral, which we can at least hope to integrate using the fundamental theorem of calculus.
+More generally, if $\curve$ is only \emph{piecewise} differentiable, then we can break a line integral up into several integrals and apply this method on each piece.
+\begin{notextbook}Your textbook probably contains more details.\end{notextbook}
+\begin{stewart}More details are in the textbook.\end{stewart}
+
+%% TODO: Vector fields and dot products
+
+\section{Arc length}
 \label{sec:arc-length}
 
-One important example of a line integral that you may already have encountered in one-variable calculus is the \textbf{arc length} of a parametrized curve.
+The most important example of a nonlinear line integral is one that you may already have encountered in one-variable calculus: the \emph{arc length} of a parametrized curve.
 To find this as an integral, we should choose $\omega$ to be a first-order approximation to the length of a bit of curve.
 If we consider the curve to be approximately a line, then this would be just the length of the vector $\dpx$.
 Thus, in two dimensions we should integrate the differential form
 \[ \sqrt{\dx^2+\dy^2}\]
 while in three dimensions we should integrate
 \[ \sqrt{\dx^2+\dy^2 + \dz^2}.\]
-It is traditional to denote these differential forms by $\mathrm{d}\ell$, but this is potentially confusing because they are not the differential of anything.
+It is traditional to denote these differential forms by $\mathrm{d}\ell$ or $\mathrm{d}s$, but this is potentially confusing because they are not the differential of anything.
+\begin{stewart}(The textbook uses $ds$.)\end{stewart}
 We will instead denote them by $\dl$ (note the stroke over the $\mathrm{d}$).
 That is, we define
 \[ \dl = \mgn{\dpx} =
@@ -127,9 +187,24 @@ That is, we define
   \sqrt{\dx^2+\dy^2}\qquad\text{in two dimensions}\\[3pt]
   \sqrt{\dx^2+\dy^2+\dz^2}\qquad\text{in three dimensions}.
 \end{cases}\]
-Now the arc length of a curve $\curve$ is defined to be
+Now the \textbf{arc length} of a curve $\curve$ is defined to be
 \[ \text{arc length of } \curve = \lint{\curve} \dl \]
 if this integral exists.
+More generally, if $f$ is a multivariable function, then the \textbf{line integral of $f$ with respect to arc length} over $\curve$ is defined to be
+\[ \lint{\curve} f(\pt{x})\,\dl. \]
+
+Even though $\dl$ is not a linear differential form, the Change of Variables Theorem still applies to arc length integrals, and can reduce them to one-variable integrals.
+Essentially, this is because if $\dx = x'(t) \,\dt$ and $\dy = y'(t)\,\dt$, we can write
+\begin{align*}
+  \dl &= \sqrt{\dx^2+\dy^2}\\
+  &= \sqrt{(x'(t)\,\dt)^2 + (y'(t)\,\dt)^2}\\
+  &= \sqrt{(x'(t)^2 + y'(t)^2) \,\dt^2}\\
+  &= \sqrt{x'(t)^2 + y'(t)^2} \;|\dt|.
+\end{align*}
+and we know how to evaluate integrals of forms such as $f(t)\,|\dt|$: we use \cref{eq:onevar-absint}.
+
+%% Orientation.  The one-variable version of \dl is |\dx|.
+
 
 
 \end{document}
