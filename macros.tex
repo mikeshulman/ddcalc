@@ -56,6 +56,11 @@
 \newcommand{\dphi}{\ensuremath{\dd \phi}}
 \newcommand{\dpx}{\ensuremath{\dd \pt{x}}}
 
+%% Not quite differentials
+\newcommand{\dl}{\ensuremath{\mathrm{\dj}\ell}}
+\newcommand{\dA}{\ensuremath{\mathrm{\dj}A}}
+\newcommand{\dV}{\ensuremath{\mathrm{\dj}V}}
+
 %% Partial derivatives
 \newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\pdertwo}[2]{\frac{\partial^2 #1}{\partial #2^2}}
@@ -93,6 +98,20 @@
 \newcommand{\apx}[1]{\mathrel{\overset{#1}{\approx}}}
 
 %% Riemann sums
-\newcommand{\rstag}[1]{x_{#1}^*}
+\newcommand{\rstag}[2]{{#1}_{#2}^*}
+
+%% Parametrized curves and surfaces
+\newcommand{\curve}{C}
+\newcommand{\curvept}{\mathbf{x}}
+\newcommand{\curvex}{x}
+\newcommand{\curvey}{y}
+\newcommand{\curvez}{z}
+\newcommand{\surf}{S}
+\newcommand{\surfx}{x}
+\newcommand{\surfy}{y}
+\newcommand{\surfz}{z}
+
+%% Integrals
+\newcommand{\lint}[1]{\int_{#1}} % line integrals
 
 \makeatother

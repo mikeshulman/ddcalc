@@ -13,19 +13,19 @@ We will now make precise what it means to integrate a differential form, simulta
 \section{Integrating forms in one dimension}
 \label{sec:integrating-forms}
 
-When we ``integrate a function $f$'' in one-variable calculus from $a$ to $b$, we divide up the interval $[a,b]$ into a large number $N$ of small subintervals $[x_i,x_{i+1}]$ of width $\Delta x_i$, and consider the \emph{Riemann sum}
-\[ \sum_{i=1}^N f(\rstag i)\, \Delta x_i \]
-where $\rstag i$ is some point in $[x_i,x_{i+1}]$.
+When we ``integrate a function $f$'' in one-variable calculus from $a$ to $b$, we divide up the interval $[a,b]$ into a large number $N$ of small subintervals $[x_{i-1},x_i]$ of width $\Delta x_i$, with $x_0 = a$ and $x_N=b$, and consider the \emph{Riemann sum}
+\[ \sum_{i=1}^N f(\rstag x i)\, \Delta x_i \]
+where $\rstag x i$ is some point in $[x_{i-1},x_i]$.
 Then we take a limit as the subinterval widths $\Delta x_i$ go to zero.
 
 If we regard this instead as integrating the differential form $\omega(x,\dx) = f(x)\, \dx$, we can rewrite the Riemann sum as
-\[ \sum_{i=1}^N \omega(\rstag i,\Delta x_i). \]
-In other words, the differential form specifies, for each value $\rstag i$ of $x$ and each subinterval width $\Delta x_i$, the appropriate (approximate) contribution $\omega(\rstag i,\Delta x_i)$ to the integral.
+\[ \sum_{i=1}^N \omega(\rstag x i,\Delta x_i). \]
+In other words, the differential form specifies, for each value $\rstag x i$ of $x$ and each subinterval width $\Delta x_i$, the appropriate (approximate) contribution $\omega(\rstag x i,\Delta x_i)$ to the integral.
 We simply add up these contributions, and then take the limit.
 
 We can now generalizes this to integrate \emph{any} differential form in one dimension.
 We simply define
-\[ \int_a^b \omega = \lim_{\Delta x_i \to 0} \sum_{i=1}^N \omega(\rstag i,\Delta x_i). \]
+\[ \int_a^b \omega = \lim_{\Delta x_i \to 0} \sum_{i=1}^N \omega(\rstag x i,\Delta x_i). \]
 if this limit exists.
 Note that when integrating a differential form, we do not write a ``$\dx$'' at the end of the integral: we simply write $\int_a^b \omega$.
 The $\dx$ at the end of an ordinary integral is \emph{part} of the differential form being integrated.
@@ -62,6 +62,27 @@ More generally, we have the following:
   for any closed interval $[a,b]$.
 \end{thm}
 
+In particular, it follows that
+\begin{center}
+  If $\omega\apx1 \eta$, then $\displaystyle\int_a^b \omega = \int_a^b \eta$.
+\end{center}
+For example, recall that if $f$ is differentiable, then
+\begin{align*}
+  f(x+\dx)-f(x) &\apx1 \df\\
+  &= f'(x) \,\dx
+\end{align*}
+Therefore, we have
+\[ \int_a^b f'(x)\,\dx = \int_a^b (f(x+\dx) - f(x)). \]
+Now note that for any partition of $[a,b]$ into subintervals, we have $x_{i-1} + \dx = x_i$, by definition.
+Thus, if we choose the left-hand endpoints (that is, $\rstag x i = x_{i-1}$), then the Riemann sum for $\int_a^b (f(x+\dx) - f(x))$ will be
+\begin{align*}
+  \Big(f(x_1) - f(x_0)\Big) + \Big(f(x_2)-f(x_1)\Big) + \cdots + \Big(f(x_N) - f(x_{N-1})\Big)
+  &= f(x_N) - f(x_0)\\
+  &= f(b) - f(a).
+\end{align*}
+Therefore, $\int_a^b f'(x)\,\dx = f(b) - f(a)$.
+This is the fundamental theorem of calculus.
+
 \begin{adv}
   The full generality of \cref{thm:int-gtfirstorder-onevar} actually requires a slightly more powerful definition of integration than is usually taught in one-variable calculus, called ``Henstock integration''.
   Roughly, we need to be more flexible with the exact meaning of what it means for the $\Delta x_i$ to all approach zero at once.
@@ -72,6 +93,43 @@ More generally, we have the following:
 \label{sec:line-integrals}
 
 If we want to integrate a form in more than one dimension, we have a new problem: we need more information to specify the ``interval'' over which to integrate.
+The most appropriate sort of ``interval'' turns out to be a \textbf{parametrized curve} (or \emph{parametric curve}), a notion which you might have encountered in one-variable calculus.
+
+Recall that a parametrized curve $\curve$ in two dimensions consists of a \emph{parameter interval} $[a,b]$ and two functions $\curvex(t)$ and $\curvey(t)$ defined for all $t\in [a,b]$.
+The curve is then the set of points $\curvept(t) = (\curvex(t),\curvey(t))$ as $t$ ranges over some domain (we call $t$ the \emph{parameter}).
+Similarly, in three dimensions we have three functions $\curvex(t)$, $\curvey(t)$, and $\curvez(t)$ and we consider the points $\curvept(t) = (\curvex(t),\curvey(t),\curvez(t))$.
+We say that a parametrized curve is \textbf{continuous} or \textbf{differentiable} if the functions $\curvex$, $\curvey$, and (possibly) $\curvez$ are continuous or differentiable.
+
+Now suppose $\omega$ is a differential form in two dimensions, which we want to integrate over a parametrized curve $\curve$ defined on $[a,b]$.
+We regard $\omega(\pt{x},\dpx)$ as telling us about the first-order changes in some quantity Q as $\pt{x}$ changes to $\pt{x}+\dpx$, whereas we are interested in the total change of Q ``along $\curve$''.
+We can approximate this total change by dividing $[a,b]$ into a large number $N$ of subintervals $[t_{i-1},t_i]$, and choosing a point $\rstag t i$ in each such subinterval.
+Then if we consider the part of $\curve$ between $t_{i-1}$ and $t_i$ to be approximately a straight line, we can approximate the first-order change in Q along that part by $\omega(\curvept(\rstag t i),\Delta \curvept_i)$, where $\Delta\curvept_i = \curvept(t_i)-\curvept(t_{i-1})$.
+Adding these up, we obtain the Riemann sum
+\[ \sum_{i=1}^N \omega(\curvept(\rstag t i),\Delta \curvept_i) \]
+and we define the integral of $\omega$ over $\curve$ to be the limit of these sums, as the widths $\Delta t_i = t_i - t_{i-1}$ go to zero:
+\[ \lint{\curve} \omega = \lim_{\Delta t_i \to 0} \sum_{i=1}^N \omega(\curvept(\rstag t i),\Delta \curvept_i). \]
+
+\subsection{Arc length}
+\label{sec:arc-length}
+
+One important example of a line integral that you may already have encountered in one-variable calculus is the \textbf{arc length} of a parametrized curve.
+To find this as an integral, we should choose $\omega$ to be a first-order approximation to the length of a bit of curve.
+If we consider the curve to be approximately a line, then this would be just the length of the vector $\dpx$.
+Thus, in two dimensions we should integrate the differential form
+\[ \sqrt{\dx^2+\dy^2}\]
+while in three dimensions we should integrate
+\[ \sqrt{\dx^2+\dy^2 + \dz^2}.\]
+It is traditional to denote these differential forms by $\mathrm{d}\ell$, but this is potentially confusing because they are not the differential of anything.
+We will instead denote them by $\dl$ (note the stroke over the $\mathrm{d}$).
+That is, we define
+\[ \dl = \mgn{\dpx} =
+\begin{cases}
+  \sqrt{\dx^2+\dy^2}\qquad\text{in two dimensions}\\[3pt]
+  \sqrt{\dx^2+\dy^2+\dz^2}\qquad\text{in three dimensions}.
+\end{cases}\]
+Now the arc length of a curve $\curve$ is defined to be
+\[ \text{arc length of } \curve = \lint{\curve} \dl \]
+if this integral exists.
 
 
 \end{document}
