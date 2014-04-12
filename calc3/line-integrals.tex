@@ -1,0 +1,77 @@
+\documentclass[12pt]{amsart}
+\usepackage{fullpage}
+\input{../macros}
+\title{Line integrals}
+\begin{document}
+\maketitle
+
+We introduced differential forms by saying that when you wrote
+\[ \int_a^b f(x) \,\dx \]
+in one-variable calculus, you were actually integrating not the function $f$ but the differential form $f(x)\,\dx$.
+We will now make precise what it means to integrate a differential form, simultaneously generalizing to the multivariable situation.
+
+\section{Integrating forms in one dimension}
+\label{sec:integrating-forms}
+
+When we ``integrate a function $f$'' in one-variable calculus from $a$ to $b$, we divide up the interval $[a,b]$ into a large number $N$ of small subintervals $[x_i,x_{i+1}]$ of width $\Delta x_i$, and consider the \emph{Riemann sum}
+\[ \sum_{i=1}^N f(\rstag i)\, \Delta x_i \]
+where $\rstag i$ is some point in $[x_i,x_{i+1}]$.
+Then we take a limit as the subinterval widths $\Delta x_i$ go to zero.
+
+If we regard this instead as integrating the differential form $\omega(x,\dx) = f(x)\, \dx$, we can rewrite the Riemann sum as
+\[ \sum_{i=1}^N \omega(\rstag i,\Delta x_i). \]
+In other words, the differential form specifies, for each value $\rstag i$ of $x$ and each subinterval width $\Delta x_i$, the appropriate (approximate) contribution $\omega(\rstag i,\Delta x_i)$ to the integral.
+We simply add up these contributions, and then take the limit.
+
+We can now generalizes this to integrate \emph{any} differential form in one dimension.
+We simply define
+\[ \int_a^b \omega = \lim_{\Delta x_i \to 0} \sum_{i=1}^N \omega(\rstag i,\Delta x_i). \]
+if this limit exists.
+Note that when integrating a differential form, we do not write a ``$\dx$'' at the end of the integral: we simply write $\int_a^b \omega$.
+The $\dx$ at the end of an ordinary integral is \emph{part} of the differential form being integrated.
+
+\begin{eg}
+  As a first new example, consider the form $f(x) \, |\dx|$, where $f$ is some continuous function.
+  If $a<b$, so that each $\Delta x_i$ is positive, then the Riemann sums for $\int_a^b f(x) \, |\dx|$ are the same as those for $\int_a^b f(x) \, \dx$, and thus the integral is the same.
+  The difference is only visible if we consider also the case when $b<a$, so that each $\Delta x_i$ is negative.
+  In one-variable calculus, you probably learned that
+  \[ \int_b^a f(x)\,\dx = - \int_a^b f(x) \,\dx. \]
+  This is true because the Riemann sums for the first integral are the negatives of those for the second.
+  However, because of the absolute value, the Riemann sums for $\int_a^b f(x) \, |\dx|$ are the \emph{same} as those for $\int_b^a f(x) \, |\dx|$; thus we have
+  \[ \int_b^a f(x)\,|\dx| = \int_a^b f(x) \,|\dx|. \]
+\end{eg}
+
+\begin{eg}
+  Consider the form $\dx^2$.
+  If we have a tagged partition with $\Delta x_i < \epsilon$ for all $i$, then the corresponding Riemann sum is
+  \begin{align*}
+    \sum_{i=1}^N (\Delta x_i)^2 &< \epsilon \sum_{i=1}^N (\Delta x_i)\\
+    &= \epsilon (b-a).
+  \end{align*}
+  In the limit, $\epsilon \to 0$, and thus the Riemann sums also go to zero.
+  So we have
+  \[ \int_a^b \dx^2 = 0. \]
+  Intuitively, we may say that an ordinary integral $\int_a^b f(x) \,\dx$ obtains a zeroth-order result by adding up a large number of small first-order changes; but if we try to add up the \emph{same} number of \emph{second-order} changes, the result will be negligible.
+\end{eg}
+
+More generally, we have the following:
+
+\begin{thm}\label{thm:int-gtfirstorder-onevar}
+  If $\omega$ is greater than first order, then
+  \[ \int_a^b \omega \;=\; 0\]
+  for any closed interval $[a,b]$.
+\end{thm}
+
+\begin{adv}
+  The full generality of \cref{thm:int-gtfirstorder-onevar} actually requires a slightly more powerful definition of integration than is usually taught in one-variable calculus, called ``Henstock integration''.
+  Roughly, we need to be more flexible with the exact meaning of what it means for the $\Delta x_i$ to all approach zero at once.
+  Since we will not be making this very precise anyway, we henceforth ignore this issue.
+\end{adv}
+
+\section{Line integrals}
+\label{sec:line-integrals}
+
+If we want to integrate a form in more than one dimension, we have a new problem: we need more information to specify the ``interval'' over which to integrate.
+
+
+\end{document}
