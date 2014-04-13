@@ -80,11 +80,18 @@
 % \newcommand{\vc}[1]{\vec{#1}}
 \newcommand{\vc}[1]{\mathbf{#1}}
 \newcommand{\vcc}[1]{(#1)}
+\newcommand{\lrvcc}[1]{\left(#1\right)}
 
 %% Vector operations
 \newcommand{\mgn}[1]{\Vert #1 \Vert}
-\newcommand{\dotp}[2]{\langle #1 , #2 \rangle}
+%\newcommand{\dotp}[2]{\langle #1 , #2 \rangle}
+\newcommand{\dotp}[2]{#1 \cdot #2}
 \newcommand{\crossp}[2]{#1 \times #2}
+
+%% Vector calculus operations
+\newcommand{\grad}[1]{\nabla #1}
+\newcommand{\dvg}[1]{\nabla \cdot #1}
+\newcommand{\curl}[1]{\nabla \times #1}
 
 %% Fractions
 \newcommand{\half}{\ensuremath{\textstyle\frac{1}{2}}}

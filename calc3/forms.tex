@@ -682,12 +682,6 @@ and hence
 We leave it to the reader to write out the reverse expressions for spherical coordinates in terms of rectangular ones.
 
 
-\section{Differential forms versus vectors}
-\label{sec:forms-vs-vectors}
-
-% TODO: Transposes
-% TODO: Gradient = transpose of differential
-
 \section{Derivatives}
 \label{sec:derivatives}
 
@@ -808,5 +802,45 @@ Thus, for any function $f$, we have
   &= -\pder{f}{x} r\sin\theta + \pder{f}{y} r \cos \theta.
 \end{align*}
 In practice, is often easier to apply the chain rule by calculating the differentials and substituting, rather than remembering \cref{eq:partial-chain-rule}.
+
+
+\section{Differential forms versus vectors}
+\label{sec:forms-vs-vectors}
+
+Recall that a linear differential form is one that looks like
+\[ \omega(\pt{x},\dpx) = f(\pt{x})\,\dx + g(\pt{x})\,\dy + h(\pt{x})\,\dz \]
+(at least in three dimensions).
+In particular, at every point $\pt{x}$, a linear form $\omega$ has three \emph{components} $f(\pt{x})$, $g(\pt{x})$, and $h(\pt{x})$, each associated with one direction $x$, $y$, or $z$.
+Note that a \emph{vector} also has one component for each direction.
+Thus, there is a canonical way to pass back and forth between differential forms and vectors, or more precisely vector \emph{fields}.
+
+\begin{defn}
+  If $\omega(\pt{x},\dpx) = f(\pt{x})\,\dx + g(\pt{x})\,\dy + h(\pt{x})\,\dz$ is a linear differential form, we write $\tr{\omega}$ for its \textbf{transpose}, which is the vector field with the same components:
+  \[ \tr{\omega}(\pt{x}) = \vcc{f(\pt{x}), g(\pt{x}), h(\pt{x})}. \]
+  Similarly, if $\vc{v}(\pt{x}) = \vcc{f(\pt{x}), g(\pt{x}), h(\pt{x})}$ is a vector field, we write $\tr{\vc{v}}$ for its \textbf{transpose}, which is the linear differential form with the same components:
+  \[ \tr{\vc{v}}(\pt{x},\dpx) = f(\pt{x})\,\dx + g(\pt{x})\,\dy + h(\pt{x})\,\dz. \]
+  The definition in two dimensions is analogous.
+\end{defn}
+
+Most basic notions can be translated across this equivalence.
+For instance, if $\omega = f(\pt{x})\,\dx + g(\pt{x})\,\dy + h(\pt{x})\,\dz$ is a linear differential form and $\vc{v}(\pt{x}) = \vcc{j(\pt{x}),k(\pt{x}),\ell(\pt{x})}$ is a vector field, then at any point $\pt{x}$ we can evaluate $\omega$ on $\vc{v}$:
+\[ \omega(\pt{x},\vc{v}(\pt{x})) = f(\pt{x})\,j(\pt{x}) + g(\pt{x})\,k(\pt{x}) + h(\pt{x})\,\ell(\pt{x}).\]
+This is the same as the formula for the \emph{dot product} of vectors; thus we have
+\[ \omega(\pt{x},\vc{v}(\pt{x})) = \dotp{\tr{\omega}(\pt{x})}{\vc{v}(\pt{x})} \]
+Similarly, for vector fields $\vc{v}$ and $\vc{w}$, we have
+\[ \dotp{\vc{v}(\pt{x})}{\vc{w}(\pt{x})} = \tr{\vc{v}}(\pt{x},\vc{w}(\pt{x})) \]
+We will see later on that the cross product of vectors also has a natural version --- possibly even a \emph{more} natural version --- for differential forms.
+
+The transpose of the differential of a function has a special name: it's called the \textbf{gradient} of the function, and written $\grad f$.
+That is,
+\begin{align*}
+  \grad f &= \ptr{\df}\\
+  &= \lrvcc{\pder{f}{x},\,\pder{f}{y},\,\pder{f}{z}} \qquad\text{(in three dimensions)}
+\end{align*}
+Part of the importance of the gradient is that it points in the direction of ``steepest increase'' of the function.
+More precisely, the directional derivative $\df(\pt{x},\vc{v})$ is greatest (for $\vc{v}$ of unit length) when $\vc{v}$ points in the direction of $\grad f(\pt{x})$.
+\begin{notextbook}More about the gradient can probably be found in your textbook.\end{notextbook}
+\begin{stewart}The textbook discusses gradients in section 11.6.\end{stewart}
+
 
 \end{document}

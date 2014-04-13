@@ -166,7 +166,7 @@ This is an ordinary one-variable integral of the sort we already understand.
 Therefore, the line integral of any linear differential form over any differentiable curve can be reduced to a one-variable integral, which we can at least hope to integrate using the fundamental theorem of calculus.
 More generally, if $\curve$ is only \emph{piecewise} differentiable, then we can break a line integral up into several integrals and apply this method on each piece.
 \begin{notextbook}Your textbook probably contains more details.\end{notextbook}
-\begin{stewart}More details are in the textbook (section 11.5).\end{stewart}
+\begin{stewart}More details are in the textbook (section 13.2).\end{stewart}
 
 \begin{rmk}\label{rmk:lineint-orientation}
   Although we used a particular parametrization of the curve $\curve$ to define the line integral $\lint{\curve} \omega$ in \cref{eq:line-integral}, and to evaluate it as in \cref{eq:lineint-chvar-2}, in fact the value of the integral is independent of the parametrization.
@@ -175,6 +175,15 @@ More generally, if $\curve$ is only \emph{piecewise} differentiable, then we can
   Reversing the orientation would negate the vectors $\Delta \curvept_i$, and for a \emph{linear} differential form, this would negate the value of the integral.
   (In the next section, we will consider line integrals that are independent of orientation.)
 \end{rmk}
+
+Finally, recall that any vector field $\vc{v}$ gives rise to a linear differential form $\tr{\vc{v}}$ with the same coefficients, which we can then integrate over any curve.
+This integral will involve evaluating $\tr{\vc{v}}$ on vectors $\dpx$, which is equivalent to taking the dot product $\dotp{\tr{\vc{v}}(\pt{x})}{\dpx}$.
+Thus, the line integral $\lint{\curve} \tr{\vc{v}}$ is often written instead as
+\[ \lint{\curve} \dotp{\vc{v}}{\dpx} \]
+or any number of similar notations.
+\begin{notextbook}You will probably find this in your textbook.\end{notextbook}
+\begin{stewart}The textbook writes $\lint{\curve} \dotp{\vc{v}}{\dd\pt{r}}$ (section 13.2).\end{stewart}
+
 
 %% TODO: Vector fields and dot products
 
@@ -217,6 +226,8 @@ In fact, since we nearly always parametrize curves over intervals $[a,b]$ with $
 in two dimensions, or
 \[ \int_a^b f(x(t),y(t),z(t)) \sqrt{x'(t)^2 + y'(t)^2+z'(t)^2} \,\dt \]
 in three.
+
+%% TODO: Add an example.
 
 \begin{rmk}
   The presence of $|\dt|$ rather than $\dt$ does imply that arc length integrals are independent not only of parametrization, but of the orientation of the curve $\curve$ (see \cref{rmk:lineint-orientation}).
