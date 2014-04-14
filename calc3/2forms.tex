@@ -1,0 +1,32 @@
+\documentclass[12pt]{amsart}
+\usepackage{fullpage}
+\input{../macros}
+\title{Higher differential forms}
+\begin{document}
+\maketitle
+
+\begin{notextbook}
+  Your textbook probably defines the \emph{double integral} of a two-variable function $f$ over a region $R$, using the notation
+\end{notextbook}
+\begin{stewart}
+  In section 12.1, the textbook defines the \emph{double integral} of a two-variable function $f$ over a rectangle $R$, using the notation
+\end{stewart}
+\[ \iint_R f(x,y) \,\mathrm{d}A. \]
+We would like to interpret this as an integral of a sort of differential form ``$f(x,y) \,\mathrm{d}A$''.
+However, as we did for the length element $\dl$, we will change the notation slightly and write $\dA$ instead of $\mathrm{d}A$, since as we will see, it is not the differential of anything.
+
+\section{2-forms}
+\label{sec:2-forms}
+
+What sort of a thing might $\dA$ be?
+Recall that in a one-variable integral $\int_a^b f(x)\,\dx$, the differential form $f(x)\,\dx$ is a function that takes as input a point $x$ and a vector $\dx$ based at that point.
+In the Riemann sums that define a double integral, the role of the lengths $\Delta x$ is played by the \emph{areas} $\Delta x \,\Delta y$.
+Each of these can be interpreted as the length of a vector: one which points in the $x$ direction, and one which points in the $y$ direction.
+Thus, we consider $\dA$ to be a function which takes \emph{two} vectors as input.
+
+\begin{defn}
+  A \textbf{differential 2-form} is a function whose input is a point $\pt{x}$ and two vectors based at $\pt{x}$.
+  We denote the vectors by ??.
+\end{defn}
+
+\end{document}
