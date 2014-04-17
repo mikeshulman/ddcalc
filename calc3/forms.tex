@@ -23,17 +23,21 @@ If you encountered differentials in one-variable calculus, you may have been tol
 These are not wrong, but with vectors we can give a better definition.
 
 \begin{defn}
-  A \textbf{differential form} is a function whose input is a point $\pt{x}$ \emph{and} a vector based at $\pt{x}$.
+  A \textbf{differential form} is a function whose input is a point $\ptx$ \emph{and} a vector based at $\ptx$.
   We denote the vector by $\dpx$.
 \end{defn}
 
-In $n$ dimensions, the point $\pt{x}$ has $n$ coordinates, as does the vector $\dpx$.
-As usual, in 2 or 3 dimensions we denote the coordinates of $\pt{x}$ by $\ptc{x,y}$ or $\ptc{x,y,z}$.
+In $n$ dimensions, the point $\ptx$ has $n$ coordinates, as does the vector $\dpx$.
+As usual, in 2 or 3 dimensions we denote the coordinates of $\ptx$ by $\ptc{x,y}$ or $\ptc{x,y,z}$.
 Similarly, we denote the coordinates of $\dpx$ by $\vcc{\dx,\dy}$ or $\vcc{\dx,\dy,\dz}$.
 We can then describe a differential form by a formula involving these coordinates $x,y,z,\dx,\dy,\dz$.
 
-We usually denote differential forms by lowercase Greek letters such as $\omega$ (omega, not to be confused with the English letter $w$) or $\eta$ (eta, not to be confused with the English letter $n$).
-Thus we would write $\omega(\pt{x},\dpx)$ for the value of a form $\omega$ at a point $\pt{x}$ and a vector $\dpx$, or $\omega(x,y,\dx,\dy)$ if we want to emphasize all the coordinates.
+We usually denote differential forms by lowercase Greek letters such as the following.
+\begin{itemize}
+\item $\omega$ (omega, not to be confused with the English letter $w$)
+\item $\eta$ (eta, not to be confused with the English letter $n$)
+\end{itemize}
+Since a differential form $\omega$ is a function of a point and a vector, we would write $\omega(\ptx,\dpx)$ for the value of $\omega$ at a point $\ptx$ and a vector $\dpx$, or $\omega(x,y,\dx,\dy)$ if we want to emphasize all the coordinates.
 
 \begin{egs}\label{egs:differential-forms}
   The following are all differential forms:
@@ -54,8 +58,8 @@ The first two of \cref{egs:differential-forms} are special in the following way.
 
 \begin{defn}
   A \textbf{linear} differential form is one defined by an expression such as
-  \[ f(\pt{x}) \, \dx + g(\pt{x}) \, \dy + h(\pt{x}) \, \dz. \]
-  Here $f$, $g$, and $h$ are functions of the point $\pt{x}$ only, and each of them is multiplied by one of the coordinates of $\dpx$.
+  \[ f(\ptx) \, \dx + g(\ptx) \, \dy + h(\ptx) \, \dz. \]
+  Here $f$, $g$, and $h$ are functions of the point $\ptx$ only, and each of them is multiplied by one of the coordinates of $\dpx$.
 \end{defn}
 
 Most mathematicians only use the term ``differential form'' for linear ones.
@@ -67,140 +71,82 @@ However, the more general ones are quite useful.
   However, until then, we will just use ``differential form'' for the notion defined above.
 \end{adv}
 
-It is helpful to think of the coordinates $\dx$, $\dy$, and $\dz$ as small changes in the value of $x$.
+It is helpful to think of the coordinates $\dx$, $\dy$, and $\dz$ as small changes in the values of the coordinates $x$, $y$, and $z$ respectively.
+Here by \emph{small} we mean \emph{small relative to the values generally taken by $x$}.
 For instance, if $x=3$, then a possible small change would be $\dx = 0.01$.
 In this case, a differential form such as $\dx^2$ is an \emph{even smaller} change, since $\dx^2 = 0.0001$.
-We say that $\dx$ is a \emph{first order} form while $\dx^2$ is \emph{second order}.
-Similarly, we say that $x$ itself is \emph{zeroth order}, as is any function value $f(\pt{x})$ not involving $\dpx$.
 
-Every linear form is first-order: when we multiply a zeroth order form like $f(\pt{x})$ by a first order one like $\dx$, the result is first order.
+We say that $\dx$ is a \emph{first order} form while $\dx^2$ is \emph{second order}.
+Similarly, we say that $x$ itself is \emph{zeroth order}, as is any function value $f(\ptx)$ not involving $\dpx$.
+
+Every linear form is first-order: when we multiply a zeroth order form like $f(\ptx)$ by a first order one like $\dx$, the result is first order.
 For instance, if $f(x) = 4$ and $\dx = 0.001$, then $f(x)\,\dx = 0.004$, which is about the same size as $\dx$.
 
 The concept of order can be applied even to forms that are not polynomials in $\dx$.
-For instance, if $\dx=0.01$, then $\sin \dx \approx 0.0099998$, which is about the same size as $\dx$.
-Thus, it is reasonable to say that $\sin\dx$ is also first-order.
-On the other hand, still with $\dx=0.01$, we have $\cos \dx - 1 \approx -0.00005$, which is much smaller than $\dx$ and about the same size as $\dx^2$.
-Thus, it is reasonable to say that $\cos \dx - 1$ is second-order.
+For instance, if $\dx=0.01$, then $\sin(\dx) \approx 0.0099998$, which is about the same size as $\dx$.
+Thus, it is reasonable to say that $\sin(\dx)$ is also first-order.
+On the other hand, still with $\dx=0.01$, we have $\cos(\dx) - 1 \approx -0.00005$, which is much smaller than $\dx$ and about the same size as $\dx^2$.
+Thus, it is reasonable to say that $\cos(\dx) - 1$ is second-order.
 
-We make the notion of ``orders'' precise with the following definition.
+We will not make precise the general notion of ``order''; it can be done, but it is a bit complicated and not necessary for our purposes.
+(If you're curious, see the optional handout.)
+All that we will need is a definition of when a differential form is \emph{smaller than first order} (e.g.\ second-order or third-order).
+This is because in calculus, we are concerned with \emph{approximations to first order}, also known as \emph{linear approximations}; and forms that are smaller than first order do not affect these approximations.
+Thus, we will call them \emph{negligible} (to first order).
 
-\begin{defn}\label{def:order}
-  Let $n$ be an integer $\ge 0$.
-  A differential form $\omega$ is \textbf{$n\th$ order} at a point $\pt{x}$ if
-  \[ \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^n} \]
-  remains bounded as $\dpx\to\vc{0}$.  In other words, there is a number $M>0$ such that
-  \( \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^n} \le M \)
-  for all $\dpx$ sufficiently close to $\vc{0}$.
-  The property of $\omega$ being $n\th$ order is also written as
-  \[ \omega \in O(\dpx^n) \quad\text{as}\;\dpx\to\vc{0} \]
-  which is pronounced as ``$\omega$ is big-oh of $\dpx^n$ as $\dpx\to\vc{0}$''.
+\begin{defn}\label{def:negligible}
+  A differential form $\omega$ is called \textbf{negligible} at a point $\ptx$ if
+  \[ \lim_{\dpx\to\vc{0}} \frac{\omega(\ptx,\dpx)}{\mgn{\dpx}} = 0. \]
 \end{defn}
 
 Recall that definitions in mathematics introduce a \emph{new} meaning for a word.
-Thus, \emph{from now on} (in this class) the word ``order'' \emph{will mean} what this definition says it does.
+Thus, \emph{from now on} (in this class) the word ``negligible'' \emph{will mean} what this definition says it does.
 Our previous discussion was only motivational; the definition is the ``gold standard'' for the meaning of the word.
 
 The first thing to do in understanding a definition is to look at some examples.
 If we chose the definition well, the examples will justify our motivation.
 
 \begin{eg}
-  As suggested above, any \emph{linear} differential form is first order at every point.
-  For instance, if $\omega(\pt{x},\dd\pt{x}) = f(\pt{x}) \, \dx$, then
-  \[ \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^1} = f(\pt{x}) \frac{\dx}{\mgn{\dpx}}.\]
-  Since $f(\pt{x})$ does not depend on $\dpx$, and $\frac{\dx}{\mgn{\dpx}} \le 1$, this is bounded by $M=f(\dpx)$ as $\dpx\to\vc0$.
+  The differential form $\dx^2$ is negligible at any point.
+  To see this, note that
+  \[ \frac{\dx^2}{\mgn{\dpx}} = \frac{\dx}{\mgn{\dpx}} \,\dx \]
+  and $\frac{\dx}{\mgn{\dpx}}\le 1$ everywhere, while $\lim_{\dpx\to\vc{0}} \dx = 0$.
+  Thus, the limit of their product is also $0$.
+  Similarly, the following differential forms are all negligible:
+  \[ \dy^2 \qquad \dx\,\dy \qquad \dx^3 \qquad \dx\,\dy^2\,\dz \]
 \end{eg}
 
 \begin{eg}
-  \emph{Any} continuous differential form is zeroth order at every point.
-  For we have
-  \[\frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^0} = \omega(\pt{x},\dpx).\]
-  Since $\omega$ is continuous, $\lim_{\dpx\to 0} \omega(\pt{x},\dpx) = \omega(\pt{x},\vc{0})$, and in particular is finite.
-  Thus, in particular $\omega(\pt{x},\dpx)$ is bounded.
+  By a similar argument, if $\omega$ is bounded for values of $\dpx$ near $\vc{0}$, while $\eta$ is negligible at $\ptx$, then their product $\omega\eta$ is also negligible at $\ptx$.
+  In particular, this is true if $\omega$ is a function of $\ptx$ only, at any point where it is defined.
+  For instance, the following differential forms are negligible:
+  \begin{gather*}
+    x^2\,\dx\,\dy\\
+    e^{-x^2+y^2} \,\dy^2
+  \end{gather*}
 \end{eg}
 
 \begin{eg}
-  The differential form $\dx^2$ is second order at any point.
-  We have
-  \[ \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^2} = \frac{\dx^2}{\dx^2} = 1 \]
-  which is constant, hence bounded as $\dpx\to\vc0$.
+  If $\omega$ and $\eta$ are negligible at $\ptx$, then so is their sum $\omega+\eta$, by the sum rule for limits.
+  Thus, the following differential forms are negligible:
+  \begin{gather*}
+    \dx^2 + \dy^2\\
+    x^2 \,\dx\,\dy + e^{y}\,\dy\,\dz^2
+  \end{gather*}
 \end{eg}
 
-\begin{eg}
-  The differential form $\sqrt{\dx^2+\dy^2}$ is first order at any point.
-  We have
-  \[ \frac{\sqrt{\dx^2+\dy^2}}{\mgn{\dpx}^1} =
-  \frac{\sqrt{\dx^2+\dy^2}}{\sqrt{\dx^2+\dy^2}} = 1
-  \]
-  which is clearly bounded.
-\end{eg}
-
-We also have the following rules for orders of forms.
-
-\begin{thm}
-  Let $\omega$ and $\eta$ be differential forms, and assume that $\omega$ is $n\th$ order and $\eta$ is $m\th$ order at $\pt{x}$.
-  \begin{enumerate}
-  \item $\omega+\eta$ is $\min(n,m)\th$ order at $\pt{x}$.
-  \item $\omega\eta$ is $(n+m)\th$ order at $\pt{x}$.
-  \end{enumerate}
-\end{thm}
-
-It follows that a polynomial in the differential variables $\dx,\dy,\dz$ has the order of the lowest total degree of these variables in all of its terms.
-Thus, $x^3\, \dx^2 + \dx^3 - 2x \,\dx^4$ is second order at every point, since the lowest exponent of $\dx$ appearing in all its terms is 2 (the exponents of $x$ don't matter).
-Similarly, $xy\,\dx\,\dy^2 + y\, \dx^4$ is third order, since $\dx\,\dy^2$ has total degree 3 and $\dx^4$ has total degree 4.
-The ``coefficients'' can be arbitrary functions of $\pt{x}$ as well; for instance, $e^x \,\dx^2$ is second order.
-
-\begin{rmk}
-  If a form is $n\th$ order, then it is also $m\th$ order for any $m<n$.
-  Thus, any second order form is also first order and zeroth order, and so on.
-  We usually emphasize the greatest order that a form has; e.g.\ we almost always care most that $\dx^2$ is second order, even though it is also first and zeroth order.
-\end{rmk}
-
-\begin{eg}
-  A differential form can have a higher order at some points than others.
-  For instance, the form $x \,\dx + \dx^2$ is first-order everywhere, but at the point $x=0$ it becomes $0\, dx + \dx^2 = \dx^2$, which is second order.
-\end{eg}
-
-\begin{rmk}
-  Note that the notion of ``order'' only applies to differential forms, which are \emph{functions}.
-  Although we motivated it by talking about numbers like $0.00001$ being much smaller than $0.001$, strictly speaking it does not make sense to say that a \emph{number} is first-order or second-order.
-  This is because ``smallness'' is always relative to the numbers that come up in a particular problem.
-
-  For instance, in some problem it might happen that $x=0.001$, or even $0.00001$, but the function $f(x) = x$ would still be zeroth order.
-  In that problem, we would expect $\dx$ to be even smaller than $x$, such as $0.000000001$.
-  On the other hand, it some other problem it might happen that $x = 10000$, in which case we might have $\dx = 10$, but the differential form $\dx$ would still be first order.
-
-  It is possible to give a meaning to ``first order number'' by introducing infinitesimals.
-  However, we will not do that.
-\end{rmk}
-
-When we define differentials, we will also need the following closely related notion.
-
-\begin{defn}
-  A differential form $\omega$ is \textbf{greater than $k\th$ order} at a point $\pt{x}$ if
-  \[ \lim_{\dpx\to\vc{0}} \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^k} = 0. \]
-  This property is also written as
-  \[ \omega \in o(\dpx^k) \quad\text{as}\;\dpx\to\vc{0} \]
-  which is pronounced as ``$\omega$ is little-oh of $\dpx^k$ as $\dpx\to\vc{0}$''.
-\end{defn}
-
-Unsurprisingly, if $\omega$ is $n\th$ order, then it is greater than $k\th$ order whenever $n>k$.
-For in this case we have
-\[\frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^k} = \frac{\omega(\pt{x},\dpx)}{\mgn{\dpx}^n} \cdot \mgn{\dpx}^{n-k}, \]
-and the first term remains bounded while the second goes to zero if $n>k$.
-
-For the cases that arise in practice, $n$ and $k$ are usually integers, and most forms that are greater than $k\th$ order are in fact $(k+1)\st$ order.
-However, technically the two are distinct.
-For instance, the form $\dx^{3/2}$ is greater than first order, but is not second order (it is $(3/2)\th$ order).
-Even more interestingly, the form $\frac{1}{\ln\dx}$ is greater than zeroth order, but is not $n\th$ order for any $n>0$.
+Notice that all the examples of negligible forms are what we would intuitively call second-order or higher.
+We will continue to use the informal terminology of ``first-order'', ``second-order'', and so on when discussing forms.
+However, in definitions and theorems we will use only the term ``negligible'' that we have defined precisely.
 
 
 \section{Graphing differential forms}
 \label{sec:graphing-differential-forms}
 
-A differential form should be thought of as giving for each point $\pt{x}$, a function of the vector $\dpx$, which represents the ``displacement from $\pt{x}$'' of another point (namely, the point $\pt{x}+\dpx$).
+A differential form should be thought of as giving for each point $\ptx$, a function of the vector $\dpx$, which represents the ``displacement from $\ptx$'' of another point (namely, the point $\ptx+\dpx$).
 In addition, we generally only care about this function for small values of $\dpx$.
 
-We can give an idea of what such a thing looks like by drawing at each point $\pt{x}$ a small fragment of the graph of the corresponding function of $\dpx$, with its origin placed at $\pt{x}$.
+We can give an idea of what such a thing looks like by drawing at each point $\ptx$ a small fragment of the graph of the corresponding function of $\dpx$, with its origin placed at $\ptx$.
 This is easiest to do in one dimension.
 For instance, we would graph the form $x\,\dx$ as follows.
 \begin{center}
@@ -227,7 +173,7 @@ For instance, we would graph the form $x\,\dx$ as follows.
 Here at the point $(1,0)$ we have graphed a piece of the function $f(\dx) = \dx$, with its origin at $(1,0)$.
 Similarly, at $(2,0)$ we have graphed a piece of $f(\dx) = 2\,\dx$, with its origin at $(2,0)$, and so on.
 
-Analogously, we would graph $x\,\dx^2$ as follows, drawing $f(\dx) = \dx^2$ with origin at $(1,0)$, and $f(\dx)=2\dx^2$ with origin at $(2,0)$, etc.
+Analogously, we would graph $x\,\dx^2$ as follows, drawing $f(\dx) = \dx^2$ with origin at $(1,0)$, and $f(\dx)=2\,\dx^2$ with origin at $(2,0)$, etc.
 \begin{center}
   \begin{tikzpicture}
     \draw[<->] (-5,0) -- (5,0);
@@ -309,7 +255,7 @@ Thus, each little piece of the graph of this differential form will be a horizon
   \end{tikzpicture}
 \end{center}
 This seems a little odd as a representation of $f$, so we may ask whether there is some differential form for which each piece of its graph looks like a corresponding part of the graph of $f$ itself.
-Such a differential form is $f(x+\dx)$ --- since as $\dx$ varies around zero, $x+\dx$ varies around $x$.
+Such a differential form is $f(x+\dx)$, since as $\dx$ varies around zero, $x+\dx$ varies around $x$.
 \begin{center}
   \begin{tikzpicture}
     \axes
@@ -395,10 +341,10 @@ This is what we saw in the above-remarked similarity of graphs.
 However, in multivariable calculus, it is more appropriate to do things in the other order, using the idea of~\cref{eq:difference-quotient-close-derivative} to define the differential \emph{first}, and then deducing a notion of ``derivative'' from this.
 
 \begin{defn}\label{def:differential}
-  If $f$ is a function of a point $\pt{x}$, then its \textbf{differential} is a linear differential form $\df$ such that
-  \[ f(\pt{x} + \dd\pt{x}) - f(\pt{x}) - \df \]
-  is greater than first order at $\pt{x}$.
-  If such a form $\df$ exists, we say that $f$ is \textbf{differentiable} at $\pt{x}$.
+  If $f$ is a function of a point $\ptx$, then its \textbf{differential} is a linear differential form $\df$ such that
+  \[ f(\ptx + \dd\ptx) - f(\ptx) - \df \]
+  is negligible at $\ptx$.
+  If such a form $\df$ exists, we say that $f$ is \textbf{differentiable} at $\ptx$.
 \end{defn}
 
 As always, we should explore a new definition with examples.
@@ -412,7 +358,7 @@ As always, we should explore a new definition with examples.
     &= 2x \, \dx + \dx ^2.
   \end{align*}
   What linear form $\dd f$ can we subtract from this to make it second order?
-  Recalling the rule for orders of polynomials, we may think of subtracting $2x \, \dx$, leaving the second-order term $\dx^2$:
+  We may think of subtracting $2x \, \dx$, leaving the second-order term $\dx^2$:
   \[ f(x + \dx) - f(x) - 2x \, \dx \;=\; \dx^2. \]
   Thus, we have $\dd(x^2) = 2 x \, \dx$.
   Of course, this is the same result that we would have gotten from \cref{eq:onevariable-differential}.
@@ -445,19 +391,18 @@ As always, we should explore a new definition with examples.
   The usual way to proceed from here is to recall the limits
   \[ \lim_{h\to 0} \frac{\sin h}{h} = 1 \qquad\text{and}\qquad
   \lim_{h\to 0} \frac{\cos h - 1}{h} = 0 \]
-  The second says exactly that the form $\cos \dx - 1$ is second order.
+  The second says exactly that the form $\cos \dx - 1$ is negligible.
   The first one implies that
   \[ \lim_{\dx\to 0} \frac{\sin \dx - \dx}{\dx} = 0 \]
-  and therefore the form $\sin \dx - \dx$ is second order.
-  The ordinary functions $\cos x$ and $\sin x$, regarded as differential forms, are zeroth order; thus by the rules for orders, multiplying by them doesn't change the order.
-  So we can write
+  and therefore the form $\sin \dx - \dx$ is negligible.
+  Multiplying by the ordinary functions $\cos x$ and $\sin x$ doesn't change the order, so we can write
   \begin{align*}
     \sin(x+\dx) - \sin (x)
     &= \cos x \sin \dx + (\sin x) (\cos \dx - 1)\\
     &= (\cos x )(\dx  + \sin \dx - \dx) + (\sin x) (\cos \dx - 1)\\
     &= \cos x \,\dx + (\cos x) (\sin \dx - \dx) + (\sin x) (\cos \dx - 1)
   \end{align*}
-  which is written as the linear form $\cos x \,\dx$ plus a second-order one.
+  which is written as the linear form $\cos x \,\dx$ plus a negligible one.
   Thus, $\dd(\sin x) = \cos x \,\dx$.
 
   Another, perhaps more intuitive, way to proceed from \cref{eq:sine-difference} is to recall the power series expansions
@@ -468,19 +413,18 @@ As always, we should explore a new definition with examples.
   Therefore, we have
   \begin{align*}
     \sin \dx - \dx &= - \frac{\dx^3}{3!} + \frac{\dx^5}{5!} - \cdots\\[2pt]
-    \cos \dx - 1 &= - \frac{\dx^2}{2!} + \frac{\dx^4}{4!} - \cdots
+    \cos \dx - 1 &= - \frac{\dx^2}{2!} + \frac{\dx^4}{4!} - \cdots.
   \end{align*}
-  so the rules for orders of polynomials say that the first is third order (hence also second order) and the second is second order.
-  This does require knowing that the rules for orders of polynomials also apply to power series, but this is true.
-  (A deeper problem is that when calculating the power series expansions of sine and cosine in one-variable calculus, you probably used the fact that you already knew their derivatives.)
+  Using general facts about functions defined by power series, one can conclude from this that the first is third order and the second is second order; thus both are negligible.
+  (However, when calculating the power series expansions of sine and cosine in one-variable calculus, you probably used the fact that you already knew their derivatives, so this would technically be a circular argument.)
 \end{eg}
 
 A convenient way to work with differentials is to introduce the notion of ``approximation to first order''.
 
 \begin{defn}
-  We say that two differential forms $\omega$ and $\eta$ are \textbf{equal to $n\th$ order} if their difference $\omega-\eta$ is greater than $n\th$ order.
+  We say that two differential forms $\omega$ and $\eta$ are \textbf{equal to first order} if their difference $\omega-\eta$ is negligible.
   In this case we write
-  \[\omega\apx{n} \eta.\]
+  \[\omega\apx1 \eta.\]
 \end{defn}
 
 \begin{eg}
@@ -489,15 +433,15 @@ A convenient way to work with differentials is to introduce the notion of ``appr
   which is second order.
 \end{eg}
 
-The relation $\apx{n}$ behaves roughly like equality.
+The relation $\apx{1}$ behaves roughly like equality.
 For instance, we can add or subtract the same differential form from both sides.
-In particular, if $\omega$ is greater than $n\th$ order, then $\omega\apx{n}0$, so we have $\eta + \omega \apx{n} \eta$ for any $\eta$.
+In particular, if $\omega$ is negligible, then $\omega\apx{1}0$, so we have $\eta + \omega \apx{1} \eta$ for any $\eta$.
 
 \begin{eg}
   Since $4\,\dx^2$ is second order, we have $\sin(x) \,\dx + 4\, \dx^2 \apx{1} \sin(X)\,\dx$.
 \end{eg}
 
-We can also multiply both sides by any continuous differential form, since multiplying by a zeroth order form doesn't change the order.
+We can also multiply both sides by any differential form that is bounded near $\dx=0$, since multiplying by such a form doesn't affect negligibility.
 
 \begin{eg}
   Since $\sqrt{x}\, \dx^2$ is second order, we have
@@ -565,7 +509,7 @@ If this was incomprehensible, you're in good company; it is much better explaine
 
 \begin{eg}
   Let $f(u,v) = u v + 3u$, while $u(x,y) = x-5y$ and $v(x,y) = 4y-x$.
-  Then we have
+  Then
   \begin{align*}
     \df &= \dd(u v) + \dd(3u)\\
     &= v \,\du + u\,\dv + 3 \,\du\\
@@ -622,10 +566,8 @@ Of course, it is mainly useful in cases where we are given the result of substit
   \end{align*}
 \end{eg}
 
-The proof of the chain rule is somewhat tricky.
-It relies on the fact that if $\omega$ is an $n\th$ order differential form and $\eta$ is a first-order one, then the composite $\omega(\pt{x},\eta(\pt{x},\dpx))$ is still $n\th$ order.
-We omit the details.
-\begin{notextbook}(They might be given in your textbook.)\end{notextbook}
+The proof of the chain rule is somewhat tricky; we omit it.
+\begin{notextbook}(It might be given in your textbook.)\end{notextbook}
 
 A particularly important example of the chain rule is translating between different coordinate systems.
 Recall that in addition to the usual ``rectangular'' or ``Cartesian'' coordinates $x$ and $y$ on the plane, we can use \emph{polar coordinates} $r$ and $\theta$, which are related by the equations
@@ -738,18 +680,18 @@ There are many other notations for partial derivatives: $\pder{f}{x}$ may also b
 Now recall that a differential form is, formally, a function on vectors, with $\dx$ and $\dy$ representing the components of the input vector.
 The partial derivatives (in two dimensions) can then equivalently be defined by \emph{evaluating} this function at the unit vectors $\vcc{1,0}$ and $\vcc{0,1}$:
 \begin{align*}
-  \df(\pt{x},\vcc{1,0}) &= \pder{f}{x}\cdot 1 + \pder{f}{y}\cdot 0 = \pder{f}{x}\\[2pt]
-  \df(\pt{x},\vcc{0,1}) &= \pder{f}{x}\cdot 0 + \pder{f}{y}\cdot 1 = \pder{f}{y}.
+  \df(\ptx,\vcc{1,0}) &= \pder{f}{x}\cdot 1 + \pder{f}{y}\cdot 0 = \pder{f}{x}\\[2pt]
+  \df(\ptx,\vcc{0,1}) &= \pder{f}{x}\cdot 0 + \pder{f}{y}\cdot 1 = \pder{f}{y}.
 \end{align*}
 (Similarly, in three dimensions we evaluate at the three unit vectors.)
 More generally, the result of evaluating $\df$ at $\vc{v}$ is called the \textbf{directional derivative} of $f$ along a vector $\vc{v}$.
 It has the following interpretation as a one-variable derivative.
 
 \begin{thm}
-  Given a point $\pt{x}$ and a vector $\vc{v}$ based at $\pt{x}$, define a function $g_{\vc{v}}$ by
-  \[ g_{\vc{v}}(t) = f(\pt{x} + t \vc{v}). \]
+  Given a point $\ptx$ and a vector $\vc{v}$ based at $\ptx$, define a function $g_{\vc{v}}$ by
+  \[ g_{\vc{v}}(t) = f(\ptx + t \vc{v}). \]
   Then the directional derivative of $f$ along $\vc{v}$ is equal to the derivative of $g_{\vc{v}}$ at $0$:
-  \[ \df(\pt{x},\vc{v}) = g_{\vc{v}}'(0). \]
+  \[ \df(\ptx,\vc{v}) = g_{\vc{v}}'(0). \]
 \end{thm}
 
 In particular, when $\vc{v}$ is $\vcc{1,0}$ or $\vcc{0,1}$, we obtain the following expressions for the partial derivatives (in two dimensions):
@@ -766,7 +708,7 @@ If we expand out the definition of the derivative, this becomes:
   \pder{f}{x} &= \lim_{t\to 0} \frac{f(x+t,y) - f(x,y)}{t}\\[2pt]
   \pder{f}{x} &= \lim_{t\to 0} \frac{f(x,y+t) - f(x,y)}{t}.
 \end{align}
-\begin{notextbook}Your textbook should contain further discussion of partial derivatives and directional derivatives.\end{notextbook}
+\begin{notextbook}Your textbook should contain further discussion of partial derivatives and directional derivatives.\end{notextbook}%
 \begin{stewart}The textbook takes this approach in Chapter 11, defining partial derivatives first in section 11.3, and then the differential (or ``total differential'') in section 11.4.\end{stewart}
 
 One thing in particular that is worth noting is how the chain rule manifests itself in terms of partial derivatives.
@@ -807,29 +749,26 @@ In practice, is often easier to apply the chain rule by calculating the differen
 \section{Differential forms versus vectors}
 \label{sec:forms-vs-vectors}
 
-Recall that a linear differential form is one that looks like
-\[ \omega(\pt{x},\dpx) = f(\pt{x})\,\dx + g(\pt{x})\,\dy + h(\pt{x})\,\dz \]
-(at least in three dimensions).
-In particular, at every point $\pt{x}$, a linear form $\omega$ has three \emph{components} $f(\pt{x})$, $g(\pt{x})$, and $h(\pt{x})$, each associated with one direction $x$, $y$, or $z$.
-Note that a \emph{vector} also has one component for each direction.
-Thus, there is a canonical way to pass back and forth between differential forms and vectors, or more precisely vector \emph{fields}.
+Let $\vc{v}$ be a \emph{vector field}, i.e.\ a function assigning to each point $\ptx$ a vector $\vc{v}(\ptx)$ based at $\ptx$.
+Such a field is determined by one coordinate function for each dimension.
+For example, in three dimensions, we can write
+\[ \vc{v}(\ptx) = \vcc{f(\ptx),g(\ptx),h(\ptx)} \]
+for some functions $f$, $g$, and $h$ of three variables.
+
+Given such a vector field $\vc{v}$, there is a canonical linear differential form, defined by taking the dot product of $\vc{v}(\ptx)$ with $\dpx$:
+\[ \dotp{\vc{v}(\ptx)}{\dpx} = f(\ptx)\,\dx + g(\ptx)\,\dy + h(\ptx)\,\dz. \]
+Moreover, any \emph{linear} differential form arises in this way.
+For by definition, a form is linear if it can be written as $f(\ptx)\,\dx + g(\ptx)\,\dy + h(\ptx)\,\dz$; and this is equal to $\dotp{\vc{v}(\ptx)}{\dpx}$ if we define $\vc{v}(\ptx) = \vcc{f(\ptx),g(\ptx),h(\ptx)}$.
+If $\omega$ is a linear differential form, we call the corresponding vector field its \emph{transpose}.
 
 \begin{defn}
-  If $\omega(\pt{x},\dpx) = f(\pt{x})\,\dx + g(\pt{x})\,\dy + h(\pt{x})\,\dz$ is a linear differential form, we write $\tr{\omega}$ for its \textbf{transpose}, which is the vector field with the same components:
-  \[ \tr{\omega}(\pt{x}) = \vcc{f(\pt{x}), g(\pt{x}), h(\pt{x})}. \]
-  Similarly, if $\vc{v}(\pt{x}) = \vcc{f(\pt{x}), g(\pt{x}), h(\pt{x})}$ is a vector field, we write $\tr{\vc{v}}$ for its \textbf{transpose}, which is the linear differential form with the same components:
-  \[ \tr{\vc{v}}(\pt{x},\dpx) = f(\pt{x})\,\dx + g(\pt{x})\,\dy + h(\pt{x})\,\dz. \]
+  If $\omega(\ptx,\dpx) = f(\ptx)\,\dx + g(\ptx)\,\dy + h(\ptx)\,\dz$ is a linear differential form, we write $\tr{\omega}$ for its \textbf{transpose}, which is the vector field with the same components:
+  \[ \tr{\omega}(\ptx) = \vcc{f(\ptx), g(\ptx), h(\ptx)}. \]
   The definition in two dimensions is analogous.
 \end{defn}
 
-Most basic notions can be translated across this equivalence.
-For instance, if $\omega = f(\pt{x})\,\dx + g(\pt{x})\,\dy + h(\pt{x})\,\dz$ is a linear differential form and $\vc{v}(\pt{x}) = \vcc{j(\pt{x}),k(\pt{x}),\ell(\pt{x})}$ is a vector field, then at any point $\pt{x}$ we can evaluate $\omega$ on $\vc{v}$:
-\[ \omega(\pt{x},\vc{v}(\pt{x})) = f(\pt{x})\,j(\pt{x}) + g(\pt{x})\,k(\pt{x}) + h(\pt{x})\,\ell(\pt{x}).\]
-This is the same as the formula for the \emph{dot product} of vectors; thus we have
-\[ \omega(\pt{x},\vc{v}(\pt{x})) = \dotp{\tr{\omega}(\pt{x})}{\vc{v}(\pt{x})} \]
-Similarly, for vector fields $\vc{v}$ and $\vc{w}$, we have
-\[ \dotp{\vc{v}(\pt{x})}{\vc{w}(\pt{x})} = \tr{\vc{v}}(\pt{x},\vc{w}(\pt{x})) \]
-We will see later on that the cross product of vectors also has a natural version --- possibly even a \emph{more} natural version --- for differential forms.
+Thus by definition we have
+\[ \omega = \dotp{\tr{\omega}}{\dpx}. \]
 
 The transpose of the differential of a function has a special name: it's called the \textbf{gradient} of the function, and written $\grad f$.
 That is,
@@ -838,8 +777,8 @@ That is,
   &= \lrvcc{\pder{f}{x},\,\pder{f}{y},\,\pder{f}{z}} \qquad\text{(in three dimensions)}
 \end{align*}
 Part of the importance of the gradient is that it points in the direction of ``steepest increase'' of the function.
-More precisely, the directional derivative $\df(\pt{x},\vc{v})$ is greatest (for $\vc{v}$ of unit length) when $\vc{v}$ points in the direction of $\grad f(\pt{x})$.
-\begin{notextbook}More about the gradient can probably be found in your textbook.\end{notextbook}
+More precisely, the directional derivative $\df(\ptx,\vc{v})$ is greatest (for $\vc{v}$ of unit length) when $\vc{v}$ points in the direction of $\grad f(\ptx)$.
+\begin{notextbook}More about the gradient can probably be found in your textbook.\end{notextbook}%
 \begin{stewart}The textbook discusses gradients in section 11.6.\end{stewart}
 
 

@@ -1,0 +1,108 @@
+\documentclass{amsart}
+\input{../macros}
+
+\begin{document}
+
+\begin{defn}\label{def:order}
+  Let $n$ be an integer $\ge 0$.
+  A differential form $\omega$ is \textbf{$n\th$ order} at a point $\ptx$ if
+  \[ \frac{\omega(\ptx,\dpx)}{\mgn{\dpx}^n} \]
+  remains bounded as $\dpx\to\vc{0}$.  In other words, there is a number $M>0$ such that
+  \( \frac{\omega(\ptx,\dpx)}{\mgn{\dpx}^n} \le M \)
+  for all $\dpx$ sufficiently close to $\vc{0}$.
+  The property of $\omega$ being $n\th$ order is also written as
+  \[ \omega \in O(\dpx^n) \quad\text{as}\;\dpx\to\vc{0} \]
+  which is pronounced as ``$\omega$ is big-oh of $\dpx^n$ as $\dpx\to\vc{0}$''.
+\end{defn}
+
+\begin{eg}
+  As suggested above, any \emph{linear} differential form is first order at every point.
+  For instance, if $\omega(\ptx,\dd\ptx) = f(\ptx) \, \dx$, then
+  \[ \frac{\omega(\ptx,\dpx)}{\mgn{\dpx}^1} = f(\ptx) \frac{\dx}{\mgn{\dpx}}.\]
+  Since $f(\ptx)$ does not depend on $\dpx$, and $\frac{\dx}{\mgn{\dpx}} \le 1$, this is bounded by $M=f(\dpx)$ as $\dpx\to\vc0$.
+\end{eg}
+
+\begin{eg}
+  \emph{Any} continuous differential form is zeroth order at every point.
+  For we have
+  \[\frac{\omega(\ptx,\dpx)}{\mgn{\dpx}^0} = \omega(\ptx,\dpx).\]
+  Since $\omega$ is continuous, $\lim_{\dpx\to 0} \omega(\ptx,\dpx) = \omega(\ptx,\vc{0})$, and in particular is finite.
+  Thus, in particular $\omega(\ptx,\dpx)$ is bounded.
+\end{eg}
+
+\begin{eg}
+  The differential form $\dx^2$ is second order at any point.
+  We have
+  \[ \frac{\omega(\ptx,\dpx)}{\mgn{\dpx}^2} = \frac{\dx^2}{\dx^2} = 1 \]
+  which is constant, hence bounded as $\dpx\to\vc0$.
+\end{eg}
+
+\begin{eg}
+  The differential form $\sqrt{\dx^2+\dy^2}$ is first order at any point.
+  We have
+  \[ \frac{\sqrt{\dx^2+\dy^2}}{\mgn{\dpx}^1} =
+  \frac{\sqrt{\dx^2+\dy^2}}{\sqrt{\dx^2+\dy^2}} = 1
+  \]
+  which is clearly bounded.
+\end{eg}
+
+We also have the following rules for orders of forms.
+
+\begin{thm}
+  Let $\omega$ and $\eta$ be differential forms, and assume that $\omega$ is $n\th$ order and $\eta$ is $m\th$ order at $\ptx$.
+  \begin{enumerate}
+  \item $\omega+\eta$ is $\min(n,m)\th$ order at $\ptx$.
+  \item $\omega\eta$ is $(n+m)\th$ order at $\ptx$.
+  \end{enumerate}
+\end{thm}
+
+It follows that a polynomial in the differential variables $\dx,\dy,\dz$ has the order of the lowest total degree of these variables in all of its terms.
+Thus, $x^3\, \dx^2 + \dx^3 - 2x \,\dx^4$ is second order at every point, since the lowest exponent of $\dx$ appearing in all its terms is 2 (the exponents of $x$ don't matter).
+Similarly, $xy\,\dx\,\dy^2 + y\, \dx^4$ is third order, since $\dx\,\dy^2$ has total degree 3 and $\dx^4$ has total degree 4.
+The ``coefficients'' can be arbitrary functions of $\ptx$ as well; for instance, $e^x \,\dx^2$ is second order.
+
+\begin{rmk}
+  If a form is $n\th$ order, then it is also $m\th$ order for any $m<n$.
+  Thus, any second order form is also first order and zeroth order, and so on.
+  We usually emphasize the greatest order that a form has; e.g.\ we almost always care most that $\dx^2$ is second order, even though it is also first and zeroth order.
+\end{rmk}
+
+\begin{eg}
+  A differential form can have a higher order at some points than others.
+  For instance, the form $x \,\dx + \dx^2$ is first-order everywhere, but at the point $x=0$ it becomes $0\, dx + \dx^2 = \dx^2$, which is second order.
+\end{eg}
+
+\begin{rmk}
+  Note that the notion of ``order'' only applies to differential forms, which are \emph{functions}.
+  Although we motivated it by talking about numbers like $0.00001$ being much smaller than $0.001$, strictly speaking it does not make sense to say that a \emph{number} is first-order or second-order.
+  This is because ``smallness'' is always relative to the numbers that come up in a particular problem.
+
+  For instance, in some problem it might happen that $x=0.001$, or even $0.00001$, but the function $f(x) = x$ would still be zeroth order.
+  In that problem, we would expect $\dx$ to be even smaller than $x$, such as $0.000000001$.
+  On the other hand, it some other problem it might happen that $x = 10000$, in which case we might have $\dx = 10$, but the differential form $\dx$ would still be first order.
+
+  It is possible to give a meaning to ``first order number'' by introducing infinitesimals.
+  However, we will not do that.
+\end{rmk}
+
+When we define differentials, we will also need the following closely related notion.
+
+\begin{defn}
+  A differential form $\omega$ is \textbf{greater than $k\th$ order} at a point $\ptx$ if
+  \[ \lim_{\dpx\to\vc{0}} \frac{\omega(\ptx,\dpx)}{\mgn{\dpx}^k} = 0. \]
+  This property is also written as
+  \[ \omega \in o(\dpx^k) \quad\text{as}\;\dpx\to\vc{0} \]
+  which is pronounced as ``$\omega$ is little-oh of $\dpx^k$ as $\dpx\to\vc{0}$''.
+\end{defn}
+
+Unsurprisingly, if $\omega$ is $n\th$ order, then it is greater than $k\th$ order whenever $n>k$.
+For in this case we have
+\[\frac{\omega(\ptx,\dpx)}{\mgn{\dpx}^k} = \frac{\omega(\ptx,\dpx)}{\mgn{\dpx}^n} \cdot \mgn{\dpx}^{n-k}, \]
+and the first term remains bounded while the second goes to zero if $n>k$.
+
+For the cases that arise in practice, $n$ and $k$ are usually integers, and most forms that are greater than $k\th$ order are in fact $(k+1)\st$ order.
+However, technically the two are distinct.
+For instance, the form $\dx^{3/2}$ is greater than first order, but is not second order (it is $(3/2)\th$ order).
+Even more interestingly, the form $\frac{1}{\ln\dx}$ is greater than zeroth order, but is not $n\th$ order for any $n>0$.
+
+\end{document}

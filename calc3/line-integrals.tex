@@ -125,7 +125,7 @@ Similarly, in three dimensions we have three functions $\curvex(t)$, $\curvey(t)
 We say that a parametrized curve is \textbf{continuous} or \textbf{differentiable} if the functions $\curvex$, $\curvey$, and (possibly) $\curvez$ are continuous or differentiable.
 
 Now suppose $\omega$ is a differential form in two dimensions, which we want to integrate over a parametrized curve $\curve$ defined on $[a,b]$.
-We regard $\omega(\pt{x},\dpx)$ as telling us about the first-order changes in some quantity Q as $\pt{x}$ changes to $\pt{x}+\dpx$, whereas we are interested in the total change of Q ``along $\curve$''.
+We regard $\omega(\ptx,\dpx)$ as telling us about the first-order changes in some quantity Q as $\ptx$ changes to $\ptx+\dpx$, whereas we are interested in the total change of Q ``along $\curve$''.
 We can approximate this total change by dividing $[a,b]$ into a large number $N$ of subintervals $[t_{i-1},t_i]$, and choosing a point $\rstag t i$ in each such subinterval.
 Then if we consider the part of $\curve$ between $t_{i-1}$ and $t_i$ to be approximately a straight line, we can approximate the first-order change in Q along that part by $\omega(\curvept(\rstag t i),\Delta \curvept_i)$, where $\Delta\curvept_i = \curvept(t_i)-\curvept(t_{i-1})$.
 Adding these up, we obtain the Riemann sum
@@ -158,7 +158,7 @@ Thus, another way to state the Change of Variables Theorem for line integrals is
   \lint{\curve} \omega = \int_a^b \omega\big(\curvept(t),\, \curvept'(t) \,\dt\big)\label{eq:lineint-chvar-2}
 \end{equation}
 where $\curvept'(t)$ denotes the vector $(\curvex'(t),\curvey'(t))$ or $(\curvex'(t),\curvey'(t),\curvez'(t))$.
-If $\omega$ is a \emph{linear} differential form (recall that means it looks like $f(\pt{x})\,\dx + g(\pt{y})\,\dy + h(\pt{z})\,\dz$), then
+If $\omega$ is a \emph{linear} differential form (recall that means it looks like $f(\ptx)\,\dx + g(\pt{y})\,\dy + h(\pt{z})\,\dz$), then
 \[ \omega\big(\curvept(t),\, \curvept'(t) \,\dt\big) = \omega\big(\curvept(t),\, \curvept'(t)\big)\,\dt \]
 and thus the right-hand side of \cref{eq:lineint-chvar-2} becomes
 \[ \int_a^b \omega\big(\curvept(t),\, \curvept'(t)\big)\,\dt. \]
@@ -177,7 +177,7 @@ More generally, if $\curve$ is only \emph{piecewise} differentiable, then we can
 \end{rmk}
 
 Finally, recall that any vector field $\vc{v}$ gives rise to a linear differential form $\tr{\vc{v}}$ with the same coefficients, which we can then integrate over any curve.
-This integral will involve evaluating $\tr{\vc{v}}$ on vectors $\dpx$, which is equivalent to taking the dot product $\dotp{\tr{\vc{v}}(\pt{x})}{\dpx}$.
+This integral will involve evaluating $\tr{\vc{v}}$ on vectors $\dpx$, which is equivalent to taking the dot product $\dotp{\tr{\vc{v}}(\ptx)}{\dpx}$.
 Thus, the line integral $\lint{\curve} \tr{\vc{v}}$ is often written instead as
 \[ \lint{\curve} \dotp{\vc{v}}{\dpx} \]
 or any number of similar notations.
@@ -210,7 +210,7 @@ Now the \textbf{arc length} of a curve $\curve$ is defined to be
 \[ \text{arc length of } \curve = \lint{\curve} \dl \]
 if this integral exists.
 More generally, if $f$ is a multivariable function, then the \textbf{line integral of $f$ with respect to arc length} over $\curve$ is defined to be
-\[ \lint{\curve} f(\pt{x})\,\dl. \]
+\[ \lint{\curve} f(\ptx)\,\dl. \]
 
 Even though $\dl$ is not a linear differential form, the Change of Variables Theorem still applies to arc length integrals, and can reduce them to one-variable integrals.
 Essentially, this is because if $\dx = x'(t) \,\dt$ and $\dy = y'(t)\,\dt$, we can write
