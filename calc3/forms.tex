@@ -13,7 +13,11 @@ the thing being integrated, ``$f(x) \,\dx$'', is a differential form.
 
 You may have been told that the ``$\dx$'' is simply a notation that indicates which variable we're integrating, but this is a lie.
 In multivariable calculus, we can no longer maintain this fiction: we have to treat differential forms as honest objects.
-Fortunately, we also have two advantages over one-variable calculus in understanding differential forms: we have \emph{vectors} at our disposal; and some things are actually \emph{less} confusing in more dimensions because there are fewer coincidences to get confused by.
+Fortunately, we also have two advantages over one-variable calculus in understanding differential forms.
+Firstly, we have \emph{vectors} at our disposal; and secondly, some things are actually \emph{less} confusing in \emph{more} dimensions, because there are fewer coincidences to get confused by.
+(Unfortunately, in three dimensions --- which is of course the most common and the most useful number, since it is the dimension of the space we live in --- there is still one very confusing coincidence remaining.
+This comes from the fact that $1+1=3-1$, and is the reason that the \emph{cross product} of vectors exists.
+We will come back to this later.)
 
 \section{Differential forms}
 \label{sec:differential-forms}
@@ -71,8 +75,20 @@ However, the more general ones are quite useful.
   However, until then, we will just use ``differential form'' for the notion defined above.
 \end{adv}
 
-It is helpful to think of the coordinates $\dx$, $\dy$, and $\dz$ as small changes in the values of the coordinates $x$, $y$, and $z$ respectively.
-Here by \emph{small} we mean \emph{small relative to the values generally taken by $x$}.
+It is appropriate to think of $\dpx$ as a \emph{small change} in the point $\ptx$, so that its coordinates such as $\dx$ and $\dy$ are small changes in the values of the coordinates $x$ and $y$.
+Specifically, we can think of $\dpx$ as the vector \emph{from} the point $\ptx$ \emph{to} a slightly shifted point, $\ptx+\dpx$.
+\begin{center}
+  \begin{tikzpicture}[scale=1.6]
+    \draw[<->] (-1,0) -- (3,0);
+    \draw[<->] (0,-1) -- (0,3);
+    \node[circle,fill,purple,label={[purple]$\ptx$}] (x) at (1.5,2) {};
+    \node[circle,fill,purple,label={[purple]right:$\ptx+\dpx$}] (x2) at (2,1.5) {};
+    \draw[very thick,purple,->] (0,0) -- (x);
+    \draw[very thick,blue,->] (x) -- node[auto] {$\dpx$} (x2);
+  \end{tikzpicture}
+\end{center}
+Nothing in the definition forces $\dpx$ to be ``small'', but generally we are only interested in the values of a differential form when $\dpx$ is small.
+Specifically, by \emph{small} we mean \emph{small relative to the values generally taken by $x$}.
 For instance, if $x=3$, then a possible small change would be $\dx = 0.01$.
 In this case, a differential form such as $\dx^2$ is an \emph{even smaller} change, since $\dx^2 = 0.0001$.
 
@@ -102,6 +118,16 @@ Thus, we will call them \emph{negligible} (to first order).
 Recall that definitions in mathematics introduce a \emph{new} meaning for a word.
 Thus, \emph{from now on} (in this class) the word ``negligible'' \emph{will mean} what this definition says it does.
 Our previous discussion was only motivational; the definition is the ``gold standard'' for the meaning of the word.
+
+Note also that the limit in \cref{def:negligible} is a \emph{vector} limit.
+In two or three dimensions, we could write it equivalently as
+\[ \lim_{(\dx,\dy)\to(0,0)} \frac{\omega(x,y,\dx,\dy)}{\sqrt{\dx^2+\dy^2}} \qquad\text{or}\qquad
+\lim_{(\dx,\dy,\dz)\to(0,0,0)} \frac{\omega(x,y,z,\dx,\dy,dz)}{\sqrt{\dx^2+\dy^2+\dz^2}}
+\]
+respectively.
+Recall that this means that we allow $\dpx$ to approach $\vc{0}$ ``in all possible ways''.
+\begin{notextbook}Two- and three-dimensional limits should be discussed in your textbook.\end{notextbook}%
+\begin{stewart}Two- and three-dimensional limits are discussed in section 11.2 of the textbook.\end{stewart}
 
 The first thing to do in understanding a definition is to look at some examples.
 If we chose the definition well, the examples will justify our motivation.
@@ -146,9 +172,12 @@ However, in definitions and theorems we will use only the term ``negligible'' th
 A differential form should be thought of as giving for each point $\ptx$, a function of the vector $\dpx$, which represents the ``displacement from $\ptx$'' of another point (namely, the point $\ptx+\dpx$).
 In addition, we generally only care about this function for small values of $\dpx$.
 
-We can give an idea of what such a thing looks like by drawing at each point $\ptx$ a small fragment of the graph of the corresponding function of $\dpx$, with its origin placed at $\ptx$.
+Our first idea about how to graph such a thing might be to draw at each point $\ptx$ the graph of the corresponding function of $\dpx$, with its origin placed at $\ptx$.
+However, there would be far too many of these graphs, and they would overlap so much as to make it impossible to see anything.
+Instead we choose some representative (usually regularly spaced) values of $\ptx$ at which to draw graphs, and at each such point we draw only a small fragment of the graph of the corresponding function of $\dpx$.
+
 This is easiest to do in one dimension.
-For instance, we would graph the form $x\,\dx$ as follows.
+For instance, we might graph the form $x\,\dx$ as follows.
 \begin{center}
   \begin{tikzpicture}
     \draw[<->] (-5,0) -- (5,0);
@@ -170,8 +199,48 @@ For instance, we would graph the form $x\,\dx$ as follows.
     \end{scope}
   \end{tikzpicture}
 \end{center}
-Here at the point $(1,0)$ we have graphed a piece of the function $f(\dx) = \dx$, with its origin at $(1,0)$.
+Here at the point $(1,0)$ we have graphed a piece of the function $f(\dx) = 1\,\dx$, with its origin at $(1,0)$.
 Similarly, at $(2,0)$ we have graphed a piece of $f(\dx) = 2\,\dx$, with its origin at $(2,0)$, and so on.
+
+There is of course a lot of omitted information; we have not shown anything about the behavior of our differential form when $x$ is not one of the chose points.
+Graphs of functions \emph{always} omit lots of information --- infinitely much information, in fact, corresponding to the behavior of the function outside the small window that we have chosen to display, as well as any behavior that is too small to see at our chosen scale.
+(This is one of the dangers of relying too much on graphing calculators and computer algebra systems,
+\begin{notextbook}as you may remember.\end{notextbook}%
+\begin{stewart}as discussed in sections 1.4 and 4.4 of the textbook.\end{stewart})
+Similarly, to graph a differential form usefully, we must not only choose an appropriate ``viewing rectangle'' but also choose at which values of $x$ to show a small graph fragment at.
+For instance, when graphing the form $x\,\dx$, we could choose to show more small graph fragments, as follows:
+\begin{center}
+  \begin{tikzpicture}
+    \draw[<->] (-5,0) -- (5,0);
+    \draw[<->] (0,-2) -- (0,2);
+    \draw (2,.2) -- (2,-.2) node[below right] {$1$};
+    \draw (4,.2) -- (4,-.2) node[below right] {$2$};
+    \draw (-2,.2) -- (-2,-.2) node[below] {$-1$};
+    \draw (-4,.2) -- (-4,-.2) node[below left] {$-2$};
+    \begin{scope}[blue,very thick]
+      \draw (-.3,0) -- (.3,0);
+      \draw (.2,-.075) -- (.8,.075);
+      \draw (.7,-.15) -- (1.3,.15);
+      \draw (1.2,-.225) -- (1.8,.225);
+      \draw (1.7,-.3) -- (2.3,.3);
+      \draw (2.2,-.375) -- (2.8,.375);
+      \draw (2.7,-.45) -- (3.3,.45);
+      \draw (3.2,-.525) -- (3.8,.525);
+      \draw (3.7,-.6) -- (4.3,.6);
+      \draw (-.2,-.075) -- (-.8,.075);
+      \draw (-.7,-.15) -- (-1.3,.15);
+      \draw (-1.2,-.225) -- (-1.8,.225);
+      \draw (-1.7,-.3) -- (-2.3,.3);
+      \draw (-2.2,-.375) -- (-2.8,.375);
+      \draw (-2.7,-.45) -- (-3.3,.45);
+      \draw (-3.2,-.525) -- (-3.8,.525);
+      \draw (-3.7,-.6) -- (-4.3,.6);
+    \end{scope}
+  \end{tikzpicture}
+\end{center}
+This gives an even better picture of the differential form, but of course it is more work to draw.
+For the example $x\,\dx$, because the graphs change smoothly ``without any surprises'' in between the chosen values of $x$, there is not much lost by using fewer such points.
+The important thing when drawing a graph is to convey all the ``important'' information about the behavior of the object being graphed.
 
 Analogously, we would graph $x\,\dx^2$ as follows, drawing $f(\dx) = \dx^2$ with origin at $(1,0)$, and $f(\dx)=2\,\dx^2$ with origin at $(2,0)$, etc.
 \begin{center}
@@ -197,7 +266,7 @@ Analogously, we would graph $x\,\dx^2$ as follows, drawing $f(\dx) = \dx^2$ with
 \end{center}
 In the previous two examples, all the small graphs lay along the $x$-axis, because the differential forms being graphed had no zeroth order term.
 If there is a zeroth order term, then the small graphs will lie along the graph of that term.
-For instance, here is a graph of $-x^2 + \sin(x)\,\dx$, with the curve $y=-x^2$ shown as well for comparison:
+For instance, here is a graph of $-x^2 + \sin(x)\,\dx$, with the curve $y=-x^2$ shown as a dotted line for comparison:
 \begin{center}
   \begin{tikzpicture}
     \draw[<->] (-5,0) -- (5,0);
@@ -223,10 +292,7 @@ For instance, here is a graph of $-x^2 + \sin(x)\,\dx$, with the curve $y=-x^2$ 
   \end{tikzpicture}
 \end{center}
 
-We can also draw differential forms in multiple variables, although it is rather trickier.\dots
-% TODO: Do that.
-
-We now consider some differential forms of particular interest associated to a function $f$ of $x$.
+We now consider the graphs of some differential forms of particular interest associated to a function $f$ of $x$.
 As a running example we will consider the following function:
 \def\axes{
     \draw[<->] (-5,0) -- (5,0);
@@ -289,6 +355,10 @@ Its graph at $x$ looks just like a piece of the graph of $f$ near $x$, just as f
 Note that the pieces of the graph of $f(x+\dx)-f(x)$ all look quite close to straight lines.
 This happens whenever we ``zoom in'' sufficiently on a smooth function, and it is this observation that leads to the idea of differentiation.
 
+\section{Graphing differential forms in more dimensions}
+\label{sec:graphing-higher-dim}
+
+TODO.
 
 \section{Differentials}
 \label{sec:differentials}
@@ -300,7 +370,7 @@ Namely, if $f$ is a function of one variable $x$, then its differential is
 \end{equation}
 where $f'$ is the \emph{derivative} of $f$.
 Note that $\df$ is a differential form.
-Its graph looks like this (the function $f$ is the same one we were using as an example at the end of the last section).
+Its graph looks like this (the function $f$ is the same one we were using as an example at the end of \cref{sec:graphing-differential-forms}).
 \begin{center}
   \begin{tikzpicture}
     \axes
@@ -438,7 +508,7 @@ For instance, we can add or subtract the same differential form from both sides.
 In particular, if $\omega$ is negligible, then $\omega\apx{1}0$, so we have $\eta + \omega \apx{1} \eta$ for any $\eta$.
 
 \begin{eg}
-  Since $4\,\dx^2$ is second order, we have $\sin(x) \,\dx + 4\, \dx^2 \apx{1} \sin(X)\,\dx$.
+  Since $4\,\dx^2$ is second order, we have $\sin(x) \,\dx + 4\, \dx^2 \apx{1} \sin(x)\,\dx$.
 \end{eg}
 
 We can also multiply both sides by any differential form that is bounded near $\dx=0$, since multiplying by such a form doesn't affect negligibility.
@@ -505,7 +575,9 @@ Importantly, these rules, stated in exactly the same way, apply to functions of 
 Finally, the chain rule for differentials is easy to \emph{use}, but tricky to \emph{state}, because the notation makes it look like a triviality.
 Suppose that we have a function $f$ of two variables $u$ and $v$, and that $u$ and $v$ are each themselves functions of two other variables $x$ and $y$.
 Then the statement of the chain rule is that if we calculate $\df$ treating $u$ and $v$ as its input variables (obtaining a linear differential form involving $\du$ and $\dv$), and likewise we calculate the differentials $\du$ and $\dv$ treating $x$ and $y$ as their input variables (obtaining linear differential forms involving $\dx$ and $\dy$), then substitute the latter into the former, as well as the values of $u$ and $v$ in terms of $x$ and $y$, we obtain the same expression for $\df$ in terms of $\dx$ and $\dy$ that we would have if we first substituted the functions $u$ and $v$ and then took the differential treating $x$ and $y$ as the input variables.
-If this was incomprehensible, you're in good company; it is much better explained by an example.
+
+If you found that totally incomprehensible, you're in good company; I barely understood it as I was writing it.
+It is much better explained by an example.
 
 \begin{eg}
   Let $f(u,v) = u v + 3u$, while $u(x,y) = x-5y$ and $v(x,y) = 4y-x$.
@@ -540,6 +612,10 @@ If this was incomprehensible, you're in good company; it is much better explaine
   which is the same result.
 \end{eg}
 
+Thus, the chain rule for differentials basically says that differentials obey the usual rules of algebra: if a differential $\du$ is equal to some other differential form, then we can substitute the latter for the former.
+It's important to note that even though it looks obvious, this \emph{is} a nontrivial \emph{theorem} that requires proof, although we will not prove it.
+\begin{notextbook}(It might be proven in your textbook.)\end{notextbook}
+
 When expressed in terms of differentials in this way, the chain rule is also known as \emph{Cauchy's invariant rule}.
 Of course, it is mainly useful in cases where we are given the result of substitution, but where it is not obvious how to find the differential until we decompose it.
 
@@ -565,9 +641,6 @@ Of course, it is mainly useful in cases where we are given the result of substit
     &= y\cos(xy)\,\dx + x\cos(xy)\,\dy.
   \end{align*}
 \end{eg}
-
-The proof of the chain rule is somewhat tricky; we omit it.
-\begin{notextbook}(It might be given in your textbook.)\end{notextbook}
 
 A particularly important example of the chain rule is translating between different coordinate systems.
 Recall that in addition to the usual ``rectangular'' or ``Cartesian'' coordinates $x$ and $y$ on the plane, we can use \emph{polar coordinates} $r$ and $\theta$, which are related by the equations
@@ -631,10 +704,13 @@ We can now define the \emph{derivative} in terms of the \emph{differential}.
 Note that in one dimension, a linear differential form must be of the form
 \[ g(x) \,\dx \]
 for some function $g$.
-In particular, if $f$ is a differentiable function of one variable $x$, then $\df = g(x) \, \dx$ for some function $g$, which we call the \emph{derivative} of $f$ and denote by $f'$.
-In other words, $\df = f'(x)\,\dx$ (this is \cref{eq:onevariable-differential}), or
+In particular, if $f$ is a differentiable function of one variable $x$, then since its differential $\df$ is by definition a \emph{linear} differential form, we must have $\df = g(x) \, \dx$ for some function $g$.
+We call the function $g$ the \emph{derivative} of $f$ and denote it by $f'$.
+In other words, we have
+\[\df = f'(x)\,\dx\]
+(which is \cref{eq:onevariable-differential}), or
 \[ f'(x) = \frac{\df}{\dx}. \]
-This is a notation that you have probably seen before.
+This is a notation for the derivative that you have probably seen before.
 The point is that now, we have given separate meanings to $\dx$ and $\df$, and \emph{defined} $f'(x)$ to be their quotient.
 
 However, when there is more than one variable, this doesn't work any more!
@@ -768,7 +844,9 @@ If $\omega$ is a linear differential form, we call the corresponding vector fiel
 \end{defn}
 
 Thus by definition we have
-\[ \omega = \dotp{\tr{\omega}}{\dpx}. \]
+\begin{equation}\label{eq:dot-transpose}
+  \omega = \dotp{\tr{\omega}}{\dpx}.
+\end{equation}
 
 The transpose of the differential of a function has a special name: it's called the \textbf{gradient} of the function, and written $\grad f$.
 That is,
@@ -776,6 +854,11 @@ That is,
   \grad f &= \ptr{\df}\\
   &= \lrvcc{\pder{f}{x},\,\pder{f}{y},\,\pder{f}{z}} \qquad\text{(in three dimensions)}
 \end{align*}
+For the gradient, \cref{eq:dot-transpose} becomes
+\[ \df = \dotp{\grad f}{\dpx}. \]
+This explains why in vector calculus one often sees dot products with the gradient.
+What is really going on is just evaluating the differential.
+
 Part of the importance of the gradient is that it points in the direction of ``steepest increase'' of the function.
 More precisely, the directional derivative $\df(\ptx,\vc{v})$ is greatest (for $\vc{v}$ of unit length) when $\vc{v}$ points in the direction of $\grad f(\ptx)$.
 \begin{notextbook}More about the gradient can probably be found in your textbook.\end{notextbook}%
