@@ -47,16 +47,17 @@ The $\dx$ at the end of an ordinary integral is \emph{part} of the differential 
       \displaystyle\int_b^a f(x) \,\dx \qquad\text{if } b<a.
     \end{cases}\label{eq:onevar-absint}
   \end{equation}
+  In other words, the differential form $f(x)\,\dx$ notices the ``direction'' (or \emph{orientation}) of the interval over which it is integrated, and gives a different result whether we integrate it ``from $a$ to $b$'' or ``from $b$ to $a$'' --- whereas the form $f(x)\,|\dx|$ does not notice the direction.
 \end{eg}
 
 \begin{eg}
   Consider the form $\dx^2$.
-  If we have a tagged partition with $\Delta x_i < \epsilon$ for all $i$, then the corresponding Riemann sum is
+  If we have a division into subintervals $[x_{i-1},x_i]$ such that $\Delta x_i < \varepsilon$ for all $i$, then the corresponding Riemann sum is
   \begin{align*}
-    \sum_{i=1}^N (\Delta x_i)^2 &< \epsilon \sum_{i=1}^N (\Delta x_i)\\
-    &= \epsilon (b-a).
+    \sum_{i=1}^N (\Delta x_i)^2 &< \varepsilon \sum_{i=1}^N (\Delta x_i)\\
+    &= \varepsilon (b-a).
   \end{align*}
-  In the limit, $\epsilon \to 0$, and thus the Riemann sums also go to zero.
+  In the limit, $\varepsilon \to 0$, and thus the Riemann sums also go to zero.
   So we have
   \[ \int_a^b \dx^2 = 0. \]
   Intuitively, we may say that an ordinary integral $\int_a^b f(x) \,\dx$ obtains a zeroth-order result by adding up a large number of small first-order changes; but if we try to add up the \emph{same} number of \emph{second-order} changes, the result will be negligible.
@@ -64,14 +65,13 @@ The $\dx$ at the end of an ordinary integral is \emph{part} of the differential 
 
 More generally, we have the following:
 
-\begin{thm}\label{thm:int-gtfirstorder-onevar}
-  If $\omega$ is greater than first order, then
-  \[ \int_a^b \omega \;=\; 0\]
-  for any closed interval $[a,b]$.
+\begin{thm}\label{thm:int-negligible-onevar}
+  If $\omega$ is negligible, then for any closed interval $[a,b]$ we have
+  \[ \int_a^b \omega \;=\; 0.\]
 \end{thm}
 
 \begin{adv}
-  The full generality of \cref{thm:int-gtfirstorder-onevar} actually requires a slightly more powerful definition of integration than is usually taught in one-variable calculus, called ``Henstock integration''.
+  The full generality of \cref{thm:int-negligible-onevar} actually requires a slightly more powerful definition of integration than is usually taught in one-variable calculus, called ``Henstock integration''.
   Roughly, we need to be more flexible with the exact meaning of what it means for the $\Delta x_i$ to all approach zero at once.
   Since we will not be making this very precise anyway, we henceforth ignore this issue.
 \end{adv}
@@ -110,7 +110,7 @@ Therefore, at least in principle, we can evaluate the integral of \emph{any} lin
 This is not the case for nonlinear differential forms.
 Forms such as $|\dx|$ and $\dx^2$ and $e^\dx$ are not the differential of any function, so we cannot evaluate their integrals using \cref{eq:differential-ftc-eval}.
 Of the nonlinear forms, the ones which arise most in practice are those of the form $f(x)\,|\dx|$, and those we can integrate using \cref{eq:onevar-absint}.
-In many other cases, we can apply \cref{thm:int-gtfirstorder-onevar} or \cref{eq:int-apx1-equal}.
+In many other cases, we can apply \cref{thm:int-negligible-onevar} or \cref{eq:int-apx1-equal}.
 
 
 \section{Line integrals}
@@ -142,6 +142,8 @@ and we might expect to be able to evaluate a line integral by substituting these
 This is in fact possible, although it is not trivial to prove; it is a special case of the \emph{Change of Variables Theorem}.
 Here we have another situation like the chain rule, where the notation of differentials makes a deep fact appear obvious and easy-to-use.
 
+TODO: Prove the CoVT for this definition of the line integral.  Note that it's subtly different from the usual definition, where we would evaluate $\omega$ on $\ptx'(\rstag t i)$ rather than $\Delta\curvept_i$.
+
 \begin{eg}
   Suppose $x(t) = t^2$ and $y(t) = t^3$ define a curve in two dimensions with domain $[0,2]$, so that $\dx = 2t\,\dt$ and $\dy = 3t^2\,\dt$.
   Then we can evaluate a line integral such as
@@ -171,15 +173,17 @@ More generally, if $\curve$ is only \emph{piecewise} differentiable, then we can
 \begin{rmk}\label{rmk:lineint-orientation}
   Although we used a particular parametrization of the curve $\curve$ to define the line integral $\lint{\curve} \omega$ in \cref{eq:line-integral}, and to evaluate it as in \cref{eq:lineint-chvar-2}, in fact the value of the integral is independent of the parametrization.
   This makes sense if we look at the definition of the Riemann sums in \cref{eq:line-integral}, which depend only on the values of $\omega$ at the points $\curvept(\rstag t i)$ and the vectors $\Delta \curvept_i$; any other parametrization would induce a corresponding division into subintervals with the same points and vectors.
+  
+  TODO: We also need the limits as $\Delta t_i\to 0$ to be the same limit.  Does this require the parametrizations to be differentiably (or perhaps Lipschitz-ly) related?
+
   The integral does, however, depend on the \emph{orientation} of the curve $\curve$, i.e.\ the direction in which the parametrization traverses it.
   Reversing the orientation would negate the vectors $\Delta \curvept_i$, and for a \emph{linear} differential form, this would negate the value of the integral.
   (In the next section, we will consider line integrals that are independent of orientation.)
 \end{rmk}
 
-Finally, recall that any vector field $\vc{v}$ gives rise to a linear differential form $\tr{\vc{v}}$ with the same coefficients, which we can then integrate over any curve.
-This integral will involve evaluating $\tr{\vc{v}}$ on vectors $\dpx$, which is equivalent to taking the dot product $\dotp{\tr{\vc{v}}(\ptx)}{\dpx}$.
-Thus, the line integral $\lint{\curve} \tr{\vc{v}}$ is often written instead as
-\[ \lint{\curve} \dotp{\vc{v}}{\dpx} \]
+Finally, recall that any vector field $\vc{v}$ gives rise to a linear differential form $\dotp{\vc{v}(\ptx)}{\dpx}$.
+We can then integrate this form over any curve, obtaining a line integral denoted
+\[ \lint{\curve} \dotp{\vc{v}(\ptx)}{\dpx} \]
 or any number of similar notations.
 \begin{notextbook}You will probably find this in your textbook.\end{notextbook}
 \begin{stewart}The textbook writes $\lint{\curve} \dotp{\vc{v}}{\dd\pt{r}}$ (section 13.2).\end{stewart}
