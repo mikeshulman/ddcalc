@@ -37,7 +37,7 @@ The following are not the ``actual'' definitions, but they will suffice for us.
   \begin{itemize}
   \item A \textbf{differential 0-form} is a function of $x$ and $y$.
   \item A \textbf{differential 1-form} is an expression of the form $A\,\dx+B\,\dy$, where $A$ and $B$ are functions of $x$ and $y$.
-  \item A \textbf{differential 2-form} is an expression of the form $A\,\dx\wdg\dy$, where $A$ is a function of $x$ and $y$.
+  \item A \textbf{differential 2-form} is an expression of the form $A\,\dx\wedge\dy$, where $A$ is a function of $x$ and $y$.
   \end{itemize}
 \end{defn}
 
@@ -46,8 +46,8 @@ The following are not the ``actual'' definitions, but they will suffice for us.
   \begin{itemize}
   \item A \textbf{differential 0-form} is a function of $x$, $y$, and $z$.
   \item A \textbf{differential 1-form} is an expression of the form $A\,\dx+B\,\dy+C\,\dz$, where $A$, $B$, and $C$ are functions of $x$, $y$, and $z$.
-  \item A \textbf{differential 2-form} is an expression of the form $A\,\dx\wdg\dy + B \,\dy\wdg\dz + C \,\dz\wdg\dx$, where $A$, $B$, and $C$ are functions of $x$, $y$, and $z$.
-  \item A \textbf{differential 3-form} is an expression of the form $A \,\dx\wdg\dy\wdg\dz$, where $A$ is a function of $x$, $y$, and $z$.
+  \item A \textbf{differential 2-form} is an expression of the form $A\,\dx\wedge\dy + B \,\dy\wedge\dz + C \,\dz\wedge\dx$, where $A$, $B$, and $C$ are functions of $x$, $y$, and $z$.
+  \item A \textbf{differential 3-form} is an expression of the form $A \,\dx\wedge\dy\wedge\dz$, where $A$ is a function of $x$, $y$, and $z$.
   \end{itemize}
 \end{defn}
 
@@ -149,55 +149,55 @@ In multivariable calculus, you learned how to integrate a two-variable function 
 \end{equation}
 We are concerned instead with an integral that is almost the same, which is denoted
 \begin{equation}
-  \int_\region f(x,y) \,\dx\wdg \dy.\label{eq:2form-2D-integral}
+  \int_\region f(x,y) \,\dx\wedge \dy.\label{eq:2form-2D-integral}
 \end{equation}
-This is the integral of a differential 2-form (namely $f(x,y) \,\dx\wdg \dy$) over a 2-manifold (namely $\region$).
+This is the integral of a differential 2-form (namely $f(x,y) \,\dx\wedge \dy$) over a 2-manifold (namely $\region$).
 The slight difference in meaning between \cref{eq:abs2form-2D-integrals} and \cref{eq:2form-2D-integral} is that in the latter, $\region$ is an \emph{oriented} region, whereas in the former it is not.
 An \emph{orientation} of a region or surface consists of a consistent choice of a ``direction of rotation'' throughout it.
 Just as any interval in one dimension has a canonical orientation (from left to right), any region in two dimensions has a canonical orientation (counterclockwise).
 But we could consider instead choosing the opposite orientation, and this would reverse the sign of the integral \cref{eq:2form-2D-integral}.
 
-So what is the deal with this funny symbol $\wdg$?
+So what is the deal with this funny symbol $\wedge$?
 The short answer is that it's a way to multiply differential forms.
 In general, we can multiply a $p$-form by a $q$-form to get a $(p+q)$-form.
 We've already seen this when $p=0$: a 1-form like $f(x)\,\dx$ is already written as the product of the 0-form $f(x)$ with the 1-form $\dx$.
 
 Now we are instead multiplying the 1-forms $\dx$ and $\dy$ to get a 2-form.
-You might think we should write the result simply as $\dx\,\dy$, but we stick a $\wdg$ symbol in between to remind us that this ``multiplication'' is not exactly like ordinary multiplication.
+You might think we should write the result simply as $\dx\,\dy$, but we stick a $\wedge$ symbol in between to remind us that this ``multiplication'' is not exactly like ordinary multiplication.
 The main difference is that the generating symbols $\dx$ and $\dy$ do not commute; they \emph{anticommute}:
 \begin{equation}
-  \dy\wdg\dx = - \dx\wdg \dy.\label{eq:wedge-anticommute}
+  \dy\wedge\dx = - \dx\wedge \dy.\label{eq:wedge-anticommute}
 \end{equation}
 A good way to think about this is with reference to orientations.
-The 2-form $\dx\wdg\dy$ produces positive results when integrated over ``canonically'' (i.e. counterclockwisely) oriented regions, in which the direction of rotation is \emph{from} the positive $x$-axis \emph{towards} the positive $y$-axis.
-Similarly, $\dy\wdg\dx$ produces positive results when integrated over oriented regions in which the direction of rotation is \emph{from} the positive $y$-axis \emph{towards} the positive $x$-axis --- but this is the opposite orientation, so we must have \cref{eq:wedge-anticommute}.
+The 2-form $\dx\wedge\dy$ produces positive results when integrated over ``canonically'' (i.e. counterclockwisely) oriented regions, in which the direction of rotation is \emph{from} the positive $x$-axis \emph{towards} the positive $y$-axis.
+Similarly, $\dy\wedge\dx$ produces positive results when integrated over oriented regions in which the direction of rotation is \emph{from} the positive $y$-axis \emph{towards} the positive $x$-axis --- but this is the opposite orientation, so we must have \cref{eq:wedge-anticommute}.
 
 We also have
-\[ \dx \wdg \dx = 0 \qquad\text{and}\qquad \dy\wdg \dy = 0. \]
-This is analogous to \cref{eq:wedge-anticommute}; the direct analogy would be $\dx\wdg\dx = - \dx\wdg\dx$, but of course this implies $\dx\wdg\dx=0$.
+\[ \dx \wedge \dx = 0 \qquad\text{and}\qquad \dy\wedge \dy = 0. \]
+This is analogous to \cref{eq:wedge-anticommute}; the direct analogy would be $\dx\wedge\dx = - \dx\wedge\dx$, but of course this implies $\dx\wedge\dx=0$.
 
 Finally, according to our general claims, there should be a way to ``differentiate'' a 1-form and get a 2-form.
 To define this, note that a 1-form such as $f(x)\,\dx$ is already written as the product of a 0-form and a 1-form.
-Now we'd like this kind of ``differentiation'' to satisfy a product rule, with respect to the $\wdg$ product of differential forms; thus the differential of $f(x)\,\dx$ should be
-\[ \dd(f(x)\,\dx) =  \df \wdg\dx + f(x)\, \dd(\dx). \]
-Actually, since we are using the $\wdg$ product in the product rule, it's better to include it as a reminder in the notation for this differential as well.
+Now we'd like this kind of ``differentiation'' to satisfy a product rule, with respect to the $\wedge$ product of differential forms; thus the differential of $f(x)\,\dx$ should be
+\[ \dd(f(x)\,\dx) =  \df \wedge\dx + f(x)\, \dd(\dx). \]
+Actually, since we are using the $\wedge$ product in the product rule, it's better to include it as a reminder in the notation for this differential as well.
 Thus we will write instead
-\[ \extd(f(x)\,\dx) =  \df \wdg\dx + f(x)\, \extd\dx. \]
+\[ \extd(f(x)\,\dx) =  \df \wedge\dx + f(x)\, \extd\dx. \]
 Now we already know how to find the differential of a 0-form (\cref{eq:differential-of-a-0form-in-2D}). so all we need is to define is $\extd\dx$.
-It turns out that we should define $\extd\dx=0$; a mnemonic for this is that just as $\dx\wdg \dx = 0$, so also ``$\extd\dd = 0$''.
+It turns out that we should define $\extd\dx=0$; a mnemonic for this is that just as $\dx\wedge \dx = 0$, so also ``$\extd\dd = 0$''.
 
 Now we can compute the differential of a general 1-form $f(x,y)\,\dx + g(x,y)\,\dy$ in two dimensions:
 \begin{align*}
   \extd(f\,\dx + g\,\dy)
-  &= \df \wdg \dx + \dg \wdg\dy\\
-  &= (f_x\, \dx + f_y\, \dy) \wdg \dx + (g_x \,\dx+g_y\,\dy)\wdg\dy \\
-  &= f_x\, \dx\wdg\dx + f_y\, \dy\wdg \dx + g_x \,\dx \wdg\dy + g_y\,\dy\wdg\dy \\
-  &= (g_x - f_y)\, \dx\wdg\dy.
+  &= \df \wedge \dx + \dg \wedge\dy\\
+  &= (f_x\, \dx + f_y\, \dy) \wedge \dx + (g_x \,\dx+g_y\,\dy)\wedge\dy \\
+  &= f_x\, \dx\wedge\dx + f_y\, \dy\wedge \dx + g_x \,\dx \wedge\dy + g_y\,\dy\wedge\dy \\
+  &= (g_x - f_y)\, \dx\wedge\dy.
 \end{align*}
 
 Now if there is to be a version of the fundamental theorem of calculus for integrals of 2-forms, it should say that the integral of a 1-form over the boundary of a 2-manifold is equal to the integral of its differential over the 2-manifold itself.
 Thus, if $\region$ is a region with boundary $\bdry\region$, we should have
-\[ \int_{\region} (g_x - f_y)\, \dx\wdg\dy = \int_{\bdry\region} f\,\dx + g\,\dy. \]
+\[ \int_{\region} (g_x - f_y)\, \dx\wedge\dy = \int_{\bdry\region} f\,\dx + g\,\dy. \]
 This is true: it is exactly \emph{Green's theorem} from vector calculus.
 
 \section{Differential Forms in Three Dimensions}
@@ -210,37 +210,37 @@ We have differential 0-forms (functions), which can be ``integrated'' over point
 We have differential 1-forms such as $f\,\dx + g\,\dy + h\,\dz$, which can be line-integrated over oriented curves.
 Every 0-form $f$ has a differential $\df = f_x \,\dx + f_y\,\dy + f_z\,\dz$, and we have a fundamental theorem of calculus for its line integral.
 
-Now we have more general differential 2-forms such as $A\,\dx\wdg\dy + B\,\dy\wdg\dz + C \,\dz\wdg\dx$.
-Any two 1-forms have a $\wdg$ product, which satisfies identities such as $\dy\wdg\dz = -\dz\wdg\dy$ and $\dy\wdg\dy=0$, and so on.
+Now we have more general differential 2-forms such as $A\,\dx\wedge\dy + B\,\dy\wedge\dz + C \,\dz\wedge\dx$.
+Any two 1-forms have a $\wedge$ product, which satisfies identities such as $\dy\wedge\dz = -\dz\wedge\dy$ and $\dy\wedge\dy=0$, and so on.
 Every 1-form has a differential, computed as
 \begin{align*}
   \extd(f\,\dx + g\,\dy + h\,\dz)
-  &= \df\wdg\dx + \dg\wdg\dy + \dh\wdg\dz\\
-  &= (f_x \,\dx + f_y \,\dy + f_z\,\dz)\wdg\dx + (g_x \,\dx + g_y \,\dy + g_z\,\dz)\wdg\dy\\
-  &\qquad + (h_x \,\dx + h_y \,\dy + h_z\,\dz)\wdg\dz\\
-  &= f_y \,\dy\wdg\dx + f_z\,\dz\wdg\dx + g_x \,\dx\wdg\dy + g_z\,\dz \wdg\dy \\
-  &\qquad + h_x\,\dx\wdg\dz + h_y \,\dy\wdg\dz\\
-  &= (g_x - f_y)\,\dx\wdg\dy + (h_y - g_z) \,\dy\wdg\dz + (f_z - h_x)\,\dz\wdg\dx.
+  &= \df\wedge\dx + \dg\wedge\dy + \dh\wedge\dz\\
+  &= (f_x \,\dx + f_y \,\dy + f_z\,\dz)\wedge\dx + (g_x \,\dx + g_y \,\dy + g_z\,\dz)\wedge\dy\\
+  &\qquad + (h_x \,\dx + h_y \,\dy + h_z\,\dz)\wedge\dz\\
+  &= f_y \,\dy\wedge\dx + f_z\,\dz\wedge\dx + g_x \,\dx\wedge\dy + g_z\,\dz \wedge\dy \\
+  &\qquad + h_x\,\dx\wedge\dz + h_y \,\dy\wedge\dz\\
+  &= (g_x - f_y)\,\dx\wedge\dy + (h_y - g_z) \,\dy\wedge\dz + (f_z - h_x)\,\dz\wedge\dx.
 \end{align*}
 We can integrate a 2-form over an oriented surface $\surf$, and Green's theorem generalizes to say that the integral of a 1-form over the boundary of such a surface is equal to the integral of its differential over the surface itself:
 \begin{equation}
   \int_{\surf} \extd(f\,\dx + g\,\dy + h\,\dz) = \int_{\bdry\surf} f\,\dx + g\,\dy + h\,\dz\label{eq:stokes-theorem}
 \end{equation}
 
-We also have 3-forms such as $f(x,y,z)\, \dx\wdg\dy\wdg\dz$.
+We also have 3-forms such as $f(x,y,z)\, \dx\wedge\dy\wedge\dz$.
 Every 2-form has a differential, computed as
 \begin{align*}
-  \extd(A\,\dx\wdg\dy + & B\,\dy\wdg\dz + C \,\dz\wdg\dx)\\
-  &= \dd A \wdg \dx \wdg \dy + \dd B \wdg \dy \wdg \dz + \dd C \wdg \dz \wdg \dx\\
-  &= A_z\, \dz \wdg \dx \wdg \dy + B_x \,\dx \wdg \dy \wdg \dz + C_y \,\dy\wdg \dz \wdg \dx\\
-  &= (A_z + B_x + C_y)\, \dx\wdg\dy\wdg \dz
+  \extd(A\,\dx\wedge\dy + & B\,\dy\wedge\dz + C \,\dz\wedge\dx)\\
+  &= \dd A \wedge \dx \wedge \dy + \dd B \wedge \dy \wedge \dz + \dd C \wedge \dz \wedge \dx\\
+  &= A_z\, \dz \wedge \dx \wedge \dy + B_x \,\dx \wedge \dy \wedge \dz + C_y \,\dy\wedge \dz \wedge \dx\\
+  &= (A_z + B_x + C_y)\, \dx\wedge\dy\wedge \dz
 \end{align*}
-(since $\dz \wdg \dx \wdg \dy = -\dx \wdg \dz \wdg \dy = \dx \wdg \dy \wdg \dz$ and similarly).
+(since $\dz \wedge \dx \wedge \dy = -\dx \wedge \dz \wedge \dy = \dx \wedge \dy \wedge \dz$ and similarly).
 
 Finally, a 3-form can be integrated over any oriented 3-dimensional region $\region$, giving essentially the ordinary three-dimensional integral that you learned in multivariable calculus (except for orientations).
 And we have the corresponding fundamental theorem, relating the integral of a 2-form over the boundary of a region to the integral of its differential over the region itself:
 \begin{equation}
-  \int_{\region} (A_z + B_x + C_y)\, \dx\wdg\dy\wdg \dz = \int_{\bdry\region} A\,\dx\wdg\dy + B\,\dy\wdg\dz + C \,\dz\wdg\dx.\label{eq:divergence-theorem}
+  \int_{\region} (A_z + B_x + C_y)\, \dx\wedge\dy\wedge \dz = \int_{\bdry\region} A\,\dx\wedge\dy + B\,\dy\wedge\dz + C \,\dz\wedge\dx.\label{eq:divergence-theorem}
 \end{equation}
 
 These formulas are related to three-dimensional vector calculus as follows.
@@ -248,15 +248,15 @@ As was the case in two dimensions, every vector field $\vc{F}=\vcc{f,g,h}$ gives
 Conversely, any 1-form can be reinterpreted as a vector field, and the differential of a 0-form corresponds to the gradient of a function.
 In fact, this is true in any number of dimensions.
 
-However, in three dimensions, a vector field can also be interpreted as a \emph{2-form}, namely $f\,\dy\wdg\dz + g \,\dz\wdg\dx + h \,\dx\wdg\dy$: each component is associated to the $\wdg$ of all the $\dd?$s for the \emph{other} variables.
-The differential of this 2-form is the 3-form $(\dvg{\vc{F}})\,\dx\wdg\dy\wdg\dz$, where $\dvg{\vc{F}}$ is the \emph{divergence} from vector calculus.
+However, in three dimensions, a vector field can also be interpreted as a \emph{2-form}, namely $f\,\dy\wedge\dz + g \,\dz\wedge\dx + h \,\dx\wedge\dy$: each component is associated to the $\wedge$ of all the $\dd?$s for the \emph{other} variables.
+The differential of this 2-form is the 3-form $(\div{\vc{F}})\,\dx\wedge\dy\wedge\dz$, where $\div{\vc{F}}$ is the \emph{divergence} from vector calculus.
 Thus, \cref{eq:divergence-theorem} is just the \emph{divergence theorem} from vector calculus.
 
 In fact, in any number $n$ of dimensions greater than $2$, we can similarly interpret a vector field as an $(n-1)$ form, and we have the divergence theorem.
 The special thing about $n=3$ is that ``$3-1 = 1+1$''.
 This means two things:
 \begin{enumerate}
-\item If we have two vector fields $\vc{F}$ and $\vc{G}$, we can interpret them as 1-forms, take their $\wdg$ product, then \emph{reinterpret} the resulting 2-form as a vector field.
+\item If we have two vector fields $\vc{F}$ and $\vc{G}$, we can interpret them as 1-forms, take their $\wedge$ product, then \emph{reinterpret} the resulting 2-form as a vector field.
   The result is the \emph{cross product} $\crossp{\vc{F}}{\vc{G}}$ of vectors, which only makes sense in three dimensions.
 \item If we have a vector field $\vc{F}$, we can interpret it as a 1-form, take its differential $\extd(\dotp{\vc{F}}{\dpx})$, then \emph{reinterpret} the resulting 2-form as a vector field.
   The result is the \emph{curl} of the vector field, $\curl{\vc{F}}$, which also only makes sense in three dimensions.
