@@ -91,9 +91,9 @@ More generally, we have the following:
 \end{thm}
 
 \begin{adv}
-  The full generality of \cref{thm:int-negligible-onevar} actually requires a slightly more powerful definition of integration than is usually taught in one-variable calculus, called ``Henstock integration''.
+  If $\omega$ is not assumed \emph{a priori} to be integrable, then the conclusion of \cref{thm:int-negligible-onevar} requires a slightly more powerful definition of integration than is usually taught in one-variable calculus, called ``Henstock integration''.
   Roughly, we need to be more flexible with the exact meaning of what it means for the $\Delta x_i$ to all approach zero at once.
-  Since we will not be making this very precise anyway, we henceforth ignore this issue.
+  Since we will not be making ``$\delta x_i\to 0$'' very precise anyway, and all our examples will be integrable, we henceforth ignore this issue.
 \end{adv}
 
 In particular, it follows that
@@ -188,9 +188,14 @@ Using this, we can formally state the Change of Variables Theorem for line integ
 \end{thm}
 
 Now suppose $\omega$ is a \emph{linear} differential form.
-Recall that that means it looks like $f(\ptx)\,\dx + g(\pt{y})\,\dy + h(\pt{z})\,\dz$.
+Recall that that means it looks like $f(\ptx)\,\dx + g(\ptx)\,\dy + h(\ptx)\,\dz$.
 Then
-\[ \omega\big(\curvept(t),\, \curvept'(t) \,\dt\big) = \omega\big(\curvept(t),\, \curvept'(t)\big)\,\dt \]
+\begin{align*}
+  \omega\big(\curvept(t),\, \curvept'(t) \,\dt\big) &=
+  f(\curvept(t))\,\curvept'(t) \,\dt + g(\curvept(t))\,\curvept'(t) \,\dt + h(\curvept(t))\,\curvept'(t) \,\dt\\
+  &= \Big(f(\curvept(t))\,\curvept'(t) + g(\curvept(t))\,\curvept'(t) + h(\curvept(t))\,\curvept'(t)\Big) \,\dt\\
+  &= \omega\big(\curvept(t),\, \curvept'(t)\big)\,\dt
+\end{align*}
 and thus the right-hand side of \cref{eq:lineint-chvar-2} becomes
 \[ \int_a^b \omega\big(\curvept(t),\, \curvept'(t)\big)\,\dt. \]
 This is an ordinary one-variable integral of the sort we already understand.
