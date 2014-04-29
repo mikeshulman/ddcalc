@@ -1,0 +1,88 @@
+\documentclass[12pt]{amsart}
+\usepackage{fullpage}
+\input{../macros}
+\title{Complex differential forms}
+\begin{document}
+\maketitle
+
+So far, we have discussed only \emph{real} differential forms.
+We now apply these to the study of complex numbers and complex differentials.
+
+\section{Complex differential forms}
+\label{sec:complex-forms}
+
+There is no problem with allowing the components of a differential form to be \emph{complex-valued}.
+Thus, for instance, we may consider the differential 1-form $e^{ix} \,\dx + (y-ix^2)\,\dy$, or the differential 2-form $(x^2- i y^2)\,\dx\wedge\dy$.
+Note that the ambient space is still (one-, two-, or three-dimensional) \emph{real} space, with the coordinates such as $x$ and $y$ being real numbers.
+
+However, let us now restrict to considering such forms in \emph{two} dimensions, with real coordinates $x$ and $y$.
+In this case, as we have seen, we can also identify the plane with the set of complex numbers, with complex coordinate $z = x+iy$.
+If we regard $z$ as a complex-valued function of the two real coordinates $x$ and $y$, i.e.\ $z(x,y) = x+iy$, then its differential is a complex-valued 1-form:
+\[ \dz = \dx + i \,\dy. \]
+Similarly, its conjugate $\zbar$ is also a complex-valued function of $x$ and $y$, namely $\zbar(x,y) = x-iy$, and its differential is
+\[ \dzbar = \dx - i\, \dy. \]
+
+Now note that just as
+\[ x = \half(z+\zbar) \qquad\text{and}\qquad y = \half(z-\zbar) \]
+we have
+\[ \dx = \half(\dz+\dzbar) \qquad\text{and}\qquad \dy = \halfi(\dz-\dzbar) \]
+Therefore, any complex-valued differential form can be written in terms of $\dz$ and $\dzbar$ instead of $\dx$ and $\dy$.
+Specifically, if we have a 1-form $f(x,y) \,\dx + g(x,y) \,\dy$, then we can write it as
+\begin{align*}
+  f(x,y) \,\dx + g(x,y) \,\dy
+  &= f(x,y)\cdot\half(\dz+\dzbar) +  g(x,y) \cdot\halfi(\dz-\dzbar)\\
+  &= \half (f(x,y) -i\, g(x,y))\,\dz + \half (f(x,y) +i\, g(x,y))\,\dzbar.
+\end{align*}
+We also have
+\begin{align*}
+  \dz \wedge\dzbar &= (\dx + i \,\dy) \wedge (\dx - i \,\dy)\\
+  &= \dx\wedge\dx + i\,\dy\wedge\dx - i\,\dx\wedge\dy + \dy\wedge\dy\\
+  &= -2i\, \dx\wedge\dy.
+\end{align*}
+Therefore, a 2-form $A\,\dx\wedge\dy$ can equivalently be written as $-\halfi A\, \dz\wedge\dzbar$.
+
+\section{Complex differentials}
+\label{sec:complex-differentials}
+
+Now let us consider the differential as it acts on complex forms.
+Suppose $f$ is a complex-valued 0-form, i.e.\ a function.
+Then we have
+\begin{align*}
+  \df &= \pder f x \, \dx + \pder f y\,\dy\\
+  &= \half (\pder f x - i\, \pder f y)\,\dz + \half (\pder f x + i\, \pder f y)\,\dzbar.
+\end{align*}
+Therefore, it is natural to introduce the following definitions of ``partial derivatives with respect to $z$ and $\zbar$'':
+\begin{align*}
+  \pder f z &= \half (\pder f x - i\, \pder f y)\\
+  \pder f \zbar &= \half (\pder f x + i\, \pder f y)
+\end{align*}
+Thus, we can write $\df = \pder f z \,\dz + \pder f \zbar \,\dzbar$.
+
+Let us now express these in components, writing $f(x,y) = u(x,y) + i\,v(x,y)$ for real-valued functions $u$ and $v$.
+Then we have
+\begin{align*}
+  \pder f x &= \pder u x + i\, \pder v x\\
+  \pder f y &= \pder u y + i\, \pder v y
+\end{align*}
+and therefore
+\begin{align*}
+  \pder f z &= \half (\pder u x + \pder v y) + \half i\, (\pder v x - \pder u y)\\
+  \pder f \zbar &= \half (\pder u x - \pder v y) + \half i\, (\pder v x + \pder u y)\\
+\end{align*}
+
+Now recall that the \emph{Cauchy--Riemann equations} for complex-differentiability of $f$ say that
+\[ \pder f y = i\,\pder f x \qquad\text{or equivalently}\qquad \pder f x = - i\,\pder f y,\]
+or in components
+\[ \pder u x = \pder v y \qquad\text{and}\qquad \pder u y = - \pder v x. \]
+In terms of the notations introduced above, these equations say exactly that
+\[ \pder f \zbar = 0. \]
+Thus, intuitively, for $f$ to be complex-differentiable means exactly that it is ``constant with respect to $\zbar$'' or ``a function of $z$ only''.
+
+Finally, the equation $\pder f y = i\,\pder f x$ also implies that
+\[ \pder f z = \half(\pder f x - i\,\pder f y) = \half (\pder f x + \pder f x) = \pder f x.\]
+This is also the \emph{complex derivative} $f'(z)$ of $f$.
+Thus, if $f$ is complex-differentiable, then we can write
+\[ \df = f'(z) \,\dz \]
+which is what we would expect to see by treating $z = x+i\,y$ as a \emph{single complex variable} rather than two real variables.
+
+\end{document}
