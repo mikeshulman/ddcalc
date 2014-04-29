@@ -86,7 +86,7 @@ If we reverse this orientation, we obtain an integral that in one-variable calcu
 \[ \int_b^a f(x) \,\dx \]
 and you probably learned that this is equal to $-\int_a^b f(x) \,\dx$.
 
-Finally, the \emph{fundamental theorem of calculus} relates these two operations; it says that
+Finally, the \emph{fundamental theorem of calculus} relates these two operations; it says that (assuming $f'$ is continuous) we have
 \begin{equation}
   \int_a^b \df = f(b) - f(a).\label{eq:onevar-ftc}
 \end{equation}
@@ -146,7 +146,8 @@ This point of view also generalizes to $p$-forms for $p>1$, but it is more compl
 
 Now we can see that the \emph{fundamental theorem of calculus for line integrals} is
 \[ \int_{\curve} \df = f(\curvept(b)) - f(\curvept(a)) \]
-which has exactly the same form as the fundamental theorem of calculus for one-variable integrals.
+(assuming $\df$ is continuous).
+This has exactly the same form as the fundamental theorem of calculus for one-variable integrals.
 If we use the same conventions regarding 0-manifolds and integrals of 0-forms as we did in one dimension, then this theorem also relates the integral of a 0-form over the boundary of a 1-manifold with the integral of its differential over the 1-manifold itself.
 
 \section{Differential 2-Forms in Two Dimensions}
@@ -208,7 +209,7 @@ Now we can compute the differential of a general 1-form $f(x,y)\,\dx + g(x,y)\,\
 Now if there is to be a version of the fundamental theorem of calculus for integrals of 2-forms, it should say that the integral of a 1-form over the boundary of a 2-manifold is equal to the integral of its differential over the 2-manifold itself.
 Thus, if $\region$ is a region with boundary $\bdry\region$, we should have
 \[ \int_{\region} (\pder g x - \pder f y)\, \dx\wedge\dy = \int_{\bdry\region} f\,\dx + g\,\dy. \]
-This is true: it is exactly \emph{Green's theorem} from vector calculus.
+This is true (assuming $f$ and $g$ have continuous partial derivatives): it is exactly \emph{Green's theorem} from vector calculus.
 
 \section{Differential Forms in Three Dimensions}
 \label{sec:forms-in-3D}
@@ -232,7 +233,7 @@ Every 1-form has a differential, computed as
   &\qquad + \pder h x\,\dx\wedge\dz + \pder h y \,\dy\wedge\dz\\
   &= (\pder g x - \pder f y)\,\dx\wedge\dy + (\pder h y - \pder g z) \,\dy\wedge\dz + (\pder f z - \pder h x)\,\dz\wedge\dx.
 \end{align*}
-We can integrate a 2-form over an oriented surface $\surf$, and Green's theorem generalizes to say that the integral of a 1-form over the boundary of such a surface is equal to the integral of its differential over the surface itself:
+We can integrate a 2-form over an oriented surface $\surf$, and Green's theorem generalizes to say that the integral of a 1-form over the boundary of such a surface is equal to the integral of its differential over the surface itself (assuming the differential to be continuous):
 \begin{equation}
   \int_{\surf} \ed(f\,\dx + g\,\dy + h\,\dz) = \int_{\bdry\surf} f\,\dx + g\,\dy + h\,\dz\label{eq:stokes-theorem}
 \end{equation}
@@ -248,7 +249,7 @@ Every 2-form has a differential, computed as
 (since $\dz \wedge \dx \wedge \dy = -\dx \wedge \dz \wedge \dy = \dx \wedge \dy \wedge \dz$ and similarly).
 
 Finally, a 3-form can be integrated over any oriented 3-dimensional region $\region$, giving essentially the ordinary three-dimensional integral that you learned in multivariable calculus (except for orientations).
-And we have the corresponding fundamental theorem, relating the integral of a 2-form over the boundary of a region to the integral of its differential over the region itself:
+And we have the corresponding fundamental theorem, relating the integral of a 2-form over the boundary of a region to the integral of its differential over the region itself (assuming, as always, the partial derivatives to be continuous):
 \begin{equation}
   \int_{\region} (\pder A z + \pder B x + \pder C y)\, \dx\wedge\dy\wedge \dz = \int_{\bdry\region} A\,\dx\wedge\dy + B\,\dy\wedge\dz + C \,\dz\wedge\dx.\label{eq:divergence-theorem}
 \end{equation}
