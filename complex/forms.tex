@@ -184,13 +184,13 @@ Now we'd like this kind of ``differentiation'' to satisfy a product rule, with r
 \[ \dd(f(x)\,\dx) =  \df \wedge\dx + f(x)\, \dd(\dx). \]
 Actually, since we are using the $\wedge$ product in the product rule, it's better to include it as a reminder in the notation for this differential as well.
 Thus we will write instead
-\[ \extd(f(x)\,\dx) =  \df \wedge\dx + f(x)\, \extd\dx. \]
-Now we already know how to find the differential of a 0-form (\cref{eq:differential-of-a-0form-in-2D}). so all we need is to define is $\extd\dx$.
-It turns out that we should define $\extd\dx=0$; a mnemonic for this is that just as $\dx\wedge \dx = 0$, so also ``$\extd\dd = 0$''.
+\[ \ed(f(x)\,\dx) =  \df \wedge\dx + f(x)\, \ed\dx. \]
+Now we already know how to find the differential of a 0-form (\cref{eq:differential-of-a-0form-in-2D}). so all we need is to define is $\ed\dx$.
+It turns out that we should define $\ed\dx=0$; a mnemonic for this is that just as $\dx\wedge \dx = 0$, so also ``$\ed\dd = 0$''.
 
 Now we can compute the differential of a general 1-form $f(x,y)\,\dx + g(x,y)\,\dy$ in two dimensions:
 \begin{align*}
-  \extd(f\,\dx + g\,\dy)
+  \ed(f\,\dx + g\,\dy)
   &= \df \wedge \dx + \dg \wedge\dy\\
   &= (\pder f x\, \dx + \pder f y\, \dy) \wedge \dx + (\pder g x \,\dx+\pder g y\,\dy)\wedge\dy \\
   &= \pder f x\, \dx\wedge\dx + \pder f y\, \dy\wedge \dx + \pder g x \,\dx \wedge\dy + \pder g y\,\dy\wedge\dy \\
@@ -216,7 +216,7 @@ Now we have more general differential 2-forms such as $A\,\dx\wedge\dy + B\,\dy\
 Any two 1-forms have a $\wedge$ product, which satisfies identities such as $\dy\wedge\dz = -\dz\wedge\dy$ and $\dy\wedge\dy=0$, and so on.
 Every 1-form has a differential, computed as
 \begin{align*}
-  \extd(f\,\dx + g\,\dy + h\,\dz)
+  \ed(f\,\dx + g\,\dy + h\,\dz)
   &= \df\wedge\dx + \dg\wedge\dy + \dh\wedge\dz\\
   &= (\pder f x \,\dx + \pder f y \,\dy + \pder f z\,\dz)\wedge\dx + (\pder g x \,\dx + \pder g y \,\dy + \pder g z\,\dz)\wedge\dy\\
   &\qquad + (\pder h x \,\dx + \pder h y \,\dy + \pder h z\,\dz)\wedge\dz\\
@@ -226,13 +226,13 @@ Every 1-form has a differential, computed as
 \end{align*}
 We can integrate a 2-form over an oriented surface $\surf$, and Green's theorem generalizes to say that the integral of a 1-form over the boundary of such a surface is equal to the integral of its differential over the surface itself:
 \begin{equation}
-  \int_{\surf} \extd(f\,\dx + g\,\dy + h\,\dz) = \int_{\bdry\surf} f\,\dx + g\,\dy + h\,\dz\label{eq:stokes-theorem}
+  \int_{\surf} \ed(f\,\dx + g\,\dy + h\,\dz) = \int_{\bdry\surf} f\,\dx + g\,\dy + h\,\dz\label{eq:stokes-theorem}
 \end{equation}
 
 We also have 3-forms such as $f(x,y,z)\, \dx\wedge\dy\wedge\dz$.
 Every 2-form has a differential, computed as
 \begin{align*}
-  \extd(A\,\dx\wedge\dy + & B\,\dy\wedge\dz + C \,\dz\wedge\dx)\\
+  \ed(A\,\dx\wedge\dy + & B\,\dy\wedge\dz + C \,\dz\wedge\dx)\\
   &= \dd A \wedge \dx \wedge \dy + \dd B \wedge \dy \wedge \dz + \dd C \wedge \dz \wedge \dx\\
   &= \pder A z\, \dz \wedge \dx \wedge \dy + \pder B x \,\dx \wedge \dy \wedge \dz + \pder C y \,\dy\wedge \dz \wedge \dx\\
   &= (\pder A z + \pder B x + \pder C y)\, \dx\wedge\dy\wedge \dz
@@ -260,7 +260,7 @@ This means two things:
 \begin{enumerate}
 \item If we have two vector fields $\vc{F}$ and $\vc{G}$, we can interpret them as 1-forms, take their $\wedge$ product, then \emph{reinterpret} the resulting 2-form as a vector field.
   The result is the \emph{cross product} $\crossp{\vc{F}}{\vc{G}}$ of vectors, which only makes sense in three dimensions.
-\item If we have a vector field $\vc{F}$, we can interpret it as a 1-form, take its differential $\extd(\dotp{\vc{F}}{\dpx})$, then \emph{reinterpret} the resulting 2-form as a vector field.
+\item If we have a vector field $\vc{F}$, we can interpret it as a 1-form, take its differential $\ed(\dotp{\vc{F}}{\dpx})$, then \emph{reinterpret} the resulting 2-form as a vector field.
   The result is the \emph{curl} of the vector field, $\curl{\vc{F}}$, which also only makes sense in three dimensions.
 \end{enumerate}
 Thus, we see finally that \cref{eq:stokes-theorem} is just \emph{Stokes' theorem} from vector calculus.
