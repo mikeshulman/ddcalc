@@ -44,6 +44,9 @@
 
 %% Differentials
 \newcommand{\dd}{\ensuremath{\mathrm{d}}}
+\newcommand{\extd}{\ensuremath{\mathrm{d}\wdg}}
+
+%% Differentials of variables
 \newcommand{\dx}{{\ensuremath{\dd x}}}
 \newcommand{\dy}{{\ensuremath{\dd y}}}
 \newcommand{\dz}{{\ensuremath{\dd z}}}
@@ -53,17 +56,21 @@
 \newcommand{\dv}{{\ensuremath{\dd v}}}
 \newcommand{\df}{{\ensuremath{\dd f}}}
 \newcommand{\dg}{{\ensuremath{\dd g}}}
+\renewcommand{\dh}{{\ensuremath{\dd h}}}
 \newcommand{\dr}{{\ensuremath{\dd r}}}
 \newcommand{\drho}{{\ensuremath{\dd \rho}}}
 \newcommand{\dtheta}{{\ensuremath{\dd \theta}}}
 \newcommand{\dphi}{{\ensuremath{\dd \phi}}}
 \newcommand{\dpx}{{\ensuremath{\dd \pt{x}}}}
 
-%% Not quite differentials
+%% Not differentials of anything
 \newcommand{\dl}{\ensuremath{\mathrm{\dj}\ell}}
 \newcommand{\dA}{\ensuremath{\mathrm{\dj}A}}
 \newcommand{\dV}{\ensuremath{\mathrm{\dj}V}}
 \newcommand{\dn}{\ensuremath{\mathrm{\dj}\vc{n}}}
+
+%% Wedge product
+\newcommand{\wdg}{\wedge}
 
 %% Partial derivatives
 \newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
@@ -112,13 +119,19 @@
 %% Riemann sums
 \newcommand{\rstag}[2]{{#1}_{#2}^*}
 
-%% Parametrized curves and surfaces
+%% Parametrized curves
 \newcommand{\curve}{C}
 \newcommand{\curvept}{\mathbf{x}}
 \newcommand{\dcurvept}{\dd\mathbf{x}}
 \newcommand{\curvex}{x}
 \newcommand{\curvey}{y}
 \newcommand{\curvez}{z}
+
+%% Regions
+\newcommand{\region}{R}
+\newcommand{\bdry}{\partial}
+
+%% Parametrized surfaces
 \newcommand{\surf}{S}
 \newcommand{\surfx}{x}
 \newcommand{\surfy}{y}

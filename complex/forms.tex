@@ -16,648 +16,255 @@ or surface integrals
 \[ \int_{\surf} f(\ptx) \,\dA \quad\text{or}\quad \int_{\surf} \dotp{\vc{F}}{\dn} \]
 in each case the thing being integrated is a differential form.
 
-You may have been told that the ``$\dx$'' (or $\dl$, $\dA$, etc.)\ is simply a notation that indicates which variable we're integrating, but this is a lie.
+You may have been told that the ``$\dx$'' (or $\dl$, $\dA$, etc.)\ is simply a notation that indicates which variable we're integrating, or what sort of integration we're doing, but this is a lie.
 In fact, differential forms are a powerful tool; they are essentially the ``modern'' way to do vector calculus.
 Unfortunately, they are still not often taught in multivariable calculus classes, so here we will give a brief summary.
 
-TODO: Probably regard them as only symbolic.  Do only linear ones.  Do dimensions 1 and 2, and mention 3, connecting back to multivariable calculus.  Introduce $\dz$ and $\dzbar$, etc.
-
-\section{Differential forms}
-\label{sec:differential-forms}
-
-If $\dx$ isn't just a notation indicating the integration variable, what is it?
-If you encountered differentials in one-variable calculus, you may have been told that $\dx$ is a small change in $x$ (sometimes denoted $\Delta x$), or even an ``infinitesimal'' change in $x$.
-These are not wrong, but with vectors we can give a better definition.
+Differential forms are objects similar to functions or vector fields, which involve one or more functions defined on a line, in a plane, or in space (or more generally, in an $n$-dimensional space).
+In $n$-dimensional space, there are $(n+1)$ kinds of differential forms, called \emph{0-forms}, \emph{1-forms}, \dots, up to \emph{$n$-forms}.
+The following are not the ``actual'' definitions, but they will suffice for us.
 
 \begin{defn}
-  A \textbf{differential form} is a function whose input is a point $\ptx$ \emph{and} a vector based at $\ptx$.
-  We denote the vector by $\dpx$.
+  In one dimension, with coordinate $x$:
+  \begin{itemize}
+  \item A \textbf{differential 0-form} is a function of $x$.
+  \item A \textbf{differential 1-form} is an expression of the form $A\,\dx$, where $A$ is a function of $x$.
+  \end{itemize}
 \end{defn}
-
-In $n$ dimensions, the point $\ptx$ has $n$ coordinates, as does the vector $\dpx$.
-As usual, in 2 or 3 dimensions we denote the coordinates of $\ptx$ by $\ptc{x,y}$ or $\ptc{x,y,z}$.
-Similarly, we denote the coordinates of $\dpx$ by $\vcc{\dx,\dy}$ or $\vcc{\dx,\dy,\dz}$.
-We can then describe a differential form by a formula involving these coordinates $x,y,z,\dx,\dy,\dz$.
-
-We usually denote differential forms by lowercase Greek letters such as the following.
-\begin{itemize}
-\item $\omega$ (omega, not to be confused with the English letter $w$)
-\item $\eta$ (eta, not to be confused with the English letter $n$)
-\end{itemize}
-Since a differential form $\omega$ is a function of a point and a vector, we would write $\omega(\ptx,\dpx)$ for the value of $\omega$ at a point $\ptx$ and a vector $\dpx$, or $\omega(x,y,\dx,\dy)$ if we want to emphasize all the coordinates.
-
-\begin{egs}\label{egs:differential-forms}
-  The following are all differential forms:
-  \begin{gather*}
-    x^2 \,\dx + 2xy \, \dy\\
-    \half({x-z}) \,\dx - 4\, \dy + e^y \,\dz\\
-    1 + \dx + \half \dx^2 + \third \dx^3\\
-    \sin(x + \dx) - \sin(x)\\
-    \sqrt{\dx^2+\dy^2}
-  \end{gather*}
-\end{egs}
-
-Note that although $\dx$ is two letters, we regard it as one symbol standing for one variable.
-In particular, an expression such as $\dx^2$ means $(\dx)^2$, not $\dd(x^2)$.
-(We will give a different meaning to $\dd(x^2)$ in \cref{sec:differentials}.)
-
-The first two of \cref{egs:differential-forms} are special in the following way.
 
 \begin{defn}
-  A \textbf{linear} differential form is one defined by an expression such as
-  \[ f(\ptx) \, \dx + g(\ptx) \, \dy + h(\ptx) \, \dz. \]
-  Here $f$, $g$, and $h$ are functions of the point $\ptx$ only, and each of them is multiplied by one of the coordinates of $\dpx$.
+  In two dimensions, with coordinates $x$ and $y$:
+  \begin{itemize}
+  \item A \textbf{differential 0-form} is a function of $x$ and $y$.
+  \item A \textbf{differential 1-form} is an expression of the form $A\,\dx+B\,\dy$, where $A$ and $B$ are functions of $x$ and $y$.
+  \item A \textbf{differential 2-form} is an expression of the form $A\,\dx\wdg\dy$, where $A$ is a function of $x$ and $y$.
+  \end{itemize}
 \end{defn}
 
-Most mathematicians only use the term ``differential form'' for linear ones.
-However, the more general ones are quite useful.
-
-\begin{adv}
-  To be more precise, the differential forms we are considering so far are \emph{1-cojet differential 1-forms}.
-  Later on, we will encounter both $k$-cojet differential forms and differential $n$-forms for larger values of $k$ and $n$.
-  However, until then, we will just use ``differential form'' for the notion defined above.
-\end{adv}
-
-It is appropriate to think of $\dpx$ as a \emph{small change} in the point $\ptx$, so that its coordinates such as $\dx$ and $\dy$ are small changes in the values of the coordinates $x$ and $y$.
-Specifically, we can think of $\dpx$ as the vector \emph{from} the point $\ptx$ \emph{to} a slightly shifted point, $\ptx+\dpx$.
-\begin{center}
-  \begin{tikzpicture}[scale=1.6]
-    \draw[<->] (-1,0) -- (3,0);
-    \draw[<->] (0,-1) -- (0,3);
-    \node[circle,fill,purple,label={[purple]$\ptx$}] (x) at (1.5,2) {};
-    \node[circle,fill,purple,label={[purple]right:$\ptx+\dpx$}] (x2) at (2,1.5) {};
-    \draw[very thick,purple,->] (0,0) -- (x);
-    \draw[very thick,blue,->] (x) -- node[auto] {$\dpx$} (x2);
-  \end{tikzpicture}
-\end{center}
-Nothing in the definition forces $\dpx$ to be ``small'', but generally we are only interested in the values of a differential form when $\dpx$ is small.
-Specifically, by \emph{small} we mean \emph{small relative to the values generally taken by $x$}.
-For instance, if $x=3$, then a possible small change would be $\dx = 0.01$.
-In this case, a differential form such as $\dx^2$ is an \emph{even smaller} change, since $\dx^2 = 0.0001$.
-
-We say that $\dx$ is a \emph{first order} form while $\dx^2$ is \emph{second order}.
-Similarly, we say that $x$ itself is \emph{zeroth order}, as is any function value $f(\ptx)$ not involving $\dpx$.
-
-Every linear form is first-order: when we multiply a zeroth order form like $f(\ptx)$ by a first order one like $\dx$, the result is first order.
-For instance, if $f(x) = 4$ and $\dx = 0.001$, then $f(x)\,\dx = 0.004$, which is about the same size as $\dx$.
-
-The concept of order can be applied even to forms that are not polynomials in $\dx$.
-For instance, if $\dx=0.01$, then $\sin(\dx) \approx 0.0099998$, which is about the same size as $\dx$.
-Thus, it is reasonable to say that $\sin(\dx)$ is also first-order.
-On the other hand, still with $\dx=0.01$, we have $\cos(\dx) - 1 \approx -0.00005$, which is much smaller than $\dx$ and about the same size as $\dx^2$.
-Thus, it is reasonable to say that $\cos(\dx) - 1$ is second-order.
-
-We will not make precise the general notion of ``order''; it can be done, but it is a bit complicated and not necessary for our purposes.
-(If you're curious, see the optional handout.)
-All that we will need is a definition of when a differential form is \emph{smaller than first order} (e.g.\ second-order or third-order).
-This is because in calculus, we are concerned with \emph{approximations to first order}, also known as \emph{linear approximations}; and forms that are smaller than first order do not affect these approximations.
-Thus, we will call them \emph{negligible} (to first order).
-
-\begin{defn}\label{def:negligible}
-  A differential form $\omega$ is called \textbf{negligible} at a point $\ptx$ if
-  \[ \lim_{\dpx\to\vc{0}} \frac{\omega(\ptx,\dpx)}{\mgn{\dpx}} = 0. \]
+\begin{defn}
+  In three dimensions, with coordinates\footnote{Confusingly, $z$ is traditionally used both for the third coordinate in three real dimensions and for a complex variable.  In this note there will be no complex variables, so $z$ will always be the third real coordinate.  However, after the very brief \cref{sec:forms-in-3D} below, we will never mention three dimensions again, since they are not very relevant to complex analysis; thus for the rest of the course $z$ will continue to denote a complex variable.} $x$, $y$, and $z$:
+  \begin{itemize}
+  \item A \textbf{differential 0-form} is a function of $x$, $y$, and $z$.
+  \item A \textbf{differential 1-form} is an expression of the form $A\,\dx+B\,\dy+C\,\dz$, where $A$, $B$, and $C$ are functions of $x$, $y$, and $z$.
+  \item A \textbf{differential 2-form} is an expression of the form $A\,\dx\wdg\dy + B \,\dy\wdg\dz + C \,\dz\wdg\dx$, where $A$, $B$, and $C$ are functions of $x$, $y$, and $z$.
+  \item A \textbf{differential 3-form} is an expression of the form $A \,\dx\wdg\dy\wdg\dz$, where $A$ is a function of $x$, $y$, and $z$.
+  \end{itemize}
 \end{defn}
 
-Recall that definitions in mathematics introduce a \emph{new} meaning for a word.
-Thus, \emph{from now on} (in this class) the word ``negligible'' \emph{will mean} what this definition says it does.
-Our previous discussion was only motivational; the definition is the ``gold standard'' for the meaning of the word.
+The main reasons for introducing these funny objects are the following:
+\begin{enumerate}
+\item The operation of \emph{differentiation} naturally takes $p$-forms to $(p+1)$-forms;
+\item A $p$-form can naturally be integrated over an oriented $p$-dimensional \emph{manifold}; and
+\item The two operations are related by the \emph{generalized Stokes' theorem}, which subsumes all the theorems of vector calculus.
+\end{enumerate}
 
-Note also that the limit in \cref{def:negligible} is a \emph{vector} limit.
-In two or three dimensions, we could write it equivalently as
-\[ \lim_{(\dx,\dy)\to(0,0)} \frac{\omega(x,y,\dx,\dy)}{\sqrt{\dx^2+\dy^2}} \qquad\text{or}\qquad
-\lim_{(\dx,\dy,\dz)\to(0,0,0)} \frac{\omega(x,y,z,\dx,\dy,dz)}{\sqrt{\dx^2+\dy^2+\dz^2}}
-\]
-respectively.
-Recall that this means that we allow $\dpx$ to approach $\vc{0}$ ``in all possible ways''.
-\begin{notextbook}Two- and three-dimensional limits should be discussed in your textbook.\end{notextbook}%
-\begin{stewart}Two- and three-dimensional limits are discussed in section 11.2 of the textbook.\end{stewart}
+(What is a ``manifold'', you may ask?
+For $p=0$, $1$, and $2$ respectively, examples of $p$-dimensional manifolds are points, curves, and surfaces respectively.
+More generally, a manifold could have multiple ``pieces'' each of which looks like a point, curve, or surface.)
 
-The first thing to do in understanding a definition is to look at some examples.
-If we chose the definition well, the examples will justify our motivation.
+\section{Differential forms in one dimension}
+\label{sec:forms-in-1D}
 
-\begin{eg}
-  The differential form $\dx^2$ is negligible at any point.
-  To see this, note that
-  \[ \frac{\dx^2}{\mgn{\dpx}} = \frac{\dx}{\mgn{\dpx}} \,\dx \]
-  and $\frac{\dx}{\mgn{\dpx}}\le 1$ everywhere, while $\lim_{\dpx\to\vc{0}} \dx = 0$.
-  Thus, the limit of their product is also $0$.
-  Similarly, the following differential forms are all negligible:
-  \[ \dy^2 \qquad \dx\,\dy \qquad \dx^3 \qquad \dx\,\dy^2\,\dz \]
-\end{eg}
-
-\begin{eg}
-  By a similar argument, if $\omega$ is bounded for values of $\dpx$ near $\vc{0}$, while $\eta$ is negligible at $\ptx$, then their product $\omega\eta$ is also negligible at $\ptx$.
-  In particular, this is true if $\omega$ is a function of $\ptx$ only, at any point where it is defined.
-  For instance, the following differential forms are negligible:
-  \begin{gather*}
-    x^2\,\dx\,\dy\\
-    e^{-x^2+y^2} \,\dy^2
-  \end{gather*}
-\end{eg}
-
-\begin{eg}
-  If $\omega$ and $\eta$ are negligible at $\ptx$, then so is their sum $\omega+\eta$, by the sum rule for limits.
-  Thus, the following differential forms are negligible:
-  \begin{gather*}
-    \dx^2 + \dy^2\\
-    x^2 \,\dx\,\dy + e^{y}\,\dy\,\dz^2
-  \end{gather*}
-\end{eg}
-
-Notice that all the examples of negligible forms are what we would intuitively call second-order or higher.
-We will continue to use the informal terminology of ``first-order'', ``second-order'', and so on when discussing forms.
-However, in definitions and theorems we will use only the term ``negligible'' that we have defined precisely.
-
-
-
-\section{Differentials}
-\label{sec:differentials}
-
-In one-variable calculus, you may have encountered the differential of a function.
+Let us consider these claims in one dimension first.
+In one-variable calculus, you may have encountered a thing called the \emph{differential} of a function:
 Namely, if $f$ is a function of one variable $x$, then its differential is
 \begin{equation}
   \df = f'(x) \, \dx\label{eq:onevariable-differential}
 \end{equation}
 where $f'$ is the \emph{derivative} of $f$.
-Note that $\df$ is a differential form.
+Observe that $\df$ is a differential 1-form in one dimension, as we have defined it above.
 
+Similarly, when we ``integrate a function'' in one-variable calculus on an interval $[a,b]$, what we actually write is
+\[ \int_a^b f(x) \,\dx \]
+where the integrand is manifestly a differential 1-form.
+The interval $[a,b]$ is a 1-manifold, and we can equivalently write the integral as 
+\[ \int_{[a,b]} f(x) \,\dx. \]
+In fact, the interval $[a,b]$ is an \emph{oriented} 1-manifold: this means that it comes with a ``direction of traversal'', canonically \emph{from} $a$ \emph{to} $b$.
+If we reverse this orientation, we obtain an integral that in one-variable calculus you wrote as
+\[ \int_b^a f(x) \,\dx \]
+and you probably learned that this is equal to $-\int_a^b f(x) \,\dx$.
 
-This is the whole point of the derivative: $f'(x)$ is the slope of the tangent line to the graph of $f$ at $x$, and that line is the best possible \emph{linear approximation} to the graph.
-Indeed, recall that by definition, the derivative is
-\[ f'(x) = \lim_{\dx\to 0} \frac{f(x+\dx)-f(x)}{\dx} \]
-Thus, when $\dx$ is small, we can say that
-\begin{equation}\label{eq:difference-quotient-close-derivative}
-  \frac{f(x+\dx)-f(x)}{\dx}\quad\text{is very close to}\quad f'(x).
-\end{equation}
-Multiplying each of these by $\dx$, we find that
+Finally, the \emph{fundamental theorem of calculus} relates these two operations; it says that
 \begin{equation}
-  f(x+\dx)-f(x) \quad\text{is very close to}\quad f'(x)\,\dx.\label{eq:difference-close-differential}
-\end{equation}
-This is what we saw in the above-remarked similarity of graphs.
-
-\begin{adv}
-  However, the quantities in~\cref{eq:difference-close-differential} are of a different order than those in~\cref{eq:difference-quotient-close-derivative}:
-  $\frac{f(x+\dx)-f(x)}{\dx}$ and $f'(x)$ are zeroth order, while $f(x+\dx)-f(x)$ and $f'(x)\,\dx$ are first order.
-  Thus, the precise meaning of ``close'' is different: in~\cref{eq:difference-close-differential} we mean that their difference is first order, while in~\cref{eq:difference-quotient-close-derivative} we mean that their difference is second order.
-  This is why \cref{def:differential} below is phrased as it is.
-\end{adv}
-
-\Cref{eq:onevariable-differential} from one-variable calculus defines the \emph{differential} of $f$ in terms of the \emph{derivative} of $f$.
-However, in multivariable calculus, it is more appropriate to do things in the other order, using the idea of~\cref{eq:difference-quotient-close-derivative} to define the differential \emph{first}, and then deducing a notion of ``derivative'' from this.
-
-\begin{defn}\label{def:differential}
-  If $f$ is a function of a point $\ptx$, then its \textbf{differential} is a linear differential form $\df$ such that
-  \[ f(\ptx + \dd\ptx) - f(\ptx) - \df \]
-  is negligible at $\ptx$.
-  If such a form $\df$ exists, we say that $f$ is \textbf{differentiable} at $\ptx$.
-\end{defn}
-
-As always, we should explore a new definition with examples.
-
-\begin{eg}
-  Let $f(x) = x^2$, an ordinary one-variable function.
-  Then
-  \begin{align*}
-    f(x + \dx) - f(x) &= (x+\dx)^2 - x^2\\
-    &= x^2 + 2 x \, \dx + \dx^2 - x^2\\
-    &= 2x \, \dx + \dx ^2.
-  \end{align*}
-  What linear form $\dd f$ can we subtract from this to make it second order?
-  We may think of subtracting $2x \, \dx$, leaving the second-order term $\dx^2$:
-  \[ f(x + \dx) - f(x) - 2x \, \dx \;=\; \dx^2. \]
-  Thus, we have $\dd(x^2) = 2 x \, \dx$.
-  Of course, this is the same result that we would have gotten from \cref{eq:onevariable-differential}.
-\end{eg}
-
-\begin{eg}
-  Let $f(x,y) = x^2 + 2y^2 - xy$.
-  Then
-  \begin{align*}
-    f(x+\dx,y+\dy) - f(x,y)
-    &= (x+\dx)^2 + 2(y+\dy)^2 - (x+\dx)(y+\dy) - x^2 - 2y^2 + xy\\
-    &= x^2 + 2 x \, \dx + \dx^2 + 2y^2 + 4y\,\dy + 2\dy^2\\
-    & \hspace{2cm} - x^2 - x \, \dy - y \, dx - \dx\, \dy - x^2 - 2y^2 + xy\\
-    &= 2x\,\dx + 4y\,\dy - x\,\dy - y\,\dx + \dx^2 + 2\dy^2 - \dx\,\dy\\
-    &= (2x-y)\,\,dx + (4y-x)\,\dy + (\dx^2 + 2\dy^2 - \dx\,\dy)
-  \end{align*}
-  In the last line we have separated this into a linear form plus one of second order.
-  Thus, we have
-  \[ \dd(x^2 + 2y^2 - xy) = (2x-y)\,\dx + (4y-x)\,\dy .\]
-\end{eg}
-
-\begin{eg}
-  Consider $f(x) = \sin x$.
-  Using the sum identity for sine, we have
-  \begin{align}
-    \sin(x+\dx) - \sin (x)
-    &= \sin x \cos \dx + \sin \dx \cos x - \sin x \notag\\
-    &= \cos x \sin \dx + (\sin x) (\cos \dx - 1).\label{eq:sine-difference}
-  \end{align}
-  The usual way to proceed from here is to recall the limits
-  \[ \lim_{h\to 0} \frac{\sin h}{h} = 1 \qquad\text{and}\qquad
-  \lim_{h\to 0} \frac{\cos h - 1}{h} = 0 \]
-  The second says exactly that the form $\cos \dx - 1$ is negligible.
-  The first one implies that
-  \[ \lim_{\dx\to 0} \frac{\sin \dx - \dx}{\dx} = 0 \]
-  and therefore the form $\sin \dx - \dx$ is negligible.
-  Multiplying by the ordinary functions $\cos x$ and $\sin x$ doesn't change the order, so we can write
-  \begin{align*}
-    \sin(x+\dx) - \sin (x)
-    &= \cos x \sin \dx + (\sin x) (\cos \dx - 1)\\
-    &= (\cos x )(\dx  + \sin \dx - \dx) + (\sin x) (\cos \dx - 1)\\
-    &= \cos x \,\dx + (\cos x) (\sin \dx - \dx) + (\sin x) (\cos \dx - 1)
-  \end{align*}
-  which is written as the linear form $\cos x \,\dx$ plus a negligible one.
-  Thus, $\dd(\sin x) = \cos x \,\dx$.
-
-  Another, perhaps more intuitive, way to proceed from \cref{eq:sine-difference} is to recall the power series expansions
-  \begin{align*}
-    \sin x &= x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots\\[2pt]
-    \cos x &= 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots
-  \end{align*}
-  Therefore, we have
-  \begin{align*}
-    \sin \dx - \dx &= - \frac{\dx^3}{3!} + \frac{\dx^5}{5!} - \cdots\\[2pt]
-    \cos \dx - 1 &= - \frac{\dx^2}{2!} + \frac{\dx^4}{4!} - \cdots.
-  \end{align*}
-  Using general facts about functions defined by power series, one can conclude from this that the first is third order and the second is second order; thus both are negligible.
-  (However, when calculating the power series expansions of sine and cosine in one-variable calculus, you probably used the fact that you already knew their derivatives, so this would technically be a circular argument.)
-\end{eg}
-
-A convenient way to work with differentials is to introduce the notion of ``approximation to first order''.
-
-\begin{defn}
-  We say that two differential forms $\omega$ and $\eta$ are \textbf{equal to first order} if their difference $\omega-\eta$ is negligible.
-  In this case we write
-  \[\omega\apx1 \eta.\]
-\end{defn}
-
-\begin{eg}
-  We have $x\,\dx + \dx^2 \apx1 x\,\dx - e^x \,\dx^2$, since their difference is
-  \[ (x\,\dx + \dx^2) - (x\,\dx - e^x\, \dx^2) = (1+e^x)\dx^2 \]
-  which is second order.
-\end{eg}
-
-The relation $\apx{1}$ behaves roughly like equality.
-For instance, we can add or subtract the same differential form from both sides.
-In particular, if $\omega$ is negligible, then $\omega\apx{1}0$, so we have $\eta + \omega \apx{1} \eta$ for any $\eta$.
-
-\begin{eg}
-  Since $4\,\dx^2$ is second order, we have $\sin(x) \,\dx + 4\, \dx^2 \apx{1} \sin(x)\,\dx$.
-\end{eg}
-
-We can also multiply both sides by any differential form that is bounded near $\dx=0$, since multiplying by such a form doesn't affect negligibility.
-
-\begin{eg}
-  Since $\sqrt{x}\, \dx^2$ is second order, we have
-  \[x\,\dx \apx{1} x\,\dx + \sqrt{x}\, \dx^2\]
-  Thus, we can multiply by $e^x$ to get
-  \[x e^x \,\dx \apx{1} x e^x\,\dx + \sqrt{x}\, e^x\, \dx^2,\]
-  or multiply by $\dx$ to get
-  \[x\,\dx^2 \apx{1} x\,\dx^2 + \sqrt{x} \,\dx^3. \]
-  The latter is fairly trivial, though since both sides are $\apx{1} 0$.
-\end{eg}
-
-Now we can equivalently state the definition of a differential: $\df$ is a linear differential form such that
-\[ f(x+\dx) \apx1 f(x) + \df, \]
-if such exists.
-Our previous calculations of differentials can all be written in this way.
-For instance,
-\begin{align*}
-  (x+\dx)^2 &= x^2 + 2 x\,\dx + \dx^2\\
-  &\apx1 x^2 + 2 x\,\dx
-\end{align*}
-since $\dx^2$ is second order.
-Therefore, $\dd(x^2) = 2x\,\dx$.
-
-% TODO: Tangent planes and linear approximations
-
-\section{Differential rules}
-\label{sec:differential-rules}
-
-We easily deduce all the usual derivative rules, written in terms of differentials.
-For instance, given functions $f$ and $g$, consider their sum $f+g$.
-\begin{align*}
-  f(x+\dx) + g(x+\dx)
-  &\apx1 f(x) + \df + g(x) + \dg\\
-  &= \big[f(x) + g(x)\big] + \big[ \df + \df \big]
-\end{align*}
-Thus, we have
-\[ \dd(f+g) = \df + \dg. \]
-
-Similarly, for the product rule, we compute
-\begin{align*}
-  f(x+\dx) \, g(x+\dx)
-  &\apx1 \big(f(x)+\df\big)\big(g(x) + \dg \big)\\
-  &= f(x) g(x) + f(x) \,\dg + g(x) \,\df + \df\,\dg\\
-  &\apx1 f(x) g(x) + f(x) \,\dg + g(x) \,\df
-\end{align*}
-since $\df\,\dg$ is a product of two first-order forms, hence second order.
-Thus,
-\[ \dd(f\,g) = f\,\dg + g\,\df.\]
-
-Importantly, these rules, stated in exactly the same way, apply to functions of more than one variable.
-\begin{eg}\label{eg:twovar-differential}
-  If $f(x,y) = x^2y + xy^2$, then we can use the sum and product rules to obtain
-  \begin{align*}
-    \dd(x^2y + xy^2) &= \dd(x^2y) + \dd(xy^2)\\
-    &= x^2\,\dy + y \,\dd(x^2) + x \,\dd(y^2) + y^2\,\dx\\
-    &= x^2\,\dy + y \,(2x\,\dx) + x\, (2y\,\dy) + y^2\,\dx\\
-    &= (2xy + y^2)\,\dx + (x^2+2xy)\,\dy
-  \end{align*}
-\end{eg}
-
-Finally, the chain rule for differentials is easy to \emph{use}, but tricky to \emph{state}, because the notation makes it look like a triviality.
-Suppose that we have a function $f$ of two variables $u$ and $v$, and that $u$ and $v$ are each themselves functions of two other variables $x$ and $y$.
-Then the statement of the chain rule is that if we calculate $\df$ treating $u$ and $v$ as its input variables (obtaining a linear differential form involving $\du$ and $\dv$), and likewise we calculate the differentials $\du$ and $\dv$ treating $x$ and $y$ as their input variables (obtaining linear differential forms involving $\dx$ and $\dy$), then substitute the latter into the former, as well as the values of $u$ and $v$ in terms of $x$ and $y$, we obtain the same expression for $\df$ in terms of $\dx$ and $\dy$ that we would have if we first substituted the functions $u$ and $v$ and then took the differential treating $x$ and $y$ as the input variables.
-
-If you found that totally incomprehensible, you're in good company; I barely understood it as I was writing it.
-It is much better explained by an example.
-
-\begin{eg}
-  Let $f(u,v) = u v + 3u$, while $u(x,y) = x-5y$ and $v(x,y) = 4y-x$.
-  Then
-  \begin{align*}
-    \df &= \dd(u v) + \dd(3u)\\
-    &= v \,\du + u\,\dv + 3 \,\du\\
-    &= (v+3)\,\du + u\,\dv
-  \end{align*}
-  and
-  \begin{align*}
-    \du &= \dx - 5\, \dy\\
-    \dv &= 4\,\dy - \dx
-  \end{align*}
-  Therefore,
-  \begin{align*}
-    \df &= (v+3)\,\du + u\,\dv\\
-    &= (4y-x+3)\,(\dx - 5 \dy) + (x-5y) (4\,\dy - \dx) \\
-    &= (9y-2x+3)\,\dx + (9x - 40y - 15)\,\dy.
-  \end{align*}
-  On the other hand, if we substituted first, we would have
-  \begin{align*}
-    f(u(x,y),v(x,y)) &= (x-5y)(4y-x) + 3(x-5y)\\
-    &= 4xy - x^2 - 20y^2 + 5xy + 3x - 15 y\\
-    &= 9xy - x^2 - 20y^2 + 3x - 15 y
-  \end{align*}
-  and therefore
-  \begin{align*}
-    \df &= 9x\, \dy + 9y\, \dx - 2 x\,\dx - 40 y\,\dy + 3\,\dx - 15\,\dy\\
-    &= (9y - 2x +3)\,\dx + (9x - 40y - 15)\,\dy
-  \end{align*}
-  which is the same result.
-\end{eg}
-
-Thus, the chain rule for differentials basically says that differentials obey the usual rules of algebra: if a differential $\du$ is equal to some other differential form, then we can substitute the latter for the former.
-It's important to note that even though it looks obvious, this \emph{is} a nontrivial \emph{theorem} that requires proof, although we will not prove it.
-\begin{notextbook}(It might be proven in your textbook.)\end{notextbook}
-
-When expressed in terms of differentials in this way, the chain rule is also known as \emph{Cauchy's invariant rule}.
-Of course, it is mainly useful in cases where we are given the result of substitution, but where it is not obvious how to find the differential until we decompose it.
-
-\begin{eg}
-  Consider the function $f(x,y) = \sin (xy)$.
-  We can find the differential by letting $u=xy$; then we have $f = \sin(u)$, and hence
-  \begin{align*}
-    \df &= \cos(u)\,\du\\
-    \du &= x\,\dy + y\,\dx
-  \end{align*}
-  and therefore
-  \begin{align*}
-    \df &= \cos(u)\,\du \\
-    &= \cos(xy) (x\,\dy + y\,\dx)\\
-    &= y\cos(xy)\,\dx + x\cos(xy)\,\dy
-  \end{align*}
-  Once we are more familiar with the operation of the chain rule, this calculation can be done without naming the variable $u$.
-  We simply remember that in the rule for the derivative of the sine function, $\dd(\sin(x)) = \cos(x) \, \dx$, the variable $x$ can be replaced by \emph{any expression}, as long as we also remember to replace $\dx$ by the differential of \emph{that expression}.
-  \begin{align*}
-    \df &= \dd(\sin(xy))\\
-    &= \cos(xy) \, \dd(xy)\\
-    &= \cos(xy) (x\,\dy + y\,\dx)\\
-    &= y\cos(xy)\,\dx + x\cos(xy)\,\dy.
-  \end{align*}
-\end{eg}
-
-A particularly important example of the chain rule is translating between different coordinate systems.
-Recall that in addition to the usual ``rectangular'' or ``Cartesian'' coordinates $x$ and $y$ on the plane, we can use \emph{polar coordinates} $r$ and $\theta$, which are related by the equations
-\begin{alignat*}{2}
-  x &= r \cos \theta &\qquad r &= \sqrt{x^2+y^2}\\
-  y &= r \sin\theta &\qquad \tan \theta &= y/x
-\end{alignat*}
-(It would not be correct to write ``$\theta = \arctan(y/x)$'', since $\arctan$ only takes values between $-\pi/2$ and $\pi/2$, whereas $\theta$ usually ranges from $0$ to $2\pi$.)
-Differentiating these equations, we obtain corresponding equations relating the differentials of these variables.
-\begin{align}
-  \dx &= \cos \theta \,\dr - r \sin\theta \,\dtheta \label{eq:polar-dx} \\
-  \dy &= \sin\theta \,\dr + r \cos\theta\,\dtheta \label{eq:polar-dy}\\
-  \dr &= \frac{1}{2\sqrt{x^2+y^2}}(2x\,\dx + 2y\,\dy) \notag\\
-  &= \frac{x}{\sqrt{x^2+y^2}}\,\dx + \frac{y}{\sqrt{x^2+y^2}}\,\dy
-  \qquad\left(= \frac{x}{r} \,\dx + \frac{y}{r}\,\dy\right) \notag\\
-  \frac{1}{(\cos \theta)^2} \,\dtheta &= \frac{1}{x}\,\dy - \frac{y}{x^2}\,\dx \notag\\
-  \dtheta &= (\cos \theta)^2 \left( \frac{r}{r^2\cos\theta}\,\dy - \frac{y}{r^2 (\cos\theta)^2}\,\dx\right) \notag\\
-  &= \frac{x}{r^2} \,\dy - \frac{y}{r^2} \,\dx \notag\\
-  &= \frac{x}{x^2+y^2} \,\dy - \frac{y}{x^2+y^2} \,\dx \notag
-\end{align}
-(We could also obtain the same equations for $\dr$ and $\dtheta$ by solving for them in the first two equations.)
-It follows that if $f$ is written as a function of $x$ and $y$, we can find its differential with respect to $r$ and $\theta$ by substituting these relations into its differential with respect to $x$ and $y$, and vice versa.
-
-\begin{eg}
-  Suppose $f(x,y) = e^{x^2+y^2}$.
-  Then we have
-  \begin{align*}
-    \df &= e^{x^2+y^2} (2x \,\dx + 2y\,\dy)\\
-    &= 2x e^{x^2+y^2} \,\dx + 2y e^{x^2+y^2} \,\dy\\
-    &= 2 r\cos\theta e^{r^2} \, (\cos \theta \,\dr - r \sin\theta \,\dtheta) + 2r\sin\theta e^{r^2} (\sin\theta \,\dr + r \cos\theta\,\dtheta)\\
-    &= 2r e^{r^2} ((\cos\theta)^2 + (\sin\theta)^2)\,\dr + 2r^2 e^{r^2}(\sin\theta\cos\theta - \cos\theta\sin\theta) \dtheta\\
-    &= 2r e^{r^2}\,\dr.
-  \end{align*}
-  which is the same result that we could calculate directly by writing $f = e^{r^2}$ and thus
-  \begin{align*}
-    \df &= e^{r^2} \, (2r\,\dr).
-  \end{align*}
-\end{eg}
-
-Similarly, in three-dimensional space, in addition to the rectangular coordinates $x$, $y$, and $z$, we have both \emph{cylindrical} coordinates $r$, $\theta$, and $z$, and \emph{spherical} coordinates $\rho$, $\theta$, and $\phi$.
-Cylindrical coordinates are related to rectangular ones in three dimensions in the same way that polar coordinates are related to rectangular ones in two dimensions, with $z$ coming along untouched for the ride.
-For spherical coordinates we have
-\begin{align*}
-  x &= \rho \cos\theta \sin\phi\\
-  y &= \rho \sin\theta \sin\phi\\
-  z &= \rho\cos\phi
-\end{align*}
-and hence
-\begin{align*}
-  \dx &= \cos\theta \sin\phi \,\drho - \rho\sin\theta\sin\phi \,\dtheta + \rho\cos\theta\cos\phi \,\dphi\\
-  \dy &= \sin\theta \sin\phi\,\drho + \rho\cos\theta\sin\phi \,\dtheta + \rho\sin\theta\cos\phi \,\dphi\\
-  \dz &= \cos\phi\,\drho - \rho\sin\phi\,\dphi
-\end{align*}
-We leave it to the reader to write out the reverse expressions for spherical coordinates in terms of rectangular ones.
-
-
-\section{Derivatives}
-\label{sec:derivatives}
-
-We can now define the \emph{derivative} in terms of the \emph{differential}.
-Note that in one dimension, a linear differential form must be of the form
-\[ g(x) \,\dx \]
-for some function $g$.
-In particular, if $f$ is a differentiable function of one variable $x$, then since its differential $\df$ is by definition a \emph{linear} differential form, we must have $\df = g(x) \, \dx$ for some function $g$.
-We call the function $g$ the \emph{derivative} of $f$ and denote it by $f'$.
-In other words, we have
-\[\df = f'(x)\,\dx\]
-(which is \cref{eq:onevariable-differential}), or
-\[ f'(x) = \frac{\df}{\dx}. \]
-This is a notation for the derivative that you have probably seen before.
-The point is that now, we have given separate meanings to $\dx$ and $\df$, and \emph{defined} $f'(x)$ to be their quotient.
-
-However, when there is more than one variable, this doesn't work any more!
-For instance, consider the function $f(x,y) = x^2y + xy^2$, whose differential we found in \cref{eg:twovar-differential} to be
-\[ \df = (2xy + y^2)\,\dx + (x^2+2xy)\,\dy.\]
-Since there are two variables $x$ and $y$, there are two differentials $\dx$ and $\dy$ appearing in this expression for $\df$.
-Thus, we can no longer simply divide $\df$ by $\dx$ to get a simple function.
-We could of course write
-\begin{align*}
-  \frac{\df}{\dx} &= (2xy + y^2) + (x^2+2xy)\frac{\dy}{\dx} \qquad\text{or}\\[2pt]
-  \frac{\df}{\dy} &= (2xy + y^2)\frac{\dx}{\dy} + (x^2+2xy)
-\end{align*}
-but in neither case is the right-hand side an ordinary function of $x$ and $y$.
-We conclude that\\
-\begin{center}
-  \fbox{\emph{It makes no sense to talk of ``the'' derivative of a function of more than one variable!}}
-\end{center}
-\vspace{5mm}
-However, we do have two ordinary functions that have about an equal claim to be called a ``derivative'' of our function $f$ above, namely $2xy + y^2$ and $x^2+2xy$.
-Neither one ``tells the whole story'' about the differential $\df$ on its own, but together they do.
-Thus, we refer to each of them as a \emph{partial derivative} of $f$.
-
-\begin{defn}
-  If $f$ is a differentiable function of two variables $x,y$, then its \textbf{partial derivatives} are the functions $\pder{f}{x}$ and $\pder{f}{y}$ such that
-  \[ \df = \pder{f}{x}\,\dx + \pder{f}{y}\,\dy\]
-  Similarly, if $f$ is a differentiable function of three variables $x,y,z$, then its partial derivatives $\pder{f}{x}$, $\pder{f}{y}$, and $\pder{f}{z}$ are the functions such that
-  \[ \df = \pder{f}{x}\,\dx + \pder{f}{y}\,\dy + \pder{f}{z}\,\dz.\]
-\end{defn}
-
-The symbol $\partial$ is a stylized ``$d$'' and is pronounced either ``del'' or ``partial''.
-Note that unlike for ordinary one-variable derivatives, the symbols $\partial f$ and $\partial x$ have \emph{no meaning} on their own.
-
-\begin{eg}
-  For the function $f(x,y) = x^2y + xy^2$ with $\df = (2xy + y^2)\,\dx + (x^2+2xy)\,\dy$, we have
-  \begin{align*}
-    \pder{f}{x} = 2xy + y^2 \qquad\text{and}\qquad
-    \pder{f}{y} = x^2+2xy.
-  \end{align*}
-\end{eg}
-
-There are many other notations for partial derivatives: $\pder{f}{x}$ may also be written as $f_x$, $\partial_x f$, $D_x f$, or $D_1 f$.
-
-Now recall that a differential form is, formally, a function on vectors, with $\dx$ and $\dy$ representing the components of the input vector.
-The partial derivatives (in two dimensions) can then equivalently be defined by \emph{evaluating} this function at the unit vectors $\vcc{1,0}$ and $\vcc{0,1}$:
-\begin{align*}
-  \df(\ptx,\vcc{1,0}) &= \pder{f}{x}\cdot 1 + \pder{f}{y}\cdot 0 = \pder{f}{x}\\[2pt]
-  \df(\ptx,\vcc{0,1}) &= \pder{f}{x}\cdot 0 + \pder{f}{y}\cdot 1 = \pder{f}{y}.
-\end{align*}
-(Similarly, in three dimensions we evaluate at the three unit vectors.)
-More generally, the result of evaluating $\df$ at $\vc{v}$ is called the \textbf{directional derivative} of $f$ along a vector $\vc{v}$.
-It has the following interpretation as a one-variable derivative.
-
-\begin{thm}
-  Given a point $\ptx$ and a vector $\vc{v}$ based at $\ptx$, define a function $g_{\vc{v}}$ by
-  \[ g_{\vc{v}}(t) = f(\ptx + t \vc{v}). \]
-  Then the directional derivative of $f$ along $\vc{v}$ is equal to the derivative of $g_{\vc{v}}$ at $0$:
-  \[ \df(\ptx,\vc{v}) = g_{\vc{v}}'(0). \]
-\end{thm}
-
-In particular, when $\vc{v}$ is $\vcc{1,0}$ or $\vcc{0,1}$, we obtain the following expressions for the partial derivatives (in two dimensions):
-\begin{alignat*}{2}
-  \pder{f}{x} &= g_{\vcc{1,0}}'(0) \qquad\text{where}\qquad & g_{\vcc{1,0}}(t) &= f(x+t,y)\\[2pt]
-  \pder{f}{x} &= g_{\vcc{0,1}}'(0) \qquad\text{where}\qquad & g_{\vcc{0,1}}(t) &= f(x,y+t).
-\end{alignat*}
-This means that $\pder{f}{x}$ can also be interpreted as \emph{the derivative of $f$ with respect to $x$, with $y$ treated as a constant}, and similarly for $\pder{f}{y}$.
-
-We may also speak of directional derivatives and partial derivatives of a function that is not known to be differentiable.
-In this case we \emph{define} them by the above formulas.
-If we expand out the definition of the derivative, this becomes:
-\begin{align}
-  \pder{f}{x} &= \lim_{t\to 0} \frac{f(x+t,y) - f(x,y)}{t}\\[2pt]
-  \pder{f}{x} &= \lim_{t\to 0} \frac{f(x,y+t) - f(x,y)}{t}.
-\end{align}
-\begin{notextbook}Your textbook should contain further discussion of partial derivatives and directional derivatives.\end{notextbook}%
-\begin{stewart}The textbook takes this approach in Chapter 11, defining partial derivatives first in section 11.3, and then the differential (or ``total differential'') in section 11.4.\end{stewart}
-
-One thing in particular that is worth noting is how the chain rule manifests itself in terms of partial derivatives.
-If $f$ is a function of $u$ and $v$, with $u$ and $v$ each functions of $x$ and $y$, then we have
-\begin{align*}
-  \df &= \pder{f}{u}\,\du + \pder{f}{v}\,\dv\\
-  &= \pder{f}{u}\,\left(\pder{u}{x}\,\dx + \pder{u}{y}\,\dy\right) + \pder{f}{v}\,\left(\pder{v}{x}\,\dx + \pder{v}{y}\,\dy\right)\\
-  &= \left(\pder{f}{u}\pder{u}{x}+ \pder{f}{v}\pder{v}{x}\right)\dx + \left(\pder{f}{u}\pder{u}{y}+ \pder{f}{v}\pder{v}{y}\right)\dy.
-\end{align*}
-Since we also have
-\[ \df = \pder{f}{x}\,\dx + \pder{f}{y}\,\dy \]
-it must be the case that
-\begin{equation}\label{eq:partial-chain-rule}
-  \pder{f}{x} = \pder{f}{u}\pder{u}{x}+ \pder{f}{v}\pder{v}{x}
-  \qquad\text{and}\qquad
-  \pder{f}{y} = \pder{f}{u}\pder{u}{y}+ \pder{f}{v}\pder{v}{y}.
-\end{equation}
-In other words, the chain rule for a partial derivative $\pder{f}{x}$ has one term for each intermediate function $u$ and $v$, each of which looks like the usual chain rule but with partial derivatives instead of ordinary ones.
-\begin{stewart}This is the only form of the multivariable chain rule that is discussed in the textbook (section 11.5).\end{stewart}
-
-For instance, note that \cref{eq:polar-dx,eq:polar-dy} yield the partial derivatives
-\begin{alignat*}{2}
-  \pder{x}{r} &= \cos\theta &\qquad
-  \pder{x}{\theta} &= -r\sin\theta\\[3pt]
-  \pder{y}{r} &= \sin\theta &\quad
-  \pder{y}{\theta} &= r\cos\theta.
-\end{alignat*}
-Thus, for any function $f$, we have
-\begin{align*}
-  \pder{f}{r} % &= \pder{f}{x}\pder{x}{r}+ \pder{f}{y}\pder{y}{r}\\
-  &= \pder{f}{x} \cos\theta + \pder{f}{y} \sin\theta\\[3pt]
-  \pder{f}{\theta} % &= \pder{f}{x}\pder{x}{\theta}+ \pder{f}{y}\pder{y}{\theta}\\
-  &= -\pder{f}{x} r\sin\theta + \pder{f}{y} r \cos \theta.
-\end{align*}
-In practice, is often easier to apply the chain rule by calculating the differentials and substituting, rather than remembering \cref{eq:partial-chain-rule}.
-
-
-\section{Differential forms versus vectors}
-\label{sec:forms-vs-vectors}
-
-Let $\vc{v}$ be a \emph{vector field}, i.e.\ a function assigning to each point $\ptx$ a vector $\vc{v}(\ptx)$ based at $\ptx$.
-Such a field is determined by one coordinate function for each dimension.
-For example, in three dimensions, we can write
-\[ \vc{v}(\ptx) = \vcc{f(\ptx),g(\ptx),h(\ptx)} \]
-for some functions $f$, $g$, and $h$ of three variables.
-
-Given such a vector field $\vc{v}$, there is a canonical linear differential form, defined by taking the dot product of $\vc{v}(\ptx)$ with $\dpx$:
-\[ \dotp{\vc{v}(\ptx)}{\dpx} = f(\ptx)\,\dx + g(\ptx)\,\dy + h(\ptx)\,\dz. \]
-Moreover, any \emph{linear} differential form arises in this way.
-For by definition, a form is linear if it can be written as $f(\ptx)\,\dx + g(\ptx)\,\dy + h(\ptx)\,\dz$; and this is equal to $\dotp{\vc{v}(\ptx)}{\dpx}$ if we define $\vc{v}(\ptx) = \vcc{f(\ptx),g(\ptx),h(\ptx)}$.
-If $\omega$ is a linear differential form, we call the corresponding vector field its \emph{transpose}.
-
-\begin{defn}
-  If $\omega(\ptx,\dpx) = f(\ptx)\,\dx + g(\ptx)\,\dy + h(\ptx)\,\dz$ is a linear differential form, we write $\tr{\omega}$ for its \textbf{transpose}, which is the vector field with the same components:
-  \[ \tr{\omega}(\ptx) = \vcc{f(\ptx), g(\ptx), h(\ptx)}. \]
-  The definition in two dimensions is analogous.
-\end{defn}
-
-Thus by definition we have
-\begin{equation}\label{eq:dot-transpose}
-  \omega = \dotp{\tr{\omega}}{\dpx}.
+  \int_a^b \df = f(b) - f(a).\label{eq:onevar-ftc}
 \end{equation}
 
-The transpose of the differential of a function has a special name: it's called the \textbf{gradient} of the function, and written $\grad f$.
-That is,
+There is one claim yet to be justified in one dimension: that we can integrate a differential 0-form over an oriented $0$-dimensional manifold.
+However, since a 0-form is just a function $f$, and $0$-dimensional manifolds are points, we may expect that this ``integral'' should be just $f(x)$.
+This is almost right, but for two caveats.
+
+Firstly, the word ``oriented'' is missing.
+An \emph{oriented} $0$-dimensional manifold is not just a point: it's a point together with a ``sign'', plus or minus.
+Thus, we define the \emph{integral} of a 0-form $f$ over such an ``oriented point'' to be $\pm f(x)$, with the $\pm$ sign coming from the orientation.
+(It's better not to call this ``the integral of a function'' since as we have seen, the ``integral of a function'' from one-variable calculus is actually the integral of a \emph{1-form}.)
+
+Secondly, a general $0$-manifold is not just an oriented point, but a finite collection of oriented points.
+The ``integral'' of a 0-form $f$ over such a collection should be the \emph{sum} of its integrals over the individual oriented points.
+
+In particular, the right-hand side of \cref{eq:onevar-ftc} is an integral of the 0-form $f$ over the oriented $0$-manifold with two points: $b$ oriented with $+$, and $a$ oriented with $-$.
+This 0-manifold is the \emph{boundary} of the interval $[a,b]$, which is the 1-manifold over which we integrate $\df$ on the left-hand side.
+Thus, the fundamental theorem of calculus relates \emph{the integral of a 0-form over the boundary of a 1-manifold} with \emph{the integral of its differential over the 1-manifold itself}.
+As we will see, this statement generalizes directly to higher dimensions.
+
+
+\section{Differential 1-Forms in Two Dimensions}
+\label{sec:1forms-in-2D}
+
+Now let's consider higher dimensions.
+In multivariable calculus you probably learned about \emph{line integrals} in two and three dimensions.
+You might in fact have learned how to integrate the exact things that we are calling differential 1-forms, perhaps without giving them that name.
+
+For instance, if $\curve$ is a parametrized curve in two dimensions, with parameter $t$ defined on the interval $[a,b]$, and $f(x,y)\,\dx + g(x,y)\,\dy$ is a 1-form, then its integral over $\curve$ is
+\[ \int_{\curve} \Big(f(x,y)\,\dx + g(x,y)\,\dy\Big) = \int_a^b \Big( f\big(x(t),y(t)\big)\, x'(t) + g\big(x(t),y(t)\big)\,y'(t)\Big) \,\dt \]
+Note that this formula can be obtained formally simply by substitutition of the functions $x(t)$ and $y(t)$, plus their differentials $\dx = x'(t)\,\dt$ and $\dy = y'(t)\,\dt$.
+
+You might also, or instead, have learned to line-integrate a vector field $\vc{F}(x,y)$ over $\curve$, perhaps written something like
+\[ \int_{\curve} \dotp{\vc{F}}{\dpx} \]
+However, this is just a special case of the preceding integral.
+If we write $\vc{F}(x,y)$ in components as $\vc{F}(x,y) = \vcc{f(x,y),g(x,y)}$, and let $\dpx$ denote the ``formal vector'' $(\dx,\dy)$, then the ``formal dot product'' $\dotp{\vc{F}}{\dpx}$ is just the 1-form $f(x,y)\,\dx + g(x,y)\,\dy$.
+
+(You probably also learned how to ``integrate with respect to arc length''.
+This is an integral of a more general sort of ``differential form'' than we will consider here.)
+
+Finally, you might also have learned about the differential of a two- or three-variable function, sometimes called its \emph{total differential}.
+In two dimensions this is
+\begin{equation}
+  \df = f_x \,\dx + f_y \,\dy\label{eq:differential-of-a-0form-in-2D}
+\end{equation}
+where $f_x$ and $f_y$ are the partial derivatives.
+Note that this is equivalently the dot product $\dotp{\grad{f}}{\dpx}$, where $\grad{f} = \vcc{f_x,f_y}$ is the \emph{gradient vector} of $f$.
+
+Now we can see that the \emph{fundamental theorem of calculus for line integrals} is
+\[ \int_{\curve} \df = f(\curvept(b)) - f(\curvept(a)) \]
+which has exactly the same form as the fundamental theorem of calculus for one-variable integrals.
+If we use the same conventions regarding 0-manifolds and integrals of 0-forms as we did in one dimension, then this theorem also relates the integral of a 0-form over the boundary of a 1-manifold with the integral of its differential over the 1-manifold itself.
+
+\section{Differential 2-Forms in Two Dimensions}
+\label{sec:2forms-in-2D}
+
+In two dimensions, however, we also have differential 2-forms, which can be integrated over 2-dimensional regions.
+In multivariable calculus, you learned how to integrate a two-variable function $f(x,y)$ over a region $\region$, and you may have denoted it by
+\begin{equation}
+  \int_\region f(x,y)\,\dA \qquad\text{or}\qquad \int_\region f(x,y)\,\dx\,\dy.\label{eq:abs2form-2D-integrals}
+\end{equation}
+We are concerned instead with an integral that is almost the same, which is denoted
+\begin{equation}
+  \int_\region f(x,y) \,\dx\wdg \dy.\label{eq:2form-2D-integral}
+\end{equation}
+This is the integral of a differential 2-form (namely $f(x,y) \,\dx\wdg \dy$) over a 2-manifold (namely $\region$).
+The slight difference in meaning between \cref{eq:abs2form-2D-integrals} and \cref{eq:2form-2D-integral} is that in the latter, $\region$ is an \emph{oriented} region, whereas in the former it is not.
+An \emph{orientation} of a region or surface consists of a consistent choice of a ``direction of rotation'' throughout it.
+Just as any interval in one dimension has a canonical orientation (from left to right), any region in two dimensions has a canonical orientation (counterclockwise).
+But we could consider instead choosing the opposite orientation, and this would reverse the sign of the integral \cref{eq:2form-2D-integral}.
+
+So what is the deal with this funny symbol $\wdg$?
+The short answer is that it's a way to multiply differential forms.
+In general, we can multiply a $p$-form by a $q$-form to get a $(p+q)$-form.
+We've already seen this when $p=0$: a 1-form like $f(x)\,\dx$ is already written as the product of the 0-form $f(x)$ with the 1-form $\dx$.
+
+Now we are instead multiplying the 1-forms $\dx$ and $\dy$ to get a 2-form.
+You might think we should write the result simply as $\dx\,\dy$, but we stick a $\wdg$ symbol in between to remind us that this ``multiplication'' is not exactly like ordinary multiplication.
+The main difference is that the generating symbols $\dx$ and $\dy$ do not commute; they \emph{anticommute}:
+\begin{equation}
+  \dy\wdg\dx = - \dx\wdg \dy.\label{eq:wedge-anticommute}
+\end{equation}
+A good way to think about this is with reference to orientations.
+The 2-form $\dx\wdg\dy$ produces positive results when integrated over ``canonically'' (i.e. counterclockwisely) oriented regions, in which the direction of rotation is \emph{from} the positive $x$-axis \emph{towards} the positive $y$-axis.
+Similarly, $\dy\wdg\dx$ produces positive results when integrated over oriented regions in which the direction of rotation is \emph{from} the positive $y$-axis \emph{towards} the positive $x$-axis --- but this is the opposite orientation, so we must have \cref{eq:wedge-anticommute}.
+
+We also have
+\[ \dx \wdg \dx = 0 \qquad\text{and}\qquad \dy\wdg \dy = 0. \]
+This is analogous to \cref{eq:wedge-anticommute}; the direct analogy would be $\dx\wdg\dx = - \dx\wdg\dx$, but of course this implies $\dx\wdg\dx=0$.
+
+Finally, according to our general claims, there should be a way to ``differentiate'' a 1-form and get a 2-form.
+To define this, note that a 1-form such as $f(x)\,\dx$ is already written as the product of a 0-form and a 1-form.
+Now we'd like this kind of ``differentiation'' to satisfy a product rule, with respect to the $\wdg$ product of differential forms; thus the differential of $f(x)\,\dx$ should be
+\[ \dd(f(x)\,\dx) =  \df \wdg\dx + f(x)\, \dd(\dx). \]
+Actually, since we are using the $\wdg$ product in the product rule, it's better to include it as a reminder in the notation for this differential as well.
+Thus we will write instead
+\[ \extd(f(x)\,\dx) =  \df \wdg\dx + f(x)\, \extd\dx. \]
+Now we already know how to find the differential of a 0-form (\cref{eq:differential-of-a-0form-in-2D}). so all we need is to define is $\extd\dx$.
+It turns out that we should define $\extd\dx=0$; a mnemonic for this is that just as $\dx\wdg \dx = 0$, so also ``$\extd\dd = 0$''.
+
+Now we can compute the differential of a general 1-form $f(x,y)\,\dx + g(x,y)\,\dy$ in two dimensions:
 \begin{align*}
-  \grad f &= \ptr{\df}\\
-  &= \lrvcc{\pder{f}{x},\,\pder{f}{y},\,\pder{f}{z}} \qquad\text{(in three dimensions)}
+  \extd(f\,\dx + g\,\dy)
+  &= \df \wdg \dx + \dg \wdg\dy\\
+  &= (f_x\, \dx + f_y\, \dy) \wdg \dx + (g_x \,\dx+g_y\,\dy)\wdg\dy \\
+  &= f_x\, \dx\wdg\dx + f_y\, \dy\wdg \dx + g_x \,\dx \wdg\dy + g_y\,\dy\wdg\dy \\
+  &= (g_x - f_y)\, \dx\wdg\dy.
 \end{align*}
-For the gradient, \cref{eq:dot-transpose} becomes
-\[ \df = \dotp{\grad f}{\dpx}. \]
-This explains why in vector calculus one often sees dot products with the gradient.
-What is really going on is just evaluating the differential.
 
-Part of the importance of the gradient is that it points in the direction of ``steepest increase'' of the function.
-More precisely, the directional derivative $\df(\ptx,\vc{v})$ is greatest (for $\vc{v}$ of unit length) when $\vc{v}$ points in the direction of $\grad f(\ptx)$.
-\begin{notextbook}More about the gradient can probably be found in your textbook.\end{notextbook}%
-\begin{stewart}The textbook discusses gradients in section 11.6.\end{stewart}
+Now if there is to be a version of the fundamental theorem of calculus for integrals of 2-forms, it should say that the integral of a 1-form over the boundary of a 2-manifold is equal to the integral of its differential over the 2-manifold itself.
+Thus, if $\region$ is a region with boundary $\bdry\region$, we should have
+\[ \int_{\region} (g_x - f_y)\, \dx\wdg\dy = \int_{\bdry\region} f\,\dx + g\,\dy. \]
+This is true: it is exactly \emph{Green's theorem} from vector calculus.
 
+\section{Differential Forms in Three Dimensions}
+\label{sec:forms-in-3D}
+
+All the same ideas apply fairly directly to three dimensions.
+This is not important for complex analysis, but I will sketch the ideas briefly, so you can get a sense for how differential forms unify all the theorems of vector calculus.
+
+We have differential 0-forms (functions), which can be ``integrated'' over points and more general oriented 0-manifolds.
+We have differential 1-forms such as $f\,\dx + g\,\dy + h\,\dz$, which can be line-integrated over oriented curves.
+Every 0-form $f$ has a differential $\df = f_x \,\dx + f_y\,\dy + f_z\,\dz$, and we have a fundamental theorem of calculus for its line integral.
+
+Now we have more general differential 2-forms such as $A\,\dx\wdg\dy + B\,\dy\wdg\dz + C \,\dz\wdg\dx$.
+Any two 1-forms have a $\wdg$ product, which satisfies identities such as $\dy\wdg\dz = -\dz\wdg\dy$ and $\dy\wdg\dy=0$, and so on.
+Every 1-form has a differential, computed as
+\begin{align*}
+  \extd(f\,\dx + g\,\dy + h\,\dz)
+  &= \df\wdg\dx + \dg\wdg\dy + \dh\wdg\dz\\
+  &= (f_x \,\dx + f_y \,\dy + f_z\,\dz)\wdg\dx + (g_x \,\dx + g_y \,\dy + g_z\,\dz)\wdg\dy\\
+  &\qquad + (h_x \,\dx + h_y \,\dy + h_z\,\dz)\wdg\dz\\
+  &= f_y \,\dy\wdg\dx + f_z\,\dz\wdg\dx + g_x \,\dx\wdg\dy + g_z\,\dz \wdg\dy \\
+  &\qquad + h_x\,\dx\wdg\dz + h_y \,\dy\wdg\dz\\
+  &= (g_x - f_y)\,\dx\wdg\dy + (h_y - g_z) \,\dy\wdg\dz + (f_z - h_x)\,\dz\wdg\dx.
+\end{align*}
+We can integrate a 2-form over an oriented surface $\surf$, and Green's theorem generalizes to say that the integral of a 1-form over the boundary of such a surface is equal to the integral of its differential over the surface itself:
+\begin{equation}
+  \int_{\surf} \extd(f\,\dx + g\,\dy + h\,\dz) = \int_{\bdry\surf} f\,\dx + g\,\dy + h\,\dz\label{eq:stokes-theorem}
+\end{equation}
+
+We also have 3-forms such as $f(x,y,z)\, \dx\wdg\dy\wdg\dz$.
+Every 2-form has a differential, computed as
+\begin{align*}
+  \extd(A\,\dx\wdg\dy + & B\,\dy\wdg\dz + C \,\dz\wdg\dx)\\
+  &= \dd A \wdg \dx \wdg \dy + \dd B \wdg \dy \wdg \dz + \dd C \wdg \dz \wdg \dx\\
+  &= A_z\, \dz \wdg \dx \wdg \dy + B_x \,\dx \wdg \dy \wdg \dz + C_y \,\dy\wdg \dz \wdg \dx\\
+  &= (A_z + B_x + C_y)\, \dx\wdg\dy\wdg \dz
+\end{align*}
+(since $\dz \wdg \dx \wdg \dy = -\dx \wdg \dz \wdg \dy = \dx \wdg \dy \wdg \dz$ and similarly).
+
+Finally, a 3-form can be integrated over any oriented 3-dimensional region $\region$, giving essentially the ordinary three-dimensional integral that you learned in multivariable calculus (except for orientations).
+And we have the corresponding fundamental theorem, relating the integral of a 2-form over the boundary of a region to the integral of its differential over the region itself:
+\begin{equation}
+  \int_{\region} (A_z + B_x + C_y)\, \dx\wdg\dy\wdg \dz = \int_{\bdry\region} A\,\dx\wdg\dy + B\,\dy\wdg\dz + C \,\dz\wdg\dx.\label{eq:divergence-theorem}
+\end{equation}
+
+These formulas are related to three-dimensional vector calculus as follows.
+As was the case in two dimensions, every vector field $\vc{F}=\vcc{f,g,h}$ gives rise to a 1-form $\dotp{\vc{F}}{\dpx} = f\,\dx + g\,\dy + h\,\dz$.
+Conversely, any 1-form can be reinterpreted as a vector field, and the differential of a 0-form corresponds to the gradient of a function.
+In fact, this is true in any number of dimensions.
+
+However, in three dimensions, a vector field can also be interpreted as a \emph{2-form}, namely $f\,\dy\wdg\dz + g \,\dz\wdg\dx + h \,\dx\wdg\dy$: each component is associated to the $\wdg$ of all the $\dd?$s for the \emph{other} variables.
+The differential of this 2-form is the 3-form $(\dvg{\vc{F}})\,\dx\wdg\dy\wdg\dz$, where $\dvg{\vc{F}}$ is the \emph{divergence} from vector calculus.
+Thus, \cref{eq:divergence-theorem} is just the \emph{divergence theorem} from vector calculus.
+
+In fact, in any number $n$ of dimensions greater than $2$, we can similarly interpret a vector field as an $(n-1)$ form, and we have the divergence theorem.
+The special thing about $n=3$ is that ``$3-1 = 1+1$''.
+This means two things:
+\begin{enumerate}
+\item If we have two vector fields $\vc{F}$ and $\vc{G}$, we can interpret them as 1-forms, take their $\wdg$ product, then \emph{reinterpret} the resulting 2-form as a vector field.
+  The result is the \emph{cross product} $\crossp{\vc{F}}{\vc{G}}$ of vectors, which only makes sense in three dimensions.
+\item If we have a vector field $\vc{F}$, we can interpret it as a 1-form, take its differential $\extd(\dotp{\vc{F}}{\dpx})$, then \emph{reinterpret} the resulting 2-form as a vector field.
+  The result is the \emph{curl} of the vector field, $\curl{\vc{F}}$, which also only makes sense in three dimensions.
+\end{enumerate}
+Thus, we see finally that \cref{eq:stokes-theorem} is just \emph{Stokes' theorem} from vector calculus.
+
+The most general ``fundamental theorem of calculus for differential forms'' is that if $\omega$ is a differential $p$-form in $n$ dimensions, and $\surf$ is an oriented $p$-dimensional manifold, then
+\[ \int_{\surf} \dd\omega = \int_{\bdry\surf} \omega. \]
+This is usually called the \emph{(generalized) Stokes' theorem}, and it includes the usual fundamental theorem of calculus as well as Green's theorem, the classical Stokes' theorem, and the divergence theorem.
 
 \end{document}
