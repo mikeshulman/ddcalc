@@ -73,9 +73,12 @@
 %\newcommand{\wedge}{\wedge}
 
 %% Partial derivatives
-\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\pdertwo}[2]{\frac{\partial^2 #1}{\partial #2^2}}
-\newcommand{\pdermixed}[3]{\frac{\partial^2 #1}{\partial #2 \,\partial #3}}
+% \newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
+% \newcommand{\pdertwo}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+% \newcommand{\pdermixed}[3]{\frac{\partial^2 #1}{\partial #2 \,\partial #3}}
+\newcommand{\pder}[2]{{#1}_{#2}}
+\newcommand{\pdertwo}[2]{{#1}_{{#2}{#2}}}
+\newcommand{\pdermixed}[3]{{#1}_{{#2}{#3}}}
 
 %% Transposing vectors into forms
 \newcommand{\tr}[1]{{#1}^\top}

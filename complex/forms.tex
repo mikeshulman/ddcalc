@@ -129,10 +129,10 @@ This is an integral of a more general sort of ``differential form'' than we will
 Finally, you might also have learned about the differential of a two- or three-variable function, sometimes called its \emph{total differential}.
 In two dimensions this is
 \begin{equation}
-  \df = f_x \,\dx + f_y \,\dy\label{eq:differential-of-a-0form-in-2D}
+  \df = \pder f x \,\dx + \pder f y \,\dy\label{eq:differential-of-a-0form-in-2D}
 \end{equation}
-where $f_x$ and $f_y$ are the partial derivatives.
-Note that this is equivalently the dot product $\dotp{\grad{f}}{\dpx}$, where $\grad{f} = \vcc{f_x,f_y}$ is the \emph{gradient vector} of $f$.
+where $\pder f x$ and $\pder f y$ are the partial derivatives.
+Note that this is equivalently the dot product $\dotp{\grad{f}}{\dpx}$, where $\grad{f} = \vcc{\pder f x,\pder f y}$ is the \emph{gradient vector} of $f$.
 
 Now we can see that the \emph{fundamental theorem of calculus for line integrals} is
 \[ \int_{\curve} \df = f(\curvept(b)) - f(\curvept(a)) \]
@@ -190,14 +190,14 @@ Now we can compute the differential of a general 1-form $f(x,y)\,\dx + g(x,y)\,\
 \begin{align*}
   \extd(f\,\dx + g\,\dy)
   &= \df \wedge \dx + \dg \wedge\dy\\
-  &= (f_x\, \dx + f_y\, \dy) \wedge \dx + (g_x \,\dx+g_y\,\dy)\wedge\dy \\
-  &= f_x\, \dx\wedge\dx + f_y\, \dy\wedge \dx + g_x \,\dx \wedge\dy + g_y\,\dy\wedge\dy \\
-  &= (g_x - f_y)\, \dx\wedge\dy.
+  &= (\pder f x\, \dx + \pder f y\, \dy) \wedge \dx + (\pder g x \,\dx+\pder g y\,\dy)\wedge\dy \\
+  &= \pder f x\, \dx\wedge\dx + \pder f y\, \dy\wedge \dx + \pder g x \,\dx \wedge\dy + \pder g y\,\dy\wedge\dy \\
+  &= (\pder g x - \pder f y)\, \dx\wedge\dy.
 \end{align*}
 
 Now if there is to be a version of the fundamental theorem of calculus for integrals of 2-forms, it should say that the integral of a 1-form over the boundary of a 2-manifold is equal to the integral of its differential over the 2-manifold itself.
 Thus, if $\region$ is a region with boundary $\bdry\region$, we should have
-\[ \int_{\region} (g_x - f_y)\, \dx\wedge\dy = \int_{\bdry\region} f\,\dx + g\,\dy. \]
+\[ \int_{\region} (\pder g x - \pder f y)\, \dx\wedge\dy = \int_{\bdry\region} f\,\dx + g\,\dy. \]
 This is true: it is exactly \emph{Green's theorem} from vector calculus.
 
 \section{Differential Forms in Three Dimensions}
@@ -208,7 +208,7 @@ This is not important for complex analysis, but I will sketch the ideas briefly,
 
 We have differential 0-forms (functions), which can be ``integrated'' over points and more general oriented 0-manifolds.
 We have differential 1-forms such as $f\,\dx + g\,\dy + h\,\dz$, which can be line-integrated over oriented curves.
-Every 0-form $f$ has a differential $\df = f_x \,\dx + f_y\,\dy + f_z\,\dz$, and we have a fundamental theorem of calculus for its line integral.
+Every 0-form $f$ has a differential $\df = \pder f x \,\dx + \pder f y\,\dy + \pder f z\,\dz$, and we have a fundamental theorem of calculus for its line integral.
 
 Now we have more general differential 2-forms such as $A\,\dx\wedge\dy + B\,\dy\wedge\dz + C \,\dz\wedge\dx$.
 Any two 1-forms have a $\wedge$ product, which satisfies identities such as $\dy\wedge\dz = -\dz\wedge\dy$ and $\dy\wedge\dy=0$, and so on.
@@ -216,11 +216,11 @@ Every 1-form has a differential, computed as
 \begin{align*}
   \extd(f\,\dx + g\,\dy + h\,\dz)
   &= \df\wedge\dx + \dg\wedge\dy + \dh\wedge\dz\\
-  &= (f_x \,\dx + f_y \,\dy + f_z\,\dz)\wedge\dx + (g_x \,\dx + g_y \,\dy + g_z\,\dz)\wedge\dy\\
-  &\qquad + (h_x \,\dx + h_y \,\dy + h_z\,\dz)\wedge\dz\\
-  &= f_y \,\dy\wedge\dx + f_z\,\dz\wedge\dx + g_x \,\dx\wedge\dy + g_z\,\dz \wedge\dy \\
-  &\qquad + h_x\,\dx\wedge\dz + h_y \,\dy\wedge\dz\\
-  &= (g_x - f_y)\,\dx\wedge\dy + (h_y - g_z) \,\dy\wedge\dz + (f_z - h_x)\,\dz\wedge\dx.
+  &= (\pder f x \,\dx + \pder f y \,\dy + \pder f z\,\dz)\wedge\dx + (\pder g x \,\dx + \pder g y \,\dy + \pder g z\,\dz)\wedge\dy\\
+  &\qquad + (\pder h x \,\dx + \pder h y \,\dy + \pder h z\,\dz)\wedge\dz\\
+  &= \pder f y \,\dy\wedge\dx + \pder f z\,\dz\wedge\dx + \pder g x \,\dx\wedge\dy + \pder g z\,\dz \wedge\dy \\
+  &\qquad + \pder h x\,\dx\wedge\dz + \pder h y \,\dy\wedge\dz\\
+  &= (\pder g x - \pder f y)\,\dx\wedge\dy + (\pder h y - \pder g z) \,\dy\wedge\dz + (\pder f z - \pder h x)\,\dz\wedge\dx.
 \end{align*}
 We can integrate a 2-form over an oriented surface $\surf$, and Green's theorem generalizes to say that the integral of a 1-form over the boundary of such a surface is equal to the integral of its differential over the surface itself:
 \begin{equation}
@@ -232,15 +232,15 @@ Every 2-form has a differential, computed as
 \begin{align*}
   \extd(A\,\dx\wedge\dy + & B\,\dy\wedge\dz + C \,\dz\wedge\dx)\\
   &= \dd A \wedge \dx \wedge \dy + \dd B \wedge \dy \wedge \dz + \dd C \wedge \dz \wedge \dx\\
-  &= A_z\, \dz \wedge \dx \wedge \dy + B_x \,\dx \wedge \dy \wedge \dz + C_y \,\dy\wedge \dz \wedge \dx\\
-  &= (A_z + B_x + C_y)\, \dx\wedge\dy\wedge \dz
+  &= \pder A z\, \dz \wedge \dx \wedge \dy + \pder B x \,\dx \wedge \dy \wedge \dz + \pder C y \,\dy\wedge \dz \wedge \dx\\
+  &= (\pder A z + \pder B x + \pder C y)\, \dx\wedge\dy\wedge \dz
 \end{align*}
 (since $\dz \wedge \dx \wedge \dy = -\dx \wedge \dz \wedge \dy = \dx \wedge \dy \wedge \dz$ and similarly).
 
 Finally, a 3-form can be integrated over any oriented 3-dimensional region $\region$, giving essentially the ordinary three-dimensional integral that you learned in multivariable calculus (except for orientations).
 And we have the corresponding fundamental theorem, relating the integral of a 2-form over the boundary of a region to the integral of its differential over the region itself:
 \begin{equation}
-  \int_{\region} (A_z + B_x + C_y)\, \dx\wedge\dy\wedge \dz = \int_{\bdry\region} A\,\dx\wedge\dy + B\,\dy\wedge\dz + C \,\dz\wedge\dx.\label{eq:divergence-theorem}
+  \int_{\region} (\pder A z + \pder B x + \pder C y)\, \dx\wedge\dy\wedge \dz = \int_{\bdry\region} A\,\dx\wedge\dy + B\,\dy\wedge\dz + C \,\dz\wedge\dx.\label{eq:divergence-theorem}
 \end{equation}
 
 These formulas are related to three-dimensional vector calculus as follows.
