@@ -67,12 +67,13 @@ Then we have
 and therefore
 \begin{align*}
   \pder f z &= \half (\pder u x + \pder v y) + \half i\, (\pder v x - \pder u y)\\
-  \pder f \zbar &= \half (\pder u x - \pder v y) + \half i\, (\pder v x + \pder u y)\\
+  \pder f \zbar &= \half (\pder u x - \pder v y) + \half i\, (\pder v x + \pder u y)
 \end{align*}
 
-Now recall that the \emph{Cauchy--Riemann equations} for complex-differentiability of $f$ say that
+Now recall the \emph{Cauchy--Riemann equations} say that if $f$ is complex-differentiable, then
 \[ \pder f y = i\,\pder f x \qquad\text{or equivalently}\qquad \pder f x = - i\,\pder f y,\]
-or in components
+and conversely as long as $\pder f x$ and $\pder f y$ are continuous.
+In components, this equation becomes
 \[ \pder u x = \pder v y \qquad\text{and}\qquad \pder u y = - \pder v x. \]
 In terms of the notations introduced above, these equations say exactly that
 \[ \pder f \zbar = 0. \]
@@ -88,7 +89,9 @@ which is what we would expect to see by treating $z = x+i\,y$ as a \emph{single 
 \section{Complex 1-forms}
 \label{sec:complex-1-forms}
 
-As shown above, a general complex-valued 1-form can be written as $f(x,y) \,\dz + g(x,y)\,\dzbar$ for some complex-valued functions $f$ and $g$.
+As shown above, a general complex-valued 1-form can be written as
+\[f(x,y) \,\dz + g(x,y)\,\dzbar\]
+for some complex-valued functions $f$ and $g$.
 However, the above discussion of differentials, and the general philosophy of treating $z=x+i\,y$ as a single complex variable, suggest that we should really restrict our attention to 1-forms of the form
 \[ f(z)\,\dz \]
 for which $f$ is complex differentiable, i.e. $\pder f \zbar = 0$.
