@@ -244,53 +244,81 @@ The important thing when drawing a graph is to convey all the ``important'' info
 
 Analogously, we would graph $x\,\dx^2$ as follows, drawing $f(\dx) = \dx^2$ with origin at $(1,0)$, and $f(\dx)=2\,\dx^2$ with origin at $(2,0)$, etc.
 \begin{center}
-  \begin{tikzpicture}
-    \draw[<->] (-5,0) -- (5,0);
-    \draw[<->] (0,-2) -- (0,2);
-    \draw (2,.2) -- (2,-.2) node[below right] {$1$};
-    \draw (4,.2) -- (4,-.2) node[below right] {$2$};
-    \draw (-2,-.2) -- (-2,.2) node[above] {$-1$};
-    \draw (-4,-.2) -- (-4,.2) node[above] {$-2$};
-    \begin{scope}[blue,very thick]
-      \draw (-.3,0) -- (.3,0);
-      % \draw (.7,-.15) -- (1.3,.15);
-      \draw (1.7,.3) to[out=-60,in=180] (2,0) to[out=0,in=-120] (2.3,.3);
-      % \draw (2.7,-.45) -- (3.3,.45);
-      \draw (3.7,.6) to[out=-75,in=180,looseness=.5] (4,0) to[out=0,in=-105,looseness=.5] (4.3,.6);
-      % \draw (-.7,-.15) -- (-1.3,.15);
-      \draw (-1.7,-.3) to[out=120,in=0] (-2,0) to[out=180,in=60] (-2.3,-.3);
-      % \draw (-2.7,-.45) -- (-3.3,.45);
-      \draw (-3.7,-.6) to[out=105,in=0,looseness=.5] (-4,0) to[out=180,in=75,looseness=.5] (-4.3,-.6);
-    \end{scope}
-  \end{tikzpicture}
+  \includegraphics[width=0.8\textwidth]{x-dx2.png}
+  % \begin{tikzpicture}
+  %   \draw[<->] (-5,0) -- (5,0);
+  %   \draw[<->] (0,-2) -- (0,2);
+  %   \draw (2,.2) -- (2,-.2) node[below right] {$1$};
+  %   \draw (4,.2) -- (4,-.2) node[below right] {$2$};
+  %   \draw (-2,-.2) -- (-2,.2) node[above] {$-1$};
+  %   \draw (-4,-.2) -- (-4,.2) node[above] {$-2$};
+  %   \begin{scope}[blue,very thick]
+  %     \draw (-.3,0) -- (.3,0);
+  %     % \draw (.7,-.15) -- (1.3,.15);
+  %     \draw (1.7,.3) to[out=-60,in=180] (2,0) to[out=0,in=-120] (2.3,.3);
+  %     % \draw (2.7,-.45) -- (3.3,.45);
+  %     \draw (3.7,.6) to[out=-75,in=180,looseness=.5] (4,0) to[out=0,in=-105,looseness=.5] (4.3,.6);
+  %     % \draw (-.7,-.15) -- (-1.3,.15);
+  %     \draw (-1.7,-.3) to[out=120,in=0] (-2,0) to[out=180,in=60] (-2.3,-.3);
+  %     % \draw (-2.7,-.45) -- (-3.3,.45);
+  %     \draw (-3.7,-.6) to[out=105,in=0,looseness=.5] (-4,0) to[out=180,in=75,looseness=.5] (-4.3,-.6);
+  %   \end{scope}
+  % \end{tikzpicture}
 \end{center}
 In the previous two examples, all the small graphs lay along the $x$-axis, because the differential forms being graphed had no zeroth order term.
 If there is a zeroth order term, then the small graphs will lie along the graph of that term.
-For instance, here is a graph of $-x^2 + \sin(x)\,\dx$, with the curve $y=-x^2$ shown as a dotted line for comparison:
+For instance, here is a graph of $-x^2 + 3\sin(x)\,\dx$, with the curve $y=-x^2$ shown as a dotted line for comparison:
 \begin{center}
-  \begin{tikzpicture}
-    \draw[<->] (-5,0) -- (5,0);
-    \draw[<->] (0,-5) -- (0,1);
-    \draw (2,-.2) -- (2,.2) node[above] {$\frac\pi2$};
-    \draw (4,-.2) -- (4,.2) node[above] {$\pi$};
-    \draw (-2,-.2) -- (-2,.2) node[above] {$-\frac\pi2$};
-    \draw (-4,-.2) -- (-4,.2) node[above] {$-\pi$};
-    \draw (.2,-1) -- (-.2,-1) node[left] {$-\frac{\pi^2}{4}$};
-    \draw (.2,-4) -- (-.2,-4) node[left] {$-\pi^2$};
-    \begin{scope}[blue,very thick]
-      \draw (-.3,0) -- (.3,0);
-      \draw (.7,-.4) -- (1.3,-.1);
-      \draw (1.7,-1.3) -- (2.3,-.7);
-      \draw (2.7,-2.65) -- (3.3,-2.35);
-      \draw (3.7,-4) -- (4.3,-4);
-      \draw (-.7,-.4) -- (-1.3,-.1);
-      \draw (-1.7,-1.3) -- (-2.3,-.7);
-      \draw (-2.7,-2.65) -- (-3.3,-2.35);
-      \draw (-3.7,-4) -- (-4.3,-4);
-    \end{scope}
-    \draw[purple,dashed] (-4,-4) to[out=60,in=120,looseness=1.97] (4,-4);
-  \end{tikzpicture}
+  \includegraphics[width=0.8\textwidth]{mx2p3sinxdx.png}
+  % \begin{tikzpicture}
+  %   \draw[<->] (-5,0) -- (5,0);
+  %   \draw[<->] (0,-5) -- (0,1);
+  %   \draw (2,-.2) -- (2,.2) node[above] {$\frac\pi2$};
+  %   \draw (4,-.2) -- (4,.2) node[above] {$\pi$};
+  %   \draw (-2,-.2) -- (-2,.2) node[above] {$-\frac\pi2$};
+  %   \draw (-4,-.2) -- (-4,.2) node[above] {$-\pi$};
+  %   \draw (.2,-1) -- (-.2,-1) node[left] {$-\frac{\pi^2}{4}$};
+  %   \draw (.2,-4) -- (-.2,-4) node[left] {$-\pi^2$};
+  %   \begin{scope}[blue,very thick]
+  %     \draw (-.3,0) -- (.3,0);
+  %     \draw (.7,-.4) -- (1.3,-.1);
+  %     \draw (1.7,-1.3) -- (2.3,-.7);
+  %     \draw (2.7,-2.65) -- (3.3,-2.35);
+  %     \draw (3.7,-4) -- (4.3,-4);
+  %     \draw (-.7,-.4) -- (-1.3,-.1);
+  %     \draw (-1.7,-1.3) -- (-2.3,-.7);
+  %     \draw (-2.7,-2.65) -- (-3.3,-2.35);
+  %     \draw (-3.7,-4) -- (-4.3,-4);
+  %   \end{scope}
+  %   \draw[purple,dashed] (-4,-4) to[out=60,in=120,looseness=1.97] (4,-4);
+  % \end{tikzpicture}
 \end{center}
+
+\begin{sage}
+  Sage doesn't know how to graph differential forms natively, but here is a short little function which teaches it how.
+  You don't have to understand what it's doing; just copy the following lines into any Sage notebook and execute them.
+\begin{verbatim}
+def plotform(om,xmin,xmax,d,s):
+    return sum([plot(om(x/d,dx-x/d),(dx,x/d-1/3/d,x/d+1/3/d),ymin=-s,ymax=s)
+                for x in xrange(xmin*d,xmax*d+1)])
+\end{verbatim}
+
+  Now you can graph differential forms with the \texttt{plotform} function.
+  The first argument is the differential form, the second and third are the minimum and maximum $x$ values, the fourth is the density of small graphs to draw (specifically, how many of them per unit $x$), and the fifth is the maximum $y$ value.
+  The only wrinkle is that you have to tell Sage explicitly which variables in the differential form are which, by defining it first as a function rather than just passing it to \texttt{plotform} as an expression.
+  For instance, here are the commands I used to generate the above graph of $x\,\dx^2$.
+\begin{verbatim}
+omega(x,dx) = x*dx^2
+plotform(omega,-2,2,4,.05)
+\end{verbatim}
+
+  Remember that to graph more than one function on the same axes, you can just ``add'' them together with $+$.
+  For instance, here is the command that I used to generate the above graph of $-x^2 + 3\sin(x)\,\dx$ with $y=-x^2$ shown for comparison:
+\begin{verbatim}
+omega(x,dx) = -x^2+3*sin(x)*dx
+plotform(omega,-pi,pi,2,pi^2)+plot(-x^2,(x,-pi,pi),color='red',linestyle='dashed')
+\end{verbatim}
+\end{sage}
 
 We now consider the graphs of some differential forms of particular interest associated to a function $f$ of $x$.
 As a running example we will consider the following function:
