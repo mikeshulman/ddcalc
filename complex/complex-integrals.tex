@@ -5,6 +5,53 @@
 \begin{document}
 \maketitle
 
+Let us now consider integration of complex-valued differential forms.
+The most interesting case is that of analytic 1-forms.
 
+\section{Line integrals of complex 1-forms}
+\label{sec:complex-line-integrals}
+
+The definition of the integral of a 1-form over an oriented curve works just as well when the 1-form is complex-valued.
+That is, given a 1-form $f(x,y)\,\dx + g(x,y)\,\dy$ and a curve $\curve$ with parameter $t\in [a,b]$, we can substitute $x = x(t)$, $y=y(t)$, $\dx = x'(t)\,\dt$, and $\dy = y'(t)\,\dt$ to get
+\[ \int_{\curve} \Big(f(x,y)\,\dx + g(x,y)\,\dy\Big) = \int_a^b \Big( f\big(x(t),y(t)\big)\, x'(t) + g\big(x(t),y(t)\big)\,y'(t)\Big) \,\dt. \]
+There is nothing magical and complexy about this; we can just regard it as two separate integrals of real 1-forms, one for the real part and one for the imaginary part.
+On the other hand, recall that we can also write $f(x,y)\,\dx + g(x,y)\,\dy$ as
+\[\half (f(x,y) -i\, g(x,y))\,\dz + \half (f(x,y) +i\, g(x,y))\,\dzbar \]
+We can thus also try to evaluate the integral by substituting $x = x(t)$, $y=y(t)$, and
+\begin{align*}
+  \dz &= z'(t) \,\dt = (x'(t) + i\,y'(t))\,\dt\\
+  \dzbar &= \zbar'(t) \,\dt = (x'(t) - i\,y'(t))\,\dt.
+\end{align*}
+This yields the formula
+\begin{align*}
+  \int_{\curve} &\Big(f(x,y)\,\dx + g(x,y)\,\dy\Big)\\
+  &= \int_{\curve} \half (f(x,y) -i\, g(x,y))\,\dz + \half (f(x,y) +i\, g(x,y))\,\dzbar\\
+  &= \int_a^b \half \Big((f(x,y) -i\, g(x,y)) (x'(t) + i\,y'(t)) + (f(x,y) +i\, g(x,y))\,(x'(t) - i\,y'(t))\Big)\,\dt
+\end{align*}
+Multiplying this out, we of course get the same formula.
+However, note that it now involves complex multiplication.
+
+In particular, suppose we have a 1-form written as $f(z) \,\dz$, with no $\dzbar$ component.
+Then this formula becomes
+\[ \int_{\curve} f(z) \,\dz = \int_a^b f(z)\, z'(t)\,\dt \]
+where the right-hand side involves multiplying the complex numbers $f(z)$ and $z'(t)$.
+This is the definition of a complex line integral that you may find in your textbook (though, as in one-variable calculus, it is often descsribed as an integral of the function $f$ rather than the 1-form $f(z)\,\dz$).
+The point being made here is that it really is a special case of the line integral of a (complex-valued) differential form: one of the special sort $f(z)\,\dz$.
+
+\section{Integrals of analytic 1-forms}
+\label{sec:integrals-of-analytic-1forms}
+
+Now suppose furthermore that we have an \emph{analytic 1-form} $f(z) \,\dz$, i.e.\ that $f$ is complex-differentiable on some region $\region$.
+Then as we have seen, $\ed(f(z)\,\dz) = f'(z)\,\dz \wedge\dz = 0$ on $\region$.
+Therefore, as long as $f$ has continuous partial derivatives, we can apply Green's theorem to conclude that
+\[ \int_{\bdry\region} f(z)\,\dz = \int_{\region} \ed(f(z)\,\dz) = 0. \]
+This is essentially \emph{Cauchy's theorem} or the \emph{closed curve theorem}: if $f$ is complex-differentiable throughout a region $\region$, then its complex line integral around the boundary of that region is zero.
+
+Now we can't quite prove Cauchy's theorem this way, because Green's theorem requires $f$ to have continuous partial derivatives, whereas Cauchy's theorem does not.
+(It is true that any complex-differentiable function automatically has continuous partial derivatives --- and indeed is infinitely differentiable --- but Cauchy's theorem is used in the proof of that fact, so we can't assume it at this point.)
+However, it shows that a slightly weaker form of Cauchy's theorem is really just a corollary of Green's theorem.
+
+The point is that complex-differentiability of $f$ is a \emph{differential equation}, which in particular implies that the vector field corresponding to the 1-form $f(z)\,\dz$ is \emph{divergence-free}.
+Thus, Green's theorem (which is the two-dimensional form of the divergence theorem) implies that this vector field is ``conservative''.
 
 \end{document}

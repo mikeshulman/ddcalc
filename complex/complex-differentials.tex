@@ -70,9 +70,9 @@ and therefore
   \pder f \zbar &= \half (\pder u x - \pder v y) + \half i\, (\pder v x + \pder u y)
 \end{align*}
 
-Now recall the \emph{Cauchy--Riemann equations} say that if $f$ is complex-differentiable, then
+Now recall the \emph{Cauchy--Riemann equations} say that if $f$ is complex-differentiable (at a point), then
 \[ \pder f y = i\,\pder f x \qquad\text{or equivalently}\qquad \pder f x = - i\,\pder f y,\]
-and conversely as long as $\pder f x$ and $\pder f y$ are continuous.
+(at that point) and conversely as long as $\pder f x$ and $\pder f y$ are continuous.
 In components, this equation becomes
 \[ \pder u x = \pder v y \qquad\text{and}\qquad \pder u y = - \pder v x. \]
 In terms of the notations introduced above, these equations say exactly that
@@ -94,8 +94,8 @@ As shown above, a general complex-valued 1-form can be written as
 for some complex-valued functions $f$ and $g$.
 However, the above discussion of differentials, and the general philosophy of treating $z=x+i\,y$ as a single complex variable, suggest that we should really restrict our attention to 1-forms of the form
 \[ f(z)\,\dz \]
-for which $f$ is complex differentiable, i.e. $\pder f \zbar = 0$.
-We call these \textbf{analytic 1-forms}.
+for which $f$ is complex differentiable (in some region), i.e. $\pder f \zbar = 0$.
+We call these \textbf{analytic 1-forms} (in that region).
 They have the interesting property that \emph{their} differentials are always zero!
 \begin{align*}
   \ed(f(z)\,\dz) &= \df \wedge \dz\\
