@@ -128,13 +128,21 @@ If we write $\vc{F}(x,y)$ in components as $\vc{F}(x,y) = \vcc{f(x,y),g(x,y)}$, 
 (You probably also learned how to ``integrate with respect to arc length''.
 This is an integral of a more general sort of ``differential form'' than we will consider here.)
 
-Finally, you might also have learned about the differential of a two- or three-variable function, sometimes called its \emph{total differential}.
+Finally, you might also have learned about the differential of a two- or three-variable function, sometimes called its \emph{total differential} or \emph{total derivative}.
 In two dimensions this is
 \begin{equation}
   \df = \pder f x \,\dx + \pder f y \,\dy\label{eq:differential-of-a-0form-in-2D}
 \end{equation}
 where $\pder f x$ and $\pder f y$ are the partial derivatives.
-Note that this is equivalently the dot product $\dotp{\grad{f}}{\dpx}$, where $\grad{f} = \vcc{\pder f x,\pder f y}$ is the \emph{gradient vector} of $f$.
+Note that $\df$ is equivalently the dot product $\dotp{\grad{f}}{\dpx}$, where $\grad{f} = \vcc{\pder f x,\pder f y}$ is the \emph{gradient vector} of $f$.
+
+To be precise, we should recall that the partial derivatives $\pder f x$ and $\pder f y$ may exist without $f$ being ``differentiable'', and we should really only speak of $\df$ in the latter case.
+However, it is a theorem that if $\pder f x$ and $\pder f y$ exist and are continuous, then $f$ is differentiable.
+
+Viewing the ``total differential'' $\df$ as a differential form also points the way to a ``more correct'' definition of differential forms.
+You probably learned that $\df$ represents the \emph{linear approximation} to the change in $f(x,y)$ when $\dx$ and $\dy$ are small changes in the coordinates $x$ and $y$.
+More precisely, we can consider $\dx$ and $\dy$ as the coordinates of a vector $\dpx = \vcc{\dx,\dy}$, and a differential 1-form such as $\df$ is a \emph{linear function from vectors to numbers} (which may also depend on the point $\ptx = \ptc{x,y}$).
+This point of view also generalizes to $p$-forms for $p>1$, but it is more complicated, so we will not discuss it.
 
 Now we can see that the \emph{fundamental theorem of calculus for line integrals} is
 \[ \int_{\curve} \df = f(\curvept(b)) - f(\curvept(a)) \]
