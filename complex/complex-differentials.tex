@@ -85,4 +85,23 @@ Thus, if $f$ is complex-differentiable, then we can write
 \[ \df = f'(z) \,\dz \]
 which is what we would expect to see by treating $z = x+i\,y$ as a \emph{single complex variable} rather than two real variables.
 
+\section{Complex 1-forms}
+\label{sec:complex-1-forms}
+
+As shown above, a general complex-valued 1-form can be written as $f(x,y) \,\dz + g(x,y)\,\dzbar$ for some complex-valued functions $f$ and $g$.
+However, the above discussion of differentials, and the general philosophy of treating $z=x+i\,y$ as a single complex variable, suggest that we should really restrict our attention to 1-forms of the form
+\[ f(z)\,\dz \]
+for which $f$ is complex differentiable, i.e. $\pder f \zbar = 0$.
+We call these \textbf{analytic 1-forms}.
+They have the interesting property that \emph{their} differentials are always zero!
+\begin{align*}
+  \ed(f(z)\,\dz) &= \df \wedge \dz\\
+  &= f'(z)\, \dz \wedge \dz\\
+  &= 0
+\end{align*}
+As we will see, this is crucial to the amazing properties of complex-differentiable functions.
+
+Note that there is no meaningful notion of ``analytic 2-form''.
+This is in keeping with the idea that the complex plane has only ``one complex dimension'', even though it has two real dimensions.
+
 \end{document}
