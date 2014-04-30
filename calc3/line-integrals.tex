@@ -6,7 +6,7 @@
 \maketitle
 
 We introduced differential forms by saying that when you wrote
-\[ \int_a^b f(x) \,\dx \]
+\[ \itint x a b {f(x)} \]
 in one-variable calculus, you were actually integrating not the function $f$ but the differential form $f(x)\,\dx$.
 We will now make precise what it means to integrate a differential form, and generalize to the multivariable situation.
 
@@ -25,49 +25,56 @@ We simply add up these contributions, and then take the limit.
 
 We can now generalizes this to integrate \emph{any} differential form in one dimension.
 We simply define
-\[ \int_a^b \omega = \lim_{\Delta x_i \to 0} \sum_{i=1}^N \omega(\rstag x i,\Delta x_i). \]
+\[ \lint{[a,b]} \omega = \lim_{\Delta x_i \to 0} \sum_{i=1}^N \omega(\rstag x i,\Delta x_i). \]
 if this limit exists.
 
-Note that when integrating a differential form, we do not write a ``$\dx$'' at the end of the integral: we simply write $\int_a^b \omega$.
+Note that when integrating a differential form, we do not write a ``$\dx$'' at the end of the integral: we simply write $\lint{[a,b]} \omega$.
 The $\dx$ at the end of an ordinary integral is \emph{part} of the differential form being integrated.
+
+Furthermore, rather than writing $a$ and $b$ at the top and bottom of the integral in the usual way, we write the interval $[a,b]$ as a subscript.
+This leads us into the generalizations to higher dimensions.
+
+\begin{eg}\label{eg:onevar-linint}
+  TODO: Reorganize, do $f(x)\,\dx$ first.  Maybe move this section into \texttt{forms.tex}.
+
+  On the other hand, we can also consider also the case when $b<a$.
+  In one-variable calculus, you probably learned that
+  \begin{equation}\label{eq:onevar-integral-revorient}
+    \itint x b a {f(x} = - \itint x a b {f(x)}
+  \end{equation}
+  but you might not have been given a principled reason why.
+  The reason is that when $b<a$, the intermediate points $x_i$ that ``cover the distance from $a$ to $b$'' have to be \emph{decreasing} in order to get \emph{from} the greater number $a$ \emph{to} the lesser number $b$:
+  \[ a = x_0 > x_1 > \cdots > x_{N-1} > x_N = b.\]
+  In particular, $x_i < x_{i-1}$ for all $i$, so their difference $\Delta x_i = x_i - x_{i-1}$ is \emph{negative}.
+  Apart from this minus sign, however, the Riemann sums for $\itint x a b {f(x)}$ will be the same as those for $\itint x b a {f(x)}$, so that \cref{eq:onevar-integral-revorient} holds.
+\end{eg}
 
 \begin{eg}\label{eg:onevar-absint}
   As a first new example, consider the form $f(x) \, |\dx|$ in one dimension, where $f$ is some continuous function.
   If $a<b$, then in our partition of the interval $[a,b]$ the intermediate points $x_i$ \emph{increase} from $a$ to $b$:
   \[ a = x_0 < x_1 < \cdots < x_{N-1} < x_N = b. \]
   In particular, $x_i > x_{i-1}$ for all $i$, so their difference $\Delta x_i = x_i - x_{i-1}$ is positive.
-  Thus, the Riemann sums for $\int_a^b f(x) \, |\dx|$ are
+  Thus, the Riemann sums for $\int{[a,b]} f(x) \, |\dx|$ are
   \[ \sum_{i=1}^N f(\rstag x i)\, |\Delta x_i| = \sum_{i=1}^N f(\rstag x i)\, \Delta x_i\]
-  which are exactly the same as the Riemann sums for $\int_a^b f(x) \, \dx$.
-  Thus, if $a<b$, then $\int_a^b f(x) \, |\dx| = \int_a^b f(x) \, \dx$.
+  which are exactly the same as the Riemann sums for $\itint x a b {f(x)}$.
+  Thus, if $a<b$, then $\lint{[a,b]} f(x) \, |\dx| = \itint x a b {f(x)}$.
 
-  On the other hand, we can also consider also the case when $b<a$.
-  In one-variable calculus, you probably learned that
-  \begin{equation}\label{eq:onevar-integral-revorient}
-    \int_b^a f(x)\,\dx = - \int_a^b f(x) \,\dx
-  \end{equation}
-  but you might not have been given a principled reason why.
-  The reason is that when $b<a$, the intermediate points $x_i$ that ``cover the distance from $a$ to $b$'' have to be \emph{decreasing} in order to get \emph{from} the greater number $a$ \emph{to} the lesser number $b$:
-  \[ a = x_0 > x_1 > \cdots > x_{N-1} > x_N = b.\]
-  In particular, $x_i < x_{i-1}$ for all $i$, so their difference $\Delta x_i = x_i - x_{i-1}$ is \emph{negative}.
-  Apart from this minus sign, however, the Riemann sums for $\int_a^b f(x) \,\dx$ will be the same as those for $\int_b^a f(x) \,\dx$, so that \cref{eq:onevar-integral-revorient} holds.
-
-  However if we instead consider the integral $\int_a^b f(x) \, |\dx|$ when $a<b$, then the Riemann sums will be the \emph{same} as those for $\int_b^a f(x) \, |\dx|$, because of the absolute value.
+  However if we instead consider the integral $\lint{[a,b]} f(x) \, |\dx|$ when $a<b$, then the Riemann sums will be the \emph{same} as those for $\lint{[b,a]} f(x) \, |\dx|$, because of the absolute value.
   Thus in contrast to \cref{eq:onevar-integral-revorient}, we have
   \begin{equation}\label{eq:onevar-absint-revorient}
-    \int_b^a f(x)\,|\dx| = \int_a^b f(x) \,|\dx|.
+    \lint{[b,a]} f(x)\,|\dx| = \lint{[a,b]} f(x) \,|\dx|.
   \end{equation}
   In conclusion, therefore, we can say that
   \begin{equation}
-    \int_a^b f(x) \,|\dx| =
+    \lint{[a,b]} f(x) \,|\dx| =
     \begin{cases}
-      \displaystyle\int_a^b f(x) \,\dx \qquad\text{if } a<b\\[10pt]
-      \displaystyle\int_b^a f(x) \,\dx \qquad\text{if } b<a.
+      \displaystyle\itint x a b {f(x)} \qquad\text{if } a<b\\[10pt]
+      \displaystyle\itint x b a {f(x)} \qquad\text{if } b<a.
     \end{cases}\label{eq:onevar-absint}
   \end{equation}
   In other words, the differential form $f(x)\,\dx$ notices the ``direction'' (or \emph{orientation}) of the interval over which it is integrated, and gives a different result whether we integrate it ``from $a$ to $b$'' or ``from $b$ to $a$'' --- whereas the form $f(x)\,|\dx|$ does not notice the direction.
 
-  (This is not, of course, to say that the integral $\int_a^b f(x) \,|\dx|$ is always a positive number: the function $f$ might take on negative values.)
+  (This is not, of course, to say that the integral $\lint{[a,b]} f(x) \,|\dx|$ is always a positive number: the function $f$ might take on negative values.)
 \end{eg}
 
 \begin{eg}
@@ -79,15 +86,15 @@ The $\dx$ at the end of an ordinary integral is \emph{part} of the differential 
   \end{align*}
   In the limit, $\varepsilon \to 0$, and thus the Riemann sums also go to zero.
   So we have
-  \[ \int_a^b \dx^2 = 0. \]
-  Intuitively, we may say that an ordinary integral $\int_a^b f(x) \,\dx$ obtains a zeroth-order result by adding up a large number of small first-order changes; but if we try to add up the \emph{same} number of \emph{second-order} changes, the result will be negligible.
+  \[ \lint{[a,b]} \dx^2 = 0. \]
+  Intuitively, we may say that an ordinary integral $\lint{[a,b]} f(x) \,\dx$ obtains a zeroth-order result by adding up a large number of small first-order changes; but if we try to add up the \emph{same} number of \emph{second-order} changes, the result will be negligible.
 \end{eg}
 
 More generally, we have the following:
 
 \begin{thm}\label{thm:int-negligible-onevar}
   If $\omega$ is negligible, then for any closed interval $[a,b]$ we have
-  \[ \int_a^b \omega \;=\; 0.\]
+  \[ \lint{[a,b]} \omega \;=\; 0.\]
 \end{thm}
 
 \begin{adv}
@@ -98,7 +105,7 @@ More generally, we have the following:
 
 In particular, it follows that
 \begin{equation}\label{eq:int-apx1-equal}
-  \text{If }\omega\apx1 \eta, \text{then} \displaystyle\int_a^b \omega = \int_a^b \eta.
+  \text{If }\omega\apx1 \eta, \text{then} \displaystyle\lint{[a,b]} \omega = \lint{[a,b]} \eta.
 \end{equation}
 For example, recall that if $f$ is differentiable, then
 \begin{align*}
@@ -106,11 +113,11 @@ For example, recall that if $f$ is differentiable, then
   % &= f'(x) \,\dx
 \end{align*}
 Therefore, we have
-\[ \int_a^b \df = \int_a^b \Big(f(x+\dx) - f(x)\Big). \]
+\[ \lint{[a,b]} \df = \lint{[a,b]} \Big(f(x+\dx) - f(x)\Big). \]
 (You may be tempted to add a $\dx$ on the right-hand side of this equation, but that would be wrong: $f(x+\dx) - f(x)$ alone is the \emph{differential form} that we are integrating.)
 
 Now note that for any partition of $[a,b]$ into subintervals, we have $x_{i-1} + \Delta x_i = x_i$, by definition.
-Thus, if we choose the left-hand endpoints (that is, $\rstag x i = x_{i-1}$), then the Riemann sum for $\int_a^b (f(x+\dx) - f(x))$ will be
+Thus, if we choose the left-hand endpoints (that is, $\rstag x i = x_{i-1}$), then the Riemann sum for $\lint{[a,b]} (f(x+\dx) - f(x))$ will be
 \begin{align*}
   \Big(f(x_1) - f(x_0)\Big) + \Big(f(x_2)-f(x_1)\Big) + \cdots + \Big(f(x_N) - f(x_{N-1})\Big)
   &= f(x_N) - f(x_0)\\
@@ -118,7 +125,7 @@ Thus, if we choose the left-hand endpoints (that is, $\rstag x i = x_{i-1}$), th
 \end{align*}
 Therefore,
 \begin{equation}
-  \int_a^b \df = f(b) - f(a).\label{eq:differential-ftc-eval}
+  \lint{[a,b]} \df = f(b) - f(a).\label{eq:differential-ftc-eval}
 \end{equation}
 Recalling that $\df = f'(x)\,\dx$, we see that this is half of the Fundamental Theorem of Calculus.
 \begin{stewart}(The textbook calls this half the ``Evaluation Theorem''.)\end{stewart}
@@ -183,7 +190,7 @@ Using this, we can formally state the Change of Variables Theorem for line integ
 \begin{thm}[Change of Variables]
   If $\curve$ is a differentiable curve with parameter in $[a,b]$, and $\omega$ is a differential form such that for each $\ptx$, the function $\omega(\ptx,\dpx)$ is Lipschitz continuous in $\dpx$, then
   \begin{equation}
-    \lint{\curve} \omega = \int_a^b \omega\big(\curvept(t),\, \curvept'(t) \,\dt\big)\label{eq:lineint-chvar-2}
+    \lint{\curve} \omega = \lint{[a,b]} \omega\big(\curvept(t),\, \curvept'(t) \,\dt\big)\label{eq:lineint-chvar-2}
   \end{equation}
 \end{thm}
 
@@ -197,7 +204,7 @@ Then
   &= \omega\big(\curvept(t),\, \curvept'(t)\big)\,\dt
 \end{align*}
 and thus the right-hand side of \cref{eq:lineint-chvar-2} becomes
-\[ \int_a^b \omega\big(\curvept(t),\, \curvept'(t)\big)\,\dt. \]
+\[ \itint t a b {\omega\big(\curvept(t),\, \curvept'(t)\big)}. \]
 This is an ordinary one-variable integral of the sort we already understand.
 Therefore, the line integral of any linear differential form over any differentiable curve can be reduced to a one-variable integral just as in \cref{eg:lineint-cov}, which we can at least hope to integrate using the fundamental theorem of calculus.
 
@@ -262,12 +269,12 @@ In fact, if $\dx = x'(t) \,\dt$ and $\dy = y'(t)\,\dt$, then we can write
 \end{align*}
 and we know how to evaluate integrals of forms such as $f(t)\,|\dt|$: we use \cref{eq:onevar-absint}.
 In fact, since we nearly always parametrize curves over intervals $[a,b]$ with $a<b$, the arc length integral of a function $f$ generally becomes simply
-\[ \int_a^b f(x(t),y(t)) \sqrt{x'(t)^2 + y'(t)^2} \,\dt \]
+\[ \itint t a b {f(x(t),y(t)) \sqrt{x'(t)^2 + y'(t)^2}} \]
 in two dimensions, or
-\[ \int_a^b f(x(t),y(t),z(t)) \sqrt{x'(t)^2 + y'(t)^2+z'(t)^2} \,\dt \]
+\[ \itint t a b {f(x(t),y(t),z(t)) \sqrt{x'(t)^2 + y'(t)^2+z'(t)^2}} \]
 in three.
 In particular, the arc length of the curve $\curve$ in two dimensions is
-\[ \int_a^b \sqrt{x'(t)^2 + y'(t)^2} \,\dt, \]
+\[ \itint t a b {\sqrt{x'(t)^2 + y'(t)^2}}, \]
 a formula which you may have seen in one-variable calculus.
 \begin{stewart}(The textbook discusses it at the end of section 6.4.)\end{stewart}
 

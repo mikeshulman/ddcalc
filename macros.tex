@@ -147,12 +147,31 @@
 \newcommand{\surfy}{y}
 \newcommand{\surfz}{z}
 
-%% Integrals
-\newcommand{\lint}[1]{\int_{#1}} % line integrals
+%% Integrals of differential forms.  The only argument is the
+%% integration manifold; the differential form just comes afterwards.
+\newcommand{\lint}[1]{\int_{#1}} % line integral over a curve
+\newcommand{\sint}[1]{\iint_{#1}} % surface integral form over a surface
+\newcommand{\vint}[1]{\iiint_{#1}} % volume integral over a spatial region
+
+%% "Classical" integrals.  For these the integrand is a *function*
+%% (well, technically, an expression with free variables) which is
+%% given as a second argument.
+\newcommand{\dint}[2]{\iint_{#1} #2 \,\dA} % double integral over a plane region
+\newcommand{\tint}[2]{\iiint_{#1} #2 \,\dV} % triple integral over a spatial region
+\newcommand{\itint}[4]{\int_{#2}^{#3} #4 \,\dd #1} % ordinary one-variable integral over an interval
+\newcommand{\itdint}[7]{\int_{#2}^{#3} \int_{#5}^{#6} #7 \,\dd #4\,\dd #1} % double iterated integral
+% Can't have more than 9 parameters
+%\newcommand{\ittint}[10]{\int_{#2}^{#3} \int_{#5}^{#6} \int_{#8}^{#9} #10 \,\dd #7\,\dd #4\,\dd #1} % triple iterated integral
+\makeatletter
+\newcommand{\ittint}[3]{\int_{#2}^{#3} \@ittint #1}
+\newcommand{\@ittint}[8]{\int_{#3}^{#4} \int_{#6}^{#7} #8 \,\dd #5\,\dd #2\,\dd #1} % triple iterated integral
+\makeatother
 
 %% Textbooks
 \usepackage{version}
 \excludeversion{notextbook}
-\includeversion{stewart}
+\excludeversion{stewart}
+\includeversion{hugheshallett}
+\excludeversion{rogawski}
 
 \makeatother

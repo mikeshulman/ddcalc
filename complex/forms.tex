@@ -8,12 +8,12 @@
 In your previous calculus classes, you may or may not have encountered \emph{differential forms} by name.
 However, you've certainly met them, even if you didn't realize it.
 When you write
-\[ \int_{x=a}^b f(x) \,\dx \]
+\[ \itint x a b {f(x)} \]
 the thing being integrated, ``$f(x) \,\dx$'', is a differential form.
 Similarly, when in multivariable calculus you calculate line integrals
-\[ \int_{\curve} f(\ptx) \, \dl \quad\text{or}\quad \int_{\curve} \dotp{\vc{F}}{\dpx} \]
+\[ \lint{\curve} f(\ptx) \, \dl \quad\text{or}\quad \lint{\curve} \dotp{\vc{F}}{\dpx} \]
 or surface integrals
-\[ \int_{\surf} f(\ptx) \,\dA \quad\text{or}\quad \int_{\surf} \dotp{\vc{F}}{\dn} \]
+\[ \lint{\surf} f(\ptx) \,\dA \quad\text{or}\quad \lint{\surf} \dotp{\vc{F}}{\dn} \]
 in each case the thing being integrated is a differential form.
 
 You may have been told that the ``$\dx$'' (or $\dl$, $\dA$, etc.)\ is simply a notation that indicates which variable we're integrating, or what sort of integration we're doing, but this is a lie.
@@ -77,18 +77,18 @@ Observe that $\df$ is a differential 1-form in one dimension, as we have defined
 Thus the notation is consistent.)
 
 Similarly, when we ``integrate a function'' in one-variable calculus on an interval $[a,b]$, what we actually write is
-\[ \int_a^b f(x) \,\dx \]
+\[ \itint x a b {f(x)} \]
 where the integrand is manifestly a differential 1-form.
 The interval $[a,b]$ is a 1-manifold, and we can equivalently write the integral as 
-\[ \int_{[a,b]} f(x) \,\dx. \]
+\[ \lint{[a,b]} f(x) \,\dx. \]
 In fact, the interval $[a,b]$ is an \emph{oriented} 1-manifold: this means that it comes with a ``direction of traversal'', canonically \emph{from} $a$ \emph{to} $b$.
 If we reverse this orientation, we obtain an integral that in one-variable calculus you wrote as
-\[ \int_b^a f(x) \,\dx \]
-and you probably learned that this is equal to $-\int_a^b f(x) \,\dx$.
+\[ \itint x b a {f(x)} \]
+and you probably learned that this is equal to $-\itint x a b {f(x)}$.
 
 Finally, the \emph{fundamental theorem of calculus} relates these two operations; it says that (assuming $f'$ is continuous) we have
 \begin{equation}
-  \int_a^b \df = f(b) - f(a).\label{eq:onevar-ftc}
+  \lint{[a,b]} \df = f(b) - f(a).\label{eq:onevar-ftc}
 \end{equation}
 
 There is one claim yet to be justified in one dimension: that we can integrate a differential 0-form over an oriented $0$-dimensional manifold.
@@ -117,11 +117,11 @@ In multivariable calculus you probably learned about \emph{line integrals} in tw
 You might in fact have learned how to integrate the exact things that we are calling differential 1-forms, perhaps without giving them that name.
 
 For instance, if $\curve$ is a parametrized curve in two dimensions, with parameter $t$ defined on the interval $[a,b]$, and $f(x,y)\,\dx + g(x,y)\,\dy$ is a 1-form, then its integral over $\curve$ is
-\[ \int_{\curve} \Big(f(x,y)\,\dx + g(x,y)\,\dy\Big) = \int_a^b \Big( f\big(x(t),y(t)\big)\, x'(t) + g\big(x(t),y(t)\big)\,y'(t)\Big) \,\dt \]
+\[ \lint{\curve} \Big(f(x,y)\,\dx + g(x,y)\,\dy\Big) = \itint t a b {\Big( f\big(x(t),y(t)\big)\, x'(t) + g\big(x(t),y(t)\big)\,y'(t)\Big)} \]
 Note that this formula can be obtained formally simply by substitutition of the functions $x(t)$ and $y(t)$, plus their differentials $\dx = x'(t)\,\dt$ and $\dy = y'(t)\,\dt$.
 
 You might also, or instead, have learned to line-integrate a vector field $\vc{F}(x,y)$ over $\curve$, perhaps written something like
-\[ \int_{\curve} \dotp{\vc{F}}{\dpx} \]
+\[ \lint{\curve} \dotp{\vc{F}}{\dpx} \]
 However, this is just a special case of the preceding integral.
 If we write $\vc{F}(x,y)$ in components as $\vc{F}(x,y) = \vcc{f(x,y),g(x,y)}$, and let $\dpx$ denote the ``formal vector'' $(\dx,\dy)$, then the ``formal dot product'' $\dotp{\vc{F}}{\dpx}$ is just the 1-form $f(x,y)\,\dx + g(x,y)\,\dy$.
 
@@ -145,7 +145,7 @@ More precisely, we can consider $\dx$ and $\dy$ as the coordinates of a vector $
 This point of view also generalizes to $p$-forms for $p>1$, but it is more complicated, so we will not discuss it.
 
 Now we can see that the \emph{fundamental theorem of calculus for line integrals} is
-\[ \int_{\curve} \df = f(\curvept(b)) - f(\curvept(a)) \]
+\[ \lint{\curve} \df = f(\curvept(b)) - f(\curvept(a)) \]
 (assuming $\df$ is continuous).
 This has exactly the same form as the fundamental theorem of calculus for one-variable integrals.
 If we use the same conventions regarding 0-manifolds and integrals of 0-forms as we did in one dimension, then this theorem also relates the integral of a 0-form over the boundary of a 1-manifold with the integral of its differential over the 1-manifold itself.
@@ -156,11 +156,11 @@ If we use the same conventions regarding 0-manifolds and integrals of 0-forms as
 In two dimensions, however, we also have differential 2-forms, which can be integrated over 2-dimensional regions.
 In multivariable calculus, you learned how to integrate a two-variable function $f(x,y)$ over a region $\region$, and you may have denoted it by
 \begin{equation}
-  \int_\region f(x,y)\,\dA \qquad\text{or}\qquad \int_\region f(x,y)\,\dx\,\dy.\label{eq:abs2form-2D-integrals}
+  \sint{\region} f(x,y)\,\dA \qquad\text{or}\qquad \sint{\region} f(x,y)\,\dx\,\dy.\label{eq:abs2form-2D-integrals}
 \end{equation}
 We are concerned instead with an integral that is almost the same, which is denoted
 \begin{equation}
-  \int_\region f(x,y) \,\dx\wedge \dy.\label{eq:2form-2D-integral}
+  \sint{\region} f(x,y) \,\dx\wedge \dy.\label{eq:2form-2D-integral}
 \end{equation}
 This is the integral of a differential 2-form (namely $f(x,y) \,\dx\wedge \dy$) over a 2-manifold (namely $\region$).
 The slight difference in meaning between \cref{eq:abs2form-2D-integrals} and \cref{eq:2form-2D-integral} is that in the latter, $\region$ is an \emph{oriented} region, whereas in the former it is not.
@@ -208,7 +208,7 @@ Now we can compute the differential of a general 1-form $f(x,y)\,\dx + g(x,y)\,\
 
 Now if there is to be a version of the fundamental theorem of calculus for integrals of 2-forms, it should say that the integral of a 1-form over the boundary of a 2-manifold is equal to the integral of its differential over the 2-manifold itself.
 Thus, if $\region$ is a region with boundary $\bdry\region$, we should have
-\[ \int_{\region} (\pder g x - \pder f y)\, \dx\wedge\dy = \int_{\bdry\region} f\,\dx + g\,\dy. \]
+\[ \sint{\region} (\pder g x - \pder f y)\, \dx\wedge\dy = \lint{\bdry\region} f\,\dx + g\,\dy. \]
 This is true (assuming $f$ and $g$ have continuous partial derivatives): it is exactly \emph{Green's theorem} from vector calculus.
 
 \section{Differential Forms in Three Dimensions}
@@ -235,7 +235,7 @@ Every 1-form has a differential, computed as
 \end{align*}
 We can integrate a 2-form over an oriented surface $\surf$, and Green's theorem generalizes to say that the integral of a 1-form over the boundary of such a surface is equal to the integral of its differential over the surface itself (assuming the differential to be continuous):
 \begin{equation}
-  \int_{\surf} \ed(f\,\dx + g\,\dy + h\,\dz) = \int_{\bdry\surf} f\,\dx + g\,\dy + h\,\dz\label{eq:stokes-theorem}
+  \sint{\surf} \ed(f\,\dx + g\,\dy + h\,\dz) = \lint{\bdry\surf} f\,\dx + g\,\dy + h\,\dz\label{eq:stokes-theorem}
 \end{equation}
 
 We also have 3-forms such as $f(x,y,z)\, \dx\wedge\dy\wedge\dz$.
@@ -251,7 +251,7 @@ Every 2-form has a differential, computed as
 Finally, a 3-form can be integrated over any oriented 3-dimensional region $\region$, giving essentially the ordinary three-dimensional integral that you learned in multivariable calculus (except for orientations).
 And we have the corresponding fundamental theorem, relating the integral of a 2-form over the boundary of a region to the integral of its differential over the region itself (assuming, as always, the partial derivatives to be continuous):
 \begin{equation}
-  \int_{\region} (\pder A z + \pder B x + \pder C y)\, \dx\wedge\dy\wedge \dz = \int_{\bdry\region} A\,\dx\wedge\dy + B\,\dy\wedge\dz + C \,\dz\wedge\dx.\label{eq:divergence-theorem}
+  \vint{\region} (\pder A z + \pder B x + \pder C y)\, \dx\wedge\dy\wedge \dz = \sint{\bdry\region} A\,\dx\wedge\dy + B\,\dy\wedge\dz + C \,\dz\wedge\dx.\label{eq:divergence-theorem}
 \end{equation}
 
 These formulas are related to three-dimensional vector calculus as follows.
