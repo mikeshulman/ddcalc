@@ -97,15 +97,16 @@ Similarly, we say that $x$ itself is \emph{zeroth order}, as is any function val
 
 Every linear form is first-order: when we multiply a zeroth order form like $f(\ptx)$ by a first order one like $\dx$, the result is first order.
 For instance, if $f(x) = 4$ and $\dx = 0.001$, then $f(x)\,\dx = 0.004$, which is about the same size as $\dx$.
+A form such as $|\dx|$ is also first-order: whether $\dx$ is positive or negative, its absolute value is about the same size.
 
 The concept of order can be applied even to forms that are not polynomials in $\dx$.
 For instance, if $\dx=0.01$, then $\sin(\dx) \approx 0.0099998$, which is about the same size as $\dx$.
-Thus, it is reasonable to say that $\sin(\dx)$ is also first-order.
+Thus, it is reasonable to expect that $\sin(\dx)$ is also first-order.
 On the other hand, still with $\dx=0.01$, we have $\cos(\dx) - 1 \approx -0.00005$, which is much smaller than $\dx$ and about the same size as $\dx^2$.
-Thus, it is reasonable to say that $\cos(\dx) - 1$ is second-order.
+Thus, it is reasonable to expect that $\cos(\dx) - 1$ is second-order.
 
-We will not make precise the general notion of ``order''; it can be done, but it is a bit complicated and not necessary for our purposes.
-(If you're curious, see the optional handout.)
+It is possible to give a precise definition of the word ``order'' in general, but we will not do so.
+(The definition is a bit complicated and not necessary for our purposes; if you're curious, see the optional handout.)
 All that we will need is a definition of when a differential form is \emph{smaller than first order} (e.g.\ second-order or third-order).
 This is because in calculus, we are concerned with \emph{approximations to first order}, also known as \emph{linear approximations}; and forms that are smaller than first order do not affect these approximations.
 Thus, we will call them \emph{negligible} (to first order).
