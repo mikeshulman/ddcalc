@@ -129,6 +129,7 @@ respectively.
 Recall that this means that we allow $\dpx$ to approach $\vc{0}$ ``in all possible ways''.
 \begin{notextbook}Two- and three-dimensional limits should be discussed in your textbook.\end{notextbook}%
 \begin{stewart}Two- and three-dimensional limits are discussed in section 11.2 of the textbook.\end{stewart}
+\begin{hugheshallett}Two--dimensional limits are discussed in section 12.6 of the textbook.\end{hugheshallett}
 
 The first thing to do in understanding a definition is to look at some examples.
 If we chose the definition well, the examples will justify our motivation.
@@ -822,7 +823,8 @@ If we expand out the definition of the derivative, this becomes:
   \pder{f}{x} &= \lim_{t\to 0} \frac{f(x,y+t) - f(x,y)}{t}.
 \end{align}
 \begin{notextbook}Your textbook should contain further discussion of partial derivatives and directional derivatives.\end{notextbook}%
-\begin{stewart}The textbook takes this approach in Chapter 11, defining partial derivatives first in section 11.3, and then the differential (or ``total differential'') in section 11.4.\end{stewart}
+\begin{stewart}The textbook takes this approach in Chapter 11, defining partial derivatives first in section 11.3, and then the differential (or ``total differential'') in section 11.4.\end{stewart}%
+\begin{hugheshallett}The textbook takes this approach in Chapter 14, defining partial derivatives first in section 14.1, and then the differential (or ``total differential'') in sections 14.3 and 14.8.\end{hugheshallett}
 
 One thing in particular that is worth noting is how the chain rule manifests itself in terms of partial derivatives.
 If $f$ is a function of $u$ and $v$, with $u$ and $v$ each functions of $x$ and $y$, then we have
@@ -840,7 +842,8 @@ it must be the case that
   \pder{f}{y} = \pder{f}{u}\pder{u}{y}+ \pder{f}{v}\pder{v}{y}.
 \end{equation}
 In other words, the chain rule for a partial derivative $\pder{f}{x}$ has one term for each intermediate function $u$ and $v$, each of which looks like the usual chain rule but with partial derivatives instead of ordinary ones.
-\begin{stewart}This is the only form of the multivariable chain rule that is discussed in the textbook (section 11.5).\end{stewart}
+\begin{stewart}This is the only form of the multivariable chain rule that is discussed in the textbook (section 11.5).\end{stewart}%
+\begin{hugheshallett}This is the only form of the multivariable chain rule that is discussed in the textbook (section 14.6).\end{hugheshallett}
 
 For instance, note that \cref{eq:polar-dx,eq:polar-dy} yield the partial derivatives
 \begin{alignat*}{2}
@@ -899,7 +902,8 @@ What is really going on is just evaluating the differential.
 Part of the importance of the gradient is that it points in the direction of ``steepest increase'' of the function.
 More precisely, the directional derivative $\df(\ptx,\vc{v})$ is greatest (for $\vc{v}$ of unit length) when $\vc{v}$ points in the direction of $\grad f(\ptx)$.
 \begin{notextbook}More about the gradient can probably be found in your textbook.\end{notextbook}%
-\begin{stewart}The textbook discusses gradients in section 11.6.\end{stewart}
+\begin{stewart}The textbook discusses gradients in section 11.6.\end{stewart}%
+\begin{hugheshallett}The textbook discusses gradients in sections 14.4--14.5.\end{hugheshallett}
 
 
 \end{document}
