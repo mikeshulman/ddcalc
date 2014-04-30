@@ -85,6 +85,9 @@ In fact, the interval $[a,b]$ is an \emph{oriented} 1-manifold: this means that 
 If we reverse this orientation, we obtain an integral that in one-variable calculus you wrote as
 \[ \itint x b a {f(x)} \]
 and you probably learned that this is equal to $-\itint x a b {f(x)}$.
+We will write this integral instead as
+\[ \lint{-[a,b]} f(x) \,\dx. \]
+with a minus sign on $[a,b]$ to denote that its orientation is reversed from the ``standard'' one.
 
 Finally, the \emph{fundamental theorem of calculus} relates these two operations; it says that (assuming $f'$ is continuous) we have
 \begin{equation}
@@ -189,12 +192,12 @@ This is analogous to \cref{eq:wedge-anticommute}; the direct analogy would be $\
 
 Finally, according to our general claims, there should be a way to ``differentiate'' a 1-form and get a 2-form.
 To define this, note that a 1-form such as $f(x)\,\dx$ is already written as the product of a 0-form and a 1-form.
-Now we'd like this kind of ``differentiation'' to satisfy a product rule, with respect to the $\wedge$ product of differential forms; thus the differential of $f(x)\,\dx$ should be
+We'd like this kind of ``differentiation'' to satisfy a product rule, with respect to the $\wedge$ product of differential forms; thus the differential of $f(x)\,\dx$ should be
 \[ \dd(f(x)\,\dx) =  \df \wedge\dx + f(x)\, \dd(\dx). \]
-Actually, since we are using the $\wedge$ product in the product rule, it's better to include it as a reminder in the notation for this differential as well.
+Actually, since we are using the $\wedge$ product in the product rule, it's better to include the symbol $\wedge$ as a reminder in the notation for this differential as well.
 Thus we will write instead
 \[ \ed(f(x)\,\dx) =  \df \wedge\dx + f(x)\, \ed\dx. \]
-Now we already know how to find the differential of a 0-form (\cref{eq:differential-of-a-0form-in-2D}). so all we need is to define is $\ed\dx$.
+We already know how to find the differential of a 0-form (\cref{eq:differential-of-a-0form-in-2D}), so all we need is to define is $\ed\dx$.
 It turns out that we should define $\ed\dx=0$; a mnemonic for this is that just as $\dx\wedge \dx = 0$, so also ``$\ed\dd = 0$''.
 
 Now we can compute the differential of a general 1-form $f(x,y)\,\dx + g(x,y)\,\dy$ in two dimensions:
