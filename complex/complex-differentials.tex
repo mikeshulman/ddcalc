@@ -56,7 +56,7 @@ Therefore, it is natural to introduce the following definitions of ``partial der
   \pder f z &= \half (\pder f x - i\, \pder f y)\\
   \pder f \zbar &= \half (\pder f x + i\, \pder f y)
 \end{align*}
-Thus, we can write $\df = \pder f z \,\dz + \pder f \zbar \,\dzbar$.
+We can then write $\df = \pder f z \,\dz + \pder f \zbar \,\dzbar$.
 
 Let us now express these in components, writing $f(x,y) = u(x,y) + i\,v(x,y)$ for real-valued functions $u$ and $v$.
 Then we have
@@ -82,9 +82,11 @@ Thus, intuitively, for $f$ to be complex-differentiable means exactly that it is
 Finally, the equation $\pder f y = i\,\pder f x$ also implies that
 \[ \pder f z = \half(\pder f x - i\,\pder f y) = \half (\pder f x + \pder f x) = \pder f x.\]
 This is also the \emph{complex derivative} $f'(z)$ of $f$.
-Thus, if $f$ is complex-differentiable, then we can write
+Thus, to say that $f$ is complex-differentiable is to say that we can write
 \[ \df = f'(z) \,\dz \]
-which is what we would expect to see by treating $z = x+i\,y$ as a \emph{single complex variable} rather than two real variables.
+for some function $f'(z)$.
+This is what we would expect to see for the ``differential'' of $f$ if we want to treat $z = x+i\,y$ as a \emph{single complex variable} rather than two real variables.
+
 
 \section{Complex 1-forms}
 \label{sec:complex-1-forms}

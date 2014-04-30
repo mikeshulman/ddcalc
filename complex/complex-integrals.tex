@@ -35,13 +35,27 @@ In particular, suppose we have a 1-form written as $f(z) \,\dz$, with no $\dzbar
 Then this formula becomes
 \[ \lint{\curve} f(z) \,\dz = \itint t a b {f(z)\, z'(t)}\]
 where the right-hand side involves multiplying the complex numbers $f(z)$ and $z'(t)$.
-This is the definition of a complex line integral that you may find in your textbook (though, as in one-variable calculus, it is often descsribed as an integral of the function $f$ rather than the 1-form $f(z)\,\dz$).
+This is the definition of a complex line integral that you may find in your textbook (though, as in one-variable calculus, it is often described as an integral of the function $f$ rather than the 1-form $f(z)\,\dz$).
 The point being made here is that it really is a special case of the line integral of a (complex-valued) differential form: one of the special sort $f(z)\,\dz$.
+
+\section{The fundamental theorem of calculus}
+\label{sec:complex-ftc}
+
+Recall that the two-dimensional fundamental theorem of calculus for line integrals says that given a function $f(x,y)$ with continuous partial derivatives, we have
+\[ \lint{\curve} \df = f(\curvex(b),\curvey(b)) - f(\curvex(a),\curvey(a)). \]
+In the complex plane, we have $\df = \pder f z \,\dz + \pder f \zbar \,\dzbar$, so that this becomes
+\[ \lint{\curve} \pder f z \,\dz + \pder f \zbar \,\dzbar  = f(\curvez(b)) - f(\curvez(a)). \]
+Now suppose that $f$ is furthermore complex-differentiable.
+We have seen that this means that $\df$ can be written as $f'(z) \,\dz$; thus in this case we have
+\[ \lint{\curve} f'(z)\,\dz  = f(\curvez(b)) - f(\curvez(a)). \]
+This looks exactly like the fundamental theorem of calculus for complex line integrals that is given in your textbook.
+We can't \emph{quite} prove that theorem in this way, because in order to use the fundamental theorem for ordinary line integrals we need the partial derivatives of $f$ to be continuous, whereas for complex line integrals we don't need to assume that.
+(It is true that any complex-differentiable function automatically has continuous partial derivatives --- and indeed is infinitely differentiable --- but we haven't yet proven that.)
 
 \section{Integrals of analytic 1-forms}
 \label{sec:integrals-of-analytic-1forms}
 
-Now suppose furthermore that we have an \emph{analytic 1-form} $f(z) \,\dz$, i.e.\ that $f$ is complex-differentiable on some region $\region$.
+Now suppose instead that we are given an \emph{analytic 1-form}, i.e.\ a complex-valued 1-form $f(z) \,\dz$ such that $f$ is complex-differentiable on some region $\region$.
 Then as we have seen, $\ed(f(z)\,\dz) = f'(z)\,\dz \wedge\dz = 0$ on $\region$.
 Therefore, as long as $f$ has continuous partial derivatives, we can apply Green's theorem to conclude that
 \[ \lint{\bdry\region} f(z)\,\dz = \sint{\region} \ed(f(z)\,\dz) = 0. \]
