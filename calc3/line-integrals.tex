@@ -153,7 +153,8 @@ The curve is then the set of points $\curvept(t) = (\curvex(t),\curvey(t))$ as $
 Similarly, in three dimensions we have three functions $\curvex(t)$, $\curvey(t)$, and $\curvez(t)$ and we consider the points $\curvept(t) = (\curvex(t),\curvey(t),\curvez(t))$.
 We say that a parametrized curve is \textbf{continuous} or \textbf{differentiable} if the functions $\curvex$, $\curvey$, and (possibly) $\curvez$ are continuous or differentiable.
 \begin{stewart}Parametrized curves are discussed in sections 1.7 and 10.1 of the textbook.\end{stewart}%
-\begin{hugheshallett}Parametrized curves are discussed in sections 17.1--17.2 of the textbook.\end{hugheshallett}
+\begin{hugheshallett}Parametrized curves are discussed in sections 17.1--17.2 of the textbook.\end{hugheshallett}%
+\begin{rogawski}Parametrized curves are discussed in section 11.1 of the textbook.\end{rogawski}%
 
 Now suppose $\omega$ is a differential form in two dimensions, which we want to integrate over a parametrized curve $\curve$ defined on $[a,b]$.
 We regard $\omega(\ptx,\dpx)$ as telling us about the first-order changes in some quantity Q as $\ptx$ changes to $\ptx+\dpx$, whereas we are interested in the total change of Q ``along $\curve$''.
@@ -212,7 +213,8 @@ Therefore, the line integral of any linear differential form over any differenti
 More generally, if $\curve$ is only \emph{piecewise} differentiable, then we can break a line integral up into several integrals and apply this method on each piece.
 \begin{notextbook}Your textbook probably contains more details.\end{notextbook}%
 \begin{stewart}More details are in the textbook (section 13.2).\end{stewart}%
-\begin{hugheshallett}See the textbook (sections 18.1--18.2).\end{hugheshallett}
+\begin{hugheshallett}See the textbook (sections 18.1--18.2).\end{hugheshallett}%
+\begin{rogawski}See the textbook (section 16.2).\end{rogawski}%
 
 \begin{rmk}\label{rmk:lineint-orientation}
   Although we used a particular parametrization of the curve $\curve$ to define the line integral $\lint{\curve} \omega$ in \cref{eq:line-integral}, and to evaluate it as in \cref{eq:lineint-chvar-2}, in fact the value of the integral is independent of the parametrization.
@@ -229,8 +231,9 @@ We can then integrate this form over any curve, obtaining a line integral denote
 \[ \lint{\curve} \dotp{\vc{v}(\ptx)}{\dpx} \]
 or any number of similar notations.
 \begin{notextbook}You will probably find this in your textbook.\end{notextbook}%
-\begin{stewart}The textbook writes $\lint{\curve} \dotp{\vc{v}}{d\pt{r}}$ (section 13.2).\end{stewart}
-\begin{hugheshallett}The textbook writes $\lint{\curve} \dotp{\vc{v}}{d\pt{r}}$ (section 18.1).\end{hugheshallett}
+\begin{stewart}The textbook writes $\lint{\curve} \dotp{\vc{v}}{d\pt{r}}$ (section 13.2).\end{stewart}%
+\begin{hugheshallett}The textbook writes $\lint{\curve} \dotp{\vc{v}}{d\pt{r}}$ (section 18.1).\end{hugheshallett}%
+\begin{rogawski}The textbook writes $\lint{\curve} \dotp{\vc{v}}{d\pt{s}}$ (section 16.2), calling it a \textbf{vector line integral}.\end{rogawski}
 This is the commonly used notation for line integrals in vector calculus, and it includes many cases of interest because many differential forms are linear.
 
 
@@ -245,7 +248,8 @@ Thus, in two dimensions we should integrate the differential form
 while in three dimensions we should integrate
 \[ \sqrt{\dx^2+\dy^2 + \dz^2}.\]
 It is traditional to denote these differential forms by $\mathrm{d}\ell$ or $\mathrm{d}s$, but this is potentially confusing because they are not the differential of anything.
-\begin{stewart}(The textbook uses $ds$.)\end{stewart}
+\begin{stewart}(The textbook uses $ds$.)\end{stewart}%
+\begin{rogawski}(The textbook uses $ds$.)\end{rogawski}
 % Hughes-Hallett doesn't mention arc length integrals.
 We will instead denote them by $\dl$ (note the stroke over the $\mathrm{d}$).
 That is, we define
@@ -261,6 +265,7 @@ Now the \textbf{arc length} of a curve $\curve$ is defined to be
 if this integral exists.
 More generally, if $f$ is a multivariable function, then the \textbf{line integral of $f$ with respect to arc length} over $\curve$ is defined to be
 \[ \lint{\curve} f(\ptx)\,\dl. \]
+\begin{rogawski}The textbook calls this a \textbf{scalar line integral}.\end{rogawski}
 
 Even though $\dl$ is not a linear differential form, it is Lipschitz continuous in $\dpx$.
 Thus, the Change of Variables Theorem applies to arc length integrals, and can reduce them to one-variable integrals.
@@ -297,10 +302,11 @@ a formula which you may have seen in one-variable calculus.
   Thus, the integrals considered in \cref{eg:onevar-absint} are a one-variable version of ``line integrals with respect to arc length''.
 \end{rmk}
 
-\begin{notextbook}Your textbook probably discusses arc length integrals and line integrals of vector fields.\end{notextbook}
-\begin{stewart}The textbook discusses line integrals in section 11.5, starting with arc length integrals and then considering also line integrals of linear differential forms (but not by that name) and of vector fields.\end{stewart}
+\begin{notextbook}Your textbook probably discusses arc length integrals and line integrals of vector fields.\end{notextbook}%
+\begin{stewart}The textbook discusses line integrals in section 11.5, starting with arc length integrals and then considering also line integrals of linear differential forms (but not by that name) and of vector fields.\end{stewart}%
 \begin{hugheshallett}The textbook discusses line integrals in sections 18.1 and 18.2, starting with vector fields and then mentioning linear differential forms (but not by that name) as an alternative notation.
-(It does not discuss integrals with respect to arc length, other than the arc length of a curve itself in section 17.2.)\end{hugheshallett}
+(It does not discuss integrals with respect to arc length, other than the arc length of a curve itself in section 17.2.)\end{hugheshallett}%
+\begin{rogawski}The textbook discusses line integrals in section 16.2, starting with arc length integrals (``scalar line integrals'') and then line intgerals of vector fields (``vector line integrals'').\end{rogawski}
 Our terminology of differential forms enables us to see all of these as particular cases of the same notion of integral.
 
 \section{The fundamental theorem of calculus}
