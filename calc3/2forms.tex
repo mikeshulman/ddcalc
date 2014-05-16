@@ -1,9 +1,7 @@
-\documentclass[12pt]{amsart}
-\usepackage{fullpage}
-\input{../macros}
-\title{Higher differential forms}
-\begin{document}
-\maketitle
+\ifdefined\inmaster\else\def\subonly{\jobname}\input{calc3}\fi
+
+\chapter{Higher differential forms}
+\label{cha:higher-forms}
 
 \begin{notextbook}Your textbook probably defines the \emph{double integral} of a two-variable function $f$ over a region $R$, using the notation\end{notextbook}
 \begin{stewart}In section 12.1, the textbook defines the \emph{double integral} of a two-variable function $f$ over a rectangle $R$, using the notation\end{stewart}
@@ -24,5 +22,3 @@ Thus, we consider $\dA$ to be a function which takes \emph{two} vectors as input
   A \textbf{differential 2-form} is a function whose input is a point $\ptx$ and two vectors based at $\ptx$.
   We denote the vectors by ??.
 \end{defn}
-
-\end{document}

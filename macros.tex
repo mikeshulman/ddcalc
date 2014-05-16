@@ -1,10 +1,14 @@
 \makeatletter
 
+%% AMS
+\usepackage{amsmath,amssymb,latexsym}
+
 %% Theorems
 \usepackage{xcolor}
 \definecolor{darkgreen}{rgb}{0,0.45,0} 
 \usepackage[pagebackref,colorlinks,citecolor=darkgreen,linkcolor=darkgreen]{hyperref}
 \usepackage{cleveref,aliascnt}
+\usepackage{amsthm}
 \def\defthm#1#2#3{%
   %% Ensure all theorem types are numbered with the same counter
   \newaliascnt{#1}{thm}
@@ -19,7 +23,7 @@
 %\theoremstyle{remark}
 \defthm{rmk}{Remark}{Remarks}
 \defthm{advrmk}{Advanced Remark}{Advanced Remarks}
-\newenvironment{adv}{\SMALL\begin{advrmk}}{\end{advrmk}}
+\newenvironment{adv}{\small\begin{advrmk}}{\end{advrmk}}
 \defthm{eg}{Example}{Examples}
 \defthm{egs}{Examples}{Examples}
 \defthm{sage}{Sage}{Sages}
@@ -64,6 +68,8 @@
 \newcommand{\dpx}{{\ensuremath{\dd \pt{x}}}}
 
 %% Not differentials of anything
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \newcommand{\dl}{\ensuremath{\mathrm{\dj}\ell}}
 \newcommand{\dA}{\ensuremath{\mathrm{\dj}A}}
 \newcommand{\dV}{\ensuremath{\mathrm{\dj}V}}

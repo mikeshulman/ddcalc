@@ -1,9 +1,6 @@
-\documentclass[12pt]{amsart}
-\usepackage{fullpage}
-\input{../macros}
-\title{A crash course in differential forms}
-\begin{document}
-\maketitle
+\ifdefined\inmaster\else\def\subonly{\jobname}\input{complex}\fi
+
+\chapter{A crash course in differential forms}
 
 In your previous calculus classes, you may or may not have encountered \emph{differential forms} by name.
 However, you've certainly met them, even if you didn't realize it.
@@ -281,5 +278,3 @@ Thus, we see finally that \cref{eq:stokes-theorem} is just \emph{Stokes' theorem
 The most general ``fundamental theorem of calculus for differential forms'' is that if $\omega$ is a differential $p$-form in $n$ dimensions, and $\surf$ is an oriented $p$-dimensional manifold, then
 \[ \int_{\surf} \dd\omega = \int_{\bdry\surf} \omega. \]
 This is usually called the \emph{(generalized) Stokes' theorem}, and it includes the usual fundamental theorem of calculus as well as Green's theorem, the classical Stokes' theorem, and the divergence theorem.
-
-\end{document}

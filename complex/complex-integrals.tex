@@ -1,9 +1,6 @@
-\documentclass[12pt]{amsart}
-\usepackage{fullpage}
-\input{../macros}
-\title{Complex integration of differential forms}
-\begin{document}
-\maketitle
+\ifdefined\inmaster\else\def\subonly{\jobname}\input{complex}\fi
+
+\chapter{Complex integration of differential forms}
 
 Let us now consider integration of complex-valued differential forms.
 The most interesting case is that of analytic 1-forms.
@@ -67,5 +64,3 @@ However, it shows that a slightly weaker form of Cauchy's theorem is really just
 
 The point is that complex-differentiability of $f$ is a \emph{differential equation}, which in particular implies that the vector field corresponding to the 1-form $f(z)\,\dz$ is \emph{divergence-free}.
 Thus, Green's theorem (which is the two-dimensional form of the divergence theorem) implies that this vector field is ``conservative''.
-
-\end{document}

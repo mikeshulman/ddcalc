@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ -d $1 ]]; then
+    cd $1
+    rm *.aux
+    pdflatex $1
+    for f in *.tex; do ln -s $1.aux ${f%.tex}.aux; done
+else
+    echo "Please pass a subdirectory name"
+fi

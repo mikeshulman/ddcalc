@@ -1,0 +1,16 @@
+\documentclass[12pt,oneside,openany]{book}
+\usepackage{fullpage}
+\input{../macros}
+
+\usepackage{newclude}
+\def\inmaster{1}
+\ifdefined\subonly\includeonly{\subonly}\fi
+
+\begin{document}
+
+\include{contents}
+\include{forms}
+\include{complex-differentials}
+\include{complex-integrals}
+
+\end{document}

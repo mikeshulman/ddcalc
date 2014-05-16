@@ -1,9 +1,7 @@
-\documentclass[12pt]{amsart}
-\usepackage{fullpage}
-\input{../macros}
-\title{Second differentials}
-\begin{document}
-\maketitle
+\ifdefined\inmaster\else\def\subonly{\jobname}\input{calc3}\fi
+
+\chapter{Second differentials}
+\label{cha:second-differentials}
 
 In one-variable calculus, you probably had occasion to consider not only the derivative $f'$ of a function $f$, but occasionally its \emph{second} and higher derivatives $f''$, $f'''$, and so on, which are obtained by differentiating the first derivative further.
 Let's consider how these can be expressed using differentials, and how they generalize to the multivariable case.
@@ -90,6 +88,3 @@ What kind of a thing is $\dd^2x$? \dots %TODO
 \label{sec:multivariable-second-differentials}
 
 % TODO: an example or two.  Second partials, equality of mixed partials.  Hessian matrix.
-
-
-\end{document}
