@@ -17,6 +17,9 @@ You may have been told that the ``$\dx$'' (or $\dl$, $\dA$, etc.)\ is simply a n
 In fact, differential forms are a powerful tool; they are essentially the ``modern'' way to do vector calculus.
 Unfortunately, they are still not often taught in multivariable calculus classes, so here we will give a brief summary.
 
+\section{What are differential forms?}
+\label{sec:what-are-forms}
+
 Differential forms are objects similar to functions or vector fields, which involve one or more functions defined on a line, in a plane, or in space (or more generally, in an $n$-dimensional space).
 In $n$-dimensional space, there are $(n+1)$ kinds of differential forms, called \emph{0-forms}, \emph{1-forms}, \dots, up to \emph{$n$-forms}.
 The following are not the ``actual'' definitions, but they will suffice for us.
@@ -39,7 +42,7 @@ The following are not the ``actual'' definitions, but they will suffice for us.
 \end{defn}
 
 \begin{defn}
-  In three dimensions, with coordinates\footnote{Confusingly, $z$ is traditionally used both for the third coordinate in three real dimensions and for a complex variable.  In this note there will be no complex variables, so $z$ will always be the third real coordinate.  However, after the very brief \cref{sec:forms-in-3D} below, we will never mention three dimensions again, since they are not very relevant to complex analysis; thus for the rest of the course $z$ will continue to denote a complex variable.} $x$, $y$, and $z$:
+  In three dimensions, with coordinates\footnote{Confusingly, $z$ is traditionally used both for the third coordinate in three real dimensions and for a complex variable.  In this chapter there will be no complex variables, so $z$ will always be the third real coordinate.  However, after the very brief \cref{sec:forms-in-3D} below, we will never mention three dimensions again, since they are not very relevant to complex analysis; thus for the rest of the course $z$ will continue to denote a complex variable.} $x$, $y$, and $z$:
   \begin{itemize}
   \item A \textbf{differential 0-form} is a function of $x$, $y$, and $z$.
   \item A \textbf{differential 1-form} is an expression of the form $A\,\dx+B\,\dy+C\,\dz$, where $A$, $B$, and $C$ are functions of $x$, $y$, and $z$.
@@ -55,9 +58,9 @@ The main reasons for introducing these funny objects are the following:
 \item The two operations are related by the \emph{generalized Stokes' theorem}, which subsumes all the theorems of vector calculus.
 \end{enumerate}
 
-(What is a ``manifold'', you may ask?
+What is a ``manifold'', you may ask?
 For $p=0$, $1$, and $2$ respectively, examples of $p$-dimensional manifolds are points, curves, and surfaces respectively.
-More generally, a manifold could have multiple ``pieces'' each of which looks like a point, curve, or surface.)
+More generally, a manifold could have multiple ``pieces'' each of which looks like a point, curve, or surface.
 
 \section{Differential forms in one dimension}
 \label{sec:forms-in-1D}
@@ -97,8 +100,8 @@ This is almost right, but for two caveats.
 
 Firstly, the word ``oriented'' is missing.
 An \emph{oriented} $0$-dimensional manifold is not just a point: it's a point together with a ``sign'', plus or minus.
-Thus, we define the \emph{integral} of a 0-form $f$ over such an ``oriented point'' to be $\pm f(x)$, with the $\pm$ sign coming from the orientation.
-(It's better not to call this ``the integral of a function'' since as we have seen, the ``integral of a function'' from one-variable calculus is actually the integral of a \emph{1-form}.)
+Thus, we define the \emph{integral of a 0-form} $f$ over such an ``oriented point'' to be $\pm f(x)$, with the $\pm$ sign coming from the orientation.
+(Even though 0-forms are the same as functions, it's better not to call this ``the integral of a function'' since as we have seen, the ``integral of a function'' from one-variable calculus is actually the integral of a \emph{1-form}.)
 
 Secondly, a general $0$-manifold is not just an oriented point, but a finite collection of oriented points.
 The ``integral'' of a 0-form $f$ over such a collection should be the \emph{sum} of its integrals over the individual oriented points.
@@ -181,8 +184,8 @@ The main difference is that the generating symbols $\dx$ and $\dy$ do not commut
   \dy\wedge\dx = - \dx\wedge \dy.\label{eq:wedge-anticommute}
 \end{equation}
 A good way to think about this is with reference to orientations.
-The 2-form $\dx\wedge\dy$ produces positive results when integrated over ``canonically'' (i.e. counterclockwisely) oriented regions, in which the direction of rotation is \emph{from} the positive $x$-axis \emph{towards} the positive $y$-axis.
-Similarly, $\dy\wedge\dx$ produces positive results when integrated over oriented regions in which the direction of rotation is \emph{from} the positive $y$-axis \emph{towards} the positive $x$-axis --- but this is the opposite orientation, so we must have \cref{eq:wedge-anticommute}.
+The 2-form $\dx\wedge\dy$ produces positive results when integrated over \emph{counterclockwisely} oriented regions, in which the direction of rotation is \emph{from} the positive $x$-axis \emph{towards} the positive $y$-axis (because $\dx$ comes before $\dy$ in $\dx\wedge\dy$).
+Similarly, $\dy\wedge\dx$ produces positive results when integrated over \emph{clockwisely} oriented regions, in which the direction of rotation is \emph{from} the positive $y$-axis \emph{towards} the positive $x$-axis --- but this is the opposite orientation, so we must have \cref{eq:wedge-anticommute}.
 
 We also have
 \[ \dx \wedge \dx = 0 \qquad\text{and}\qquad \dy\wedge \dy = 0. \]
@@ -216,7 +219,7 @@ This is true (assuming $f$ and $g$ have continuous partial derivatives): it is e
 \label{sec:forms-in-3D}
 
 All the same ideas apply fairly directly to three dimensions.
-This is not important for complex analysis, but I will sketch the ideas briefly, so you can get a sense for how differential forms unify all the theorems of vector calculus.
+This is not important for a first course in complex analysis, but I will sketch the ideas briefly, so you can get a sense for how differential forms unify all the theorems of vector calculus.
 
 We have differential 0-forms (functions), which can be ``integrated'' over points and more general oriented 0-manifolds.
 We have differential 1-forms such as $f\,\dx + g\,\dy + h\,\dz$, which can be line-integrated over oriented curves.

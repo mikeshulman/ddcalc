@@ -1,7 +1,7 @@
 \documentclass[12pt,oneside,openany]{book}
 \usepackage{fullpage}
 \input{../macros}
-
+\renewcommand{\thechapter}{\Alph{chapter}}
 \usepackage{newclude}
 \def\inmaster{1}
 \ifdefined\subonly\includeonly{\subonly}\fi
