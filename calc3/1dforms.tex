@@ -1,0 +1,310 @@
+\ifdefined\inmaster\else\def\subonly{\jobname}\input{calc3}\fi
+
+\chapter{Differential forms in one dimension}
+\label{cha:1dforms}
+
+In your previous calculus classes, you may or may not have encountered \emph{differential forms} by name.
+However, you've certainly met them, even if you didn't realize it.
+When you write
+\[ \int_{x=a}^b f(x) \,\dx \]
+the thing being integrated, ``$f(x) \,\dx$'', is a differential form.
+
+You may have been told that the ``$\dx$'' is simply a notation that indicates which variable we're integrating, but this is a lie.
+In multivariable calculus, we can no longer maintain this fiction: we have to treat differential forms as honest objects.
+Fortunately, as we will see, we also have some advantages over one-variable calculus in understanding differential forms.
+
+In this chapter, we will learn about differential forms in one dimension.
+We will use them to rephrase, and improve on, the concepts of one-variable calculus.
+Then in later chapters we will generalize them to higher dimensions.
+
+\section{Differential forms and their orders}
+\label{sec:1d-differential-forms}
+
+If $\dx$ isn't just a notation indicating the integration variable, what is it?
+If you encountered differentials in one-variable calculus, you may have been told that $\dx$ is a small change in $x$ (sometimes denoted $\Delta x$), or even an ``infinitesimal'' change in $x$.
+Formally, however, it is just another variable.
+
+\begin{defn}
+  A \textbf{differential 1-form (in one dimension)} is a function of two variables, one of which is the ``differential'' of the other and denoted with a $\dd$ in front.
+  Thus, if the first variable is $x$, the second is $\dx$.
+  On the other hand, if the first variable is $t$, then the second is $\dt$, and so on.
+\end{defn}
+
+We usually denote differential forms by lowercase Greek letters such as the following.
+\begin{itemize}
+\item $\omega$ (omega, not to be confused with the English letter $w$)
+\item $\eta$ (eta, not to be confused with the English letter $n$)
+\end{itemize}
+Thus, we may write $\omega(x,\dx)$ to emphasize that $\omega$ is a function of $x$ and $\dx$.
+
+\begin{egs}\label{egs:1d-differential-forms}
+  The following are all differential 1-forms:
+  \begin{gather*}
+    x^2 \,\dx\\
+    \half({x-2}+e^x)\,\dx\\
+    1 + \dx + \half \dx^2 + \third \dx^3\\
+    \sin(x + \dx) - \sin(x)\\
+    |\dx|
+  \end{gather*}
+\end{egs}
+
+Note that although $\dx$ is two letters, we regard it as one symbol standing for one variable.
+In particular, an expression such as $\dx^2$ means $(\dx)^2$, not $\dd(x^2)$.
+(We will give a different meaning to $\dd(x^2)$ in \cref{sec:differentials}.)
+
+The first two of \cref{egs:1d-differential-forms} are special in the following way.
+
+\begin{defn}
+  A \textbf{linear} differential 1-form (in one dimension) is one defined by an expression such as
+  \[ f(x) \, \dx \]
+  where $f$ is a function only of the variable $x$.
+\end{defn}
+
+Most mathematicians only use the term ``differential form'' for linear ones.
+However, the more general ones are quite useful.
+In later chapters we will encounter still more general kinds of ``differential forms''.
+
+Although formally $\dx$ is just another variable, we think of it as a \emph{small change} in the value of $x$.
+Thus, a differential 1-form is a function whose input consists of a number $x$ together with a small change $\dx$ in the value of that number.
+Specifically, by \emph{small} we mean \emph{small relative to the values generally taken by $x$}.
+For instance, if $x=3$, then a possible small change would be $\dx = 0.01$.
+In this case, a differential form such as $\dx^2$ is an \emph{even smaller} change, since $\dx^2 = 0.0001$.
+We say that $\dx$ is a \emph{first order} form while $\dx^2$ is \emph{second order}.
+Similarly, we say that $x$ itself is \emph{zeroth order}, as is any function value $f(x)$ not involving $\dx$.
+
+Every linear form is first-order: when we multiply a zeroth order form like $f(x)$ by a first order one like $\dx$, the result is first order.
+For instance, if $f(x) = 4$ and $\dx = 0.001$, then $f(x)\,\dx = 0.004$, which is about the same size as $\dx$.
+A form such as $|\dx|$ is also first-order: no matter whether $\dx$ is positive or negative, its absolute value is about the same size.
+
+If a form is a polynomial in $\dx$ (with ``coefficients'' that are arbitrary functions of $x$), such as $\half x\,\dx + 3x^2\,\dx^2 - e^{x^2}\, \dx^3$, then its order is the smallest exponent of $\dx$ that appears.
+For instance, if $x=3$ and $\dx=0.001$, then $x\,\dx - \dx^2 = 0.002999$, which is about the same size as $\dx$; thus $x\,\dx - \dx^2$ is first-order.
+On the other hand, still with $x=3$ and $\dx=0.001$, we have $\frac{1}{3}\dx^2 + x \,\dx^3 \approx 0.000000336$, which is about the same size as $\dx^2 = 0.000001$; thus $\frac{1}{3}\dx^2 + x \,\dx^3$ is second-order.
+
+The concept of order can also be applied to forms that are not polynomials in $\dx$.
+For instance, if $\dx=0.01$, then $\sin(\dx) \approx 0.0099998$, which is about the same size as $\dx$.
+Thus, it is reasonable to expect that $\sin(\dx)$ is also first-order.
+On the other hand, still with $\dx=0.01$, we have $\cos(\dx) - 1 \approx -0.00005$, which is much smaller than $\dx$ and about the same size as $\dx^2 = 0.0001$.
+Thus, it is reasonable to expect that $\cos(\dx) - 1$ is second-order.
+
+We can also see the orders of $\sin(\dx)$ and $\cos(\dx)-1$ by looking at their power series expansions.
+Recall that the Taylor series of $\sin$ at $0$ gives
+\[ \sin(\dx) = \dx - \frac{\dx^3}{3!} + \frac{\dx^5}{5!} - \cdots. \]
+This is an ``infinite polynomial'' whose lowest-order term has degree $1$; thus the same rule for orders of polynomials says that it is first-order.
+Similarly, the Taylor series of $\cos$ at $0$ gives
+\[ \cos(\dx) - 1 = - \frac{\dx^2}{2!} + \frac{\dx^4}{4!}- \frac{\dx^6}{6!} + \cdots \]
+whose lowest-order term has degree $2$, so that $\cos(\dx)-1$ should be second-order.
+
+It is possible to give a precise definition of the word ``order'' in general, but it is a bit complicated and not necessary for our purposes, so we will not do so.
+All that we will need is a definition of when a differential form is \emph{smaller than first order} (e.g.\ second-order or third-order).
+This is because in calculus, we are concerned with \emph{approximations to first order}, also known as \emph{linear approximations}; and forms that are smaller than first order do not affect these approximations.
+Thus, we will call them \emph{negligible} (to first order).
+
+\begin{defn}\label{def:negligible}
+  A differential 1-form $\omega$ is called \textbf{negligible} at a point $x$ if
+  \[ \lim_{\dx\to 0} \frac{\omega(x,\dx)}{\dx} = 0. \]
+\end{defn}
+
+Recall that definitions in mathematics introduce a \emph{new} meaning for a word.
+Thus, \emph{from now on} (in this class) the word ``negligible'' \emph{will mean} what this definition says it does.
+Our previous discussion was only motivational; the definition is the ``gold standard'' for the meaning of the word.
+
+\begin{eg}
+  The differential form $\dx^2$ is negligible at any point, since
+  \[ \lim_{\dx\to 0} \frac{\dx^2}{\dx} = \lim_{\dx\to 0} \dx = 0. \]
+  Similarly, if $f$ is any function of $x$, then $f(x)\,\dx^2$ is negligible at any point, since
+  \[ \lim_{\dx\to 0} \frac{f(x)\,\dx^2}{\dx} = f(x)\, \lim_{\dx\to 0} \dx = 0. \]
+\end{eg}
+
+\begin{eg}
+  More generally, if $n > 1$, then $\dx^n$ is negligible at any point, since
+  \[ \lim_{\dx\to 0} \frac{\dx^n}{\dx} = \lim_{\dx\to 0} \dx^{n-1} = 0. \]
+  (The final limit is equal to zero only if $n>1$.)
+  Similarly, $f(x)\,\dx^n$ is also negligible.
+\end{eg}
+
+\begin{eg}
+  On the other hand, for a \emph{linear} differential 1-form $f(x)\,\dx$, we have
+  \[ \lim_{\dx\to 0} \frac{f(x)\,\dx}{\dx} = \lim_{\dx\to 0} f(x) = f(x). \]
+  Thus, a linear differential 1-form is negligible only if $f(x) = 0$.
+\end{eg}
+
+\begin{eg}
+  The differential 1-form $|\dx|$ is also not negligible, for we have
+  \[ \frac{|\dx|}{\dx} =
+  \begin{cases}
+    1 &\quad \dx>0\\
+    -1 &\quad \dx<0
+  \end{cases}\]
+  which does not have a limit as $\dx\to 0$.
+\end{eg}
+
+\begin{eg}
+  If $\omega$ and $\eta$ are negligible at $\ptx$, then we have
+  \[ \lim_{\dx\to 0} \frac{\omega(x,\dx) + \eta(x,\dx)}{\dx} =
+  \left(\lim_{\dx\to 0} \frac{\omega(x,\dx)}{\dx}\right) + \left(\lim_{\dx\to 0} \frac{\eta(x,\dx)}{\dx}\right)
+  = 0 + 0 = 0.
+  \]
+  Thus, the sum of two negligble 1-forms is again negligible.
+  This implies that a polynomial in $\dx$, with coefficients that are functions of $x$, is negligible if all the exponents of $\dx$ are at least $2$.
+  For instance, $\frac{1}{x}\,\dx^2 + e^x \,\dx^3$ is negligible.
+\end{eg}
+
+\begin{eg}
+  Suppose that $\lim_{\dx\to 0} \omega(x,\dx) = L$ exists (and is finite), while $\eta$ is negligible at $x$ so that $\lim_{\dx\to 0} \frac{\eta(x,\dx)}{\dx}= 0$.
+  Then we have
+  \[ \lim_{\dx\to 0} \frac{\omega(x,\dx) \, \eta(x,\dx)}{\dx} = \left(\lim_{\dx\to 0} \omega(x,\dx)\right) \left(\lim_{\dx\to 0} \frac{\eta(x,\dx)}{\dx}\right) = L \cdot 0 = 0 \]
+  Thus, the product $\omega\,\eta$ is also negligible at $x$.
+\end{eg}
+
+Notice that all the examples of negligible forms are what we would intuitively call second-order or higher.
+We will continue to use the informal terminology of ``first-order'', ``second-order'', and so on when discussing forms.
+However, in definitions and theorems we will use only the term ``negligible'' that we have defined precisely.
+
+\section{Integrating 1-forms}
+\label{sec:1d-integration}
+
+When we ``integrate a function $f$'' in one-variable calculus from $a$ to $b$, we divide up the interval $[a,b]$ into a large number $N$ of small subintervals $[x_{i-1},x_i]$ of width $\dx_i$, with $x_0 = a$ and $x_N=b$:
+\begin{center}
+  \begin{tikzpicture}[yscale=0.3,xscale=1.5]
+    \draw[<->] (-5,0) -- (5,0);
+    \draw (-3,-1) -- +(0,2) node[above] {$a=x_0$};
+    \draw (-1.5,-1) -- +(0,2) node[above] {$x_1$};
+    \draw (-1,-1) -- +(0,2) node[above] {$x_2$};
+    \draw (0,-1) -- +(0,2) node[above] {$x_3$};
+    \node at (.75,2) {$\cdots$};
+    \draw (1.5,-1) -- +(0,2) node[above] {$x_{N-2}$};
+    \draw (2.5,-1) -- +(0,2) node[above] {$x_{N-1}$};
+    \draw (4,-1) -- +(0,2) node[above] {$x_N=b$};
+  \end{tikzpicture}
+\end{center}
+
+and consider the \emph{Riemann sum}
+\[ \sum_{i=1}^N f(\rstag x i)\, \dx_i \]
+where $\rstag x i$ is some point in $[x_{i-1},x_i]$.
+Then we take a limit as the subinterval widths $\dx_i$ go to zero.
+
+If we regard this instead as integrating the differential form $\omega(x,\dx) = f(x)\, \dx$, we can rewrite the Riemann sum as
+\[ \sum_{i=1}^N \omega(\rstag x i,\dx_i). \]
+In other words, the differential form specifies, for each value $\rstag x i$ of $x$ and each subinterval width $\dx_i$, the appropriate (approximate) contribution $\omega(\rstag x i,\dx_i)$ to the integral.
+We simply add up these contributions, and then take the limit.
+
+We can now generalizes this to integrate \emph{any} differential form in one dimension.
+We simply define
+\[ \lint{[a,b]} \omega = \lim_{\dx_i \to 0} \sum_{i=1}^N \omega(\rstag x i,\dx_i). \]
+if this limit exists.
+
+Note that when integrating a differential form, we do not write a ``$\dx$'' at the end of the integral: we simply write $\lint{[a,b]} \omega$.
+The $\dx$ at the end of an ordinary integral is \emph{part} of the differential form being integrated.
+
+Furthermore, rather than writing $a$ and $b$ at the top and bottom of the integral in the usual way, we write the interval $[a,b]$ as a subscript.
+If we want to emphasize the variable being integrated, then we can write $\lint{x\in [a,b]} \omega$; as in one-variable calculus this is useful when integrating by substitution.
+
+\begin{eg}\label{eg:onevar-linint}
+  
+
+  On the other hand, we can also consider also the case when $b<a$.
+  In one-variable calculus, you probably learned that
+  \begin{equation}\label{eq:onevar-integral-revorient}
+    \itint x b a {f(x} = - \itint x a b {f(x)}
+  \end{equation}
+  but you might not have been given a principled reason why.
+  The reason is that when $b<a$, the intermediate points $x_i$ that ``cover the distance from $a$ to $b$'' have to be \emph{decreasing} in order to get \emph{from} the greater number $a$ \emph{to} the lesser number $b$:
+  \[ a = x_0 > x_1 > \cdots > x_{N-1} > x_N = b.\]
+  In particular, $x_i < x_{i-1}$ for all $i$, so their difference $\Delta x_i = x_i - x_{i-1}$ is \emph{negative}.
+  Apart from this minus sign, however, the Riemann sums for $\itint x a b {f(x)}$ will be the same as those for $\itint x b a {f(x)}$, so that \cref{eq:onevar-integral-revorient} holds.
+\end{eg}
+
+\begin{eg}\label{eg:onevar-absint}
+  As a first new example, consider the form $f(x) \, |\dx|$ in one dimension, where $f$ is some continuous function.
+  If $a<b$, then in our partition of the interval $[a,b]$ the intermediate points $x_i$ \emph{increase} from $a$ to $b$:
+  \[ a = x_0 < x_1 < \cdots < x_{N-1} < x_N = b. \]
+  In particular, $x_i > x_{i-1}$ for all $i$, so their difference $\Delta x_i = x_i - x_{i-1}$ is positive.
+  Thus, the Riemann sums for $\int{[a,b]} f(x) \, |\dx|$ are
+  \[ \sum_{i=1}^N f(\rstag x i)\, |\Delta x_i| = \sum_{i=1}^N f(\rstag x i)\, \Delta x_i\]
+  which are exactly the same as the Riemann sums for $\itint x a b {f(x)}$.
+  Thus, if $a<b$, then $\lint{[a,b]} f(x) \, |\dx| = \itint x a b {f(x)}$.
+
+  However if we instead consider the integral $\lint{[a,b]} f(x) \, |\dx|$ when $a<b$, then the Riemann sums will be the \emph{same} as those for $\lint{[b,a]} f(x) \, |\dx|$, because of the absolute value.
+  Thus in contrast to \cref{eq:onevar-integral-revorient}, we have
+  \begin{equation}\label{eq:onevar-absint-revorient}
+    \lint{[b,a]} f(x)\,|\dx| = \lint{[a,b]} f(x) \,|\dx|.
+  \end{equation}
+  In conclusion, therefore, we can say that
+  \begin{equation}
+    \lint{[a,b]} f(x) \,|\dx| =
+    \begin{cases}
+      \displaystyle\itint x a b {f(x)} \qquad\text{if } a<b\\[10pt]
+      \displaystyle\itint x b a {f(x)} \qquad\text{if } b<a.
+    \end{cases}\label{eq:onevar-absint}
+  \end{equation}
+  In other words, the differential form $f(x)\,\dx$ notices the ``direction'' (or \emph{orientation}) of the interval over which it is integrated, and gives a different result whether we integrate it ``from $a$ to $b$'' or ``from $b$ to $a$'' --- whereas the form $f(x)\,|\dx|$ does not notice the direction.
+
+  (This is not, of course, to say that the integral $\lint{[a,b]} f(x) \,|\dx|$ is always a positive number: the function $f$ might take on negative values.)
+\end{eg}
+
+\begin{eg}
+  Consider the form $\dx^2$.
+  If we have a division into subintervals $[x_{i-1},x_i]$ such that $\Delta x_i < \varepsilon$ for all $i$, then the corresponding Riemann sum is
+  \begin{align*}
+    \sum_{i=1}^N (\Delta x_i)^2 &< \varepsilon \sum_{i=1}^N (\Delta x_i)\\
+    &= \varepsilon (b-a).
+  \end{align*}
+  In the limit, $\varepsilon \to 0$, and thus the Riemann sums also go to zero.
+  So we have
+  \[ \lint{[a,b]} \dx^2 = 0. \]
+  Intuitively, we may say that an ordinary integral $\lint{[a,b]} f(x) \,\dx$ obtains a zeroth-order result by adding up a large number of small first-order changes; but if we try to add up the \emph{same} number of \emph{second-order} changes, the result will be negligible.
+\end{eg}
+
+More generally, we have the following:
+
+\begin{thm}\label{thm:int-negligible-onevar}
+  If $\omega$ is negligible, then for any closed interval $[a,b]$ we have
+  \[ \lint{[a,b]} \omega \;=\; 0.\]
+\end{thm}
+
+\begin{adv}
+  If $\omega$ is not assumed \emph{a priori} to be integrable, then the conclusion of \cref{thm:int-negligible-onevar} requires a slightly more powerful definition of integration than is usually taught in one-variable calculus, called ``Henstock integration''.
+  Roughly, we need to be more flexible with the exact meaning of what it means for the $\Delta x_i$ to all approach zero at once.
+  Since we will not be making ``$\Delta x_i\to 0$'' very precise anyway, and all our examples will be integrable, we henceforth ignore this issue.
+\end{adv}
+
+TODO: In the middle of reorganization\dots
+
+In particular, it follows that
+\begin{equation}\label{eq:int-apx1-equal}
+  \text{If }\omega\apx1\eta, \text{then} \displaystyle\lint{[a,b]} \omega = \lint{[a,b]} \eta.
+\end{equation}
+For example, recall that if $f$ is differentiable, then
+\begin{align*}
+  f(x+\dx)-f(x) &\apx1 \df. %\\
+  % &= f'(x) \,\dx
+\end{align*}
+Therefore, we have
+\[ \lint{[a,b]} \df = \lint{[a,b]} \Big(f(x+\dx) - f(x)\Big). \]
+(You may be tempted to add a $\dx$ on the right-hand side of this equation, but that would be wrong: $f(x+\dx) - f(x)$ alone is the \emph{differential form} that we are integrating.)
+
+Now note that for any partition of $[a,b]$ into subintervals, we have $x_{i-1} + \Delta x_i = x_i$, by definition.
+Thus, if we choose the left-hand endpoints (that is, $\rstag x i = x_{i-1}$), then the Riemann sum for $\lint{[a,b]} (f(x+\dx) - f(x))$ will be
+\begin{align*}
+  \Big(f(x_1) - f(x_0)\Big) + \Big(f(x_2)-f(x_1)\Big) + \cdots + \Big(f(x_N) - f(x_{N-1})\Big)
+  &= f(x_N) - f(x_0)\\
+  &= f(b) - f(a).
+\end{align*}
+Therefore,
+\begin{equation}
+  \lint{[a,b]} \df = f(b) - f(a).\label{eq:differential-ftc-eval}
+\end{equation}
+Recalling that $\df = f'(x)\,\dx$, we see that this is half of the Fundamental Theorem of Calculus.
+\begin{stewart}(The textbook calls this half the ``Evaluation Theorem''.)\end{stewart}
+
+The other half of the Fundamental Theorem of Calculus says that every continuous function has an antiderivative: i.e.\ if $f$ is continuous, then there is a function $F$ such that $F'(x) = f(x)$.
+This is equivalent to saying that any \emph{linear} differential form $f(x)\,\dx$ is the differential $\dd F = F'(x)\,\dx$ of some function.
+(It follows from this and \cref{eq:differential-ftc-eval} that one such function $F$ is $F(x)= \int_a^x f(x)\,\dx$, and this is often included as part of the Fundamental Theorem.)
+Therefore, at least in principle, we can evaluate the integral of \emph{any} linear differential form using \cref{eq:differential-ftc-eval}.
+(Although, as you probably learned in your previous calculus classes, in practice there are many functions whose antiderivatives have no simple formula.)
+
+This is not the case for nonlinear differential forms.
+Forms such as $|\dx|$ and $\dx^2$ and $e^\dx$ are not the differential of any function, so we cannot evaluate their integrals using \cref{eq:differential-ftc-eval}.
+Of the nonlinear forms, the ones which arise most in practice are those of the form $f(x)\,|\dx|$, and those we can integrate using \cref{eq:onevar-absint}.
+In many other cases, we can apply \cref{thm:int-negligible-onevar} or \cref{eq:int-apx1-equal}.
+
